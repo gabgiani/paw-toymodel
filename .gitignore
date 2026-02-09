@@ -29,9 +29,13 @@ venv/
 # Pages
 *.pages
 
-# Old intermediate .docx versions
-paper3_v2.docx
-paper3_v3.docx
-paper3_v4.docx
-essay_v2.docx
-companionnotes.docx
+# Generated outputs (regenerable from .tex sources)
+*.docx
+*.pdf
+
+# Internal working documents (kept in ../paw-internal-docs/)
+paper
+paper2
+companionnotes
+essay
+essay_v2
