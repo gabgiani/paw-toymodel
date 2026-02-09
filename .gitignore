@@ -29,6 +29,9 @@ venv/
 # Pages
 *.pages
 
+# API keys — NEVER COMMIT
+apikey.json
+
 # Generated outputs (regenerable from .tex sources)
 *.docx
 *.pdf

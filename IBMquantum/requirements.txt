@@ -1,0 +1,7 @@
+# IBM Quantum Validation — Dependencies
+# Install in the project venv: pip install -r IBMquantum/requirements.txt
+qiskit>=2.0
+qiskit-ibm-runtime>=0.30
+numpy
+matplotlib
+qutip

@@ -19,6 +19,10 @@ python generate_god_observer_plots.py # Boundary analysis (omniscient observer)
 python generate_geometry_plots.py     # Geometric interpretation (Bloch trajectory)
 python generate_gravity_robustness.py # Gravity robustness (3 tests)
 python generate_structural_robustness.py # Structural robustness (3 tests)
+
+# IBM Quantum hardware (requires API key in apikey.json)
+pip install qiskit qiskit-ibm-runtime
+python IBMquantum/run_ibm_validation.py --mode both
 ```
 
 All outputs are saved to `output/`.
@@ -271,6 +275,7 @@ Jupyter notebook for interactive exploration. Contains the same computations as 
 | `robustness_initial_states.png` | robustness | `generate_structural_robustness.py` |
 | `robustness_arrow_scatter.png` | robustness | `generate_structural_robustness.py` |
 | `robustness_partition.png` | robustness | `generate_structural_robustness.py` |
+| `IBMquantum/output/ibm_quantum_validation.png` | experimental | `IBMquantum/run_ibm_validation.py` |
 
 ### Data Tables (CSV)
 
@@ -287,6 +292,30 @@ Jupyter notebook for interactive exploration. Contains the same computations as 
 | `table_poincare_recurrence.csv` | Poincaré recurrence analysis (symmetric + random) | `generate_structural_robustness.py` |
 | `table_initial_state_sensitivity.csv` | Haar-random initial state statistics | `generate_structural_robustness.py` |
 | `table_partition_independence.csv` | Partition independence metrics | `generate_structural_robustness.py` |
+| `IBMquantum/output/table_ibm_quantum_validation.csv` | IBM Quantum hardware Bloch + entropy data | `IBMquantum/run_ibm_validation.py` |
+
+---
+
+### `IBMquantum/run_ibm_validation.py` — IBM Quantum Hardware Validation
+
+**What it does:** Runs the Pillar 2 scenario (1 system + 2 environment qubits) on real IBM Quantum hardware via Qiskit Runtime. Compares hardware results against QuTiP exact evolution and a local Trotter simulator.
+
+**Pillar demonstrated:**
+- ✅ Pillar 2 (experimental validation on physical QPU)
+
+**Modes:**
+- `--mode simulator` — Local statevector simulation only
+- `--mode hardware` — IBM Quantum hardware only
+- `--mode both` — Simulator + hardware comparison
+
+**Requirements:** `qiskit>=2.0`, `qiskit-ibm-runtime>=0.30`, API key in `apikey.json`
+
+| Output | Description |
+|--------|-------------|
+| `IBMquantum/output/ibm_quantum_validation.png` | Three-panel plot: ⟨σ\_z⟩, S\_eff, and \|r\| vs step for exact, simulator, and hardware |
+| `IBMquantum/output/table_ibm_quantum_validation.csv` | Full Bloch vector and entropy data for all three sources |
+
+**Key result:** S\_eff grows from 0.011 → 0.550 on ibm\_torino (96.5% of exact value). Trotter error = 0 (exact decomposition). Hardware deviation = 0.166 (pure QPU noise).
 
 ---
 

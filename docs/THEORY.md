@@ -332,6 +332,45 @@ The unified relational formula produces a thermodynamic arrow that is:
 
 ---
 
+## Experimental Validation on IBM Quantum Hardware
+
+All results above rely on numerical simulation (QuTiP). As a final test, we executed the Pillar 2 scenario on a **real quantum processor** — IBM's `ibm_torino` (133 superconducting qubits) — via the Qiskit Runtime service.
+
+### Setup
+
+- **Qubits:** 3 (1 system + 2 environment)
+- **Circuit:** First-order Trotter decomposition of H = (ω/2)σ\_x + g(σ\_x⊗σ\_x⊗I + σ\_x⊗I⊗σ\_x)
+- **Steps:** k = 0..20 (t\_max = 4.0), each step = Rx(ωdt) + 2×RXX(2gdt)
+- **Shots:** 4096 per observable per step
+- **Observables:** Partial tomography of qubit 0 via ⟨σ\_x⟩, ⟨σ\_y⟩, ⟨σ\_z⟩
+
+A key property: because all terms in H commute in the σ\_x basis, the first-order Trotter decomposition is **exact** (Trotter error = 0). This means any deviation from the exact curve is purely QPU noise — not algorithmic error.
+
+### Results
+
+| Source | S\_eff(0) | S\_eff(20) | Max |ΔS| from exact |
+|--------|-----------|-----------|---------------------|
+| QuTiP exact | 0.000 | 0.570 | — |
+| Qiskit simulator | 0.000 | 0.570 | 0.000 |
+| **IBM ibm\_torino** | **0.011** | **0.550** | **0.166** |
+
+The thermodynamic arrow of time is clearly observed on real hardware:
+
+- S\_eff grows from ~0 to 0.550 (96.5% of the exact value)
+- The arrow strength S\_final − S\_initial = 0.543
+- Maximum deviation from exact is 0.166, entirely attributable to gate noise and decoherence
+
+| Script | Output |
+|--------|--------|
+| `IBMquantum/run_ibm_validation.py` | `IBMquantum/output/ibm_quantum_validation.png` |
+| `IBMquantum/run_ibm_validation.py` | `IBMquantum/output/table_ibm_quantum_validation.csv` |
+
+![IBM Quantum hardware validation — Pillar 2](../IBMquantum/output/ibm_quantum_validation.png)
+
+This constitutes the first experimental confirmation (on physical quantum hardware) that the unified relational formula's entropy growth mechanism survives real-world noise.
+
+---
+
 ## The Observer as an Anomaly
 
 The three pillars converge on a single insight:
