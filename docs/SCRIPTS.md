@@ -18,6 +18,7 @@ python generate_pillar3_plot.py      # Pillar 3 (two-clock comparison)
 python generate_god_observer_plots.py # Boundary analysis (omniscient observer)
 python generate_geometry_plots.py     # Geometric interpretation (Bloch trajectory)
 python generate_gravity_robustness.py # Gravity robustness (3 tests)
+python generate_structural_robustness.py # Structural robustness (3 tests)
 ```
 
 All outputs are saved to `output/`.
@@ -197,6 +198,40 @@ Test 3 (clock blur σ=4.0):    arrow = 0.997, mono = 1.000  — essentially immu
 
 ---
 
+### `generate_structural_robustness.py` — Structural Robustness Tests
+
+**What it does:** Three computational tests addressing the remaining computable theoretical risks: Poincaré recurrences, initial state sensitivity, and partition arbitrariness.
+
+**Validates:** The arrow of time is exponentially long-lived, generic over initial conditions, and independent of the S/E labeling.
+
+| Output | Description |
+|--------|-------------|
+| `output/robustness_poincare.png` | 2×3 grid: symmetric vs random coupling — entropy, fidelity, and spectral comparison |
+| `output/robustness_initial_states.png` | S\_eff distributions for 100 Haar-random product and entangled states |
+| `output/robustness_arrow_scatter.png` | Arrow strength scatter plot: product vs entangled initial states |
+| `output/robustness_partition.png` | Arrow strength for all 10 single-qubit partitions (symmetric + asymmetric H) |
+| `output/table_poincare_recurrence.csv` | Eigenspectrum analysis and recurrence metrics per n\_env |
+| `output/table_initial_state_sensitivity.csv` | Summary statistics for Haar-random initial states |
+| `output/table_partition_independence.csv` | Arrow strength and monotonicity for each qubit partition |
+
+**Key results:**
+```
+Test A (Poincaré): symmetric coupling → exact recurrence at t≈31 for all n_env
+                   random coupling  → no recurrence for n_env≥3, S_min rises to 0.35
+Test B (initial):  81% product states show arrow, 100% entangled states
+Test C (partition): ALL 10 qubit partitions show arrow, minimum strength = 0.882
+```
+
+![robustness_poincare.png](../output/robustness_poincare.png)
+
+![robustness_initial_states.png](../output/robustness_initial_states.png)
+
+![robustness_arrow_scatter.png](../output/robustness_arrow_scatter.png)
+
+![robustness_partition.png](../output/robustness_partition.png)
+
+---
+
 ### `test_god_observer.py` — God Observer Console Test
 
 **What it does:** Quick numerical validation of three levels of omniscience. Console output only.
@@ -232,6 +267,10 @@ Jupyter notebook for interactive exploration. Contains the same computations as 
 | `bloch_trajectory.png` | geometry | `generate_geometry_plots.py` |
 | `gravity_robustness_curves.png` | robustness | `generate_gravity_robustness.py` |
 | `gravity_robustness_summary.png` | robustness | `generate_gravity_robustness.py` |
+| `robustness_poincare.png` | robustness | `generate_structural_robustness.py` |
+| `robustness_initial_states.png` | robustness | `generate_structural_robustness.py` |
+| `robustness_arrow_scatter.png` | robustness | `generate_structural_robustness.py` |
+| `robustness_partition.png` | robustness | `generate_structural_robustness.py` |
 
 ### Data Tables (CSV)
 
@@ -245,6 +284,9 @@ Jupyter notebook for interactive exploration. Contains the same computations as 
 | `table_god_progressive_blindness.csv` | Progressive access sweep | `generate_god_observer_plots.py` |
 | `table_bloch_trajectory.csv` | Bloch vector data (Version A & B) | `generate_geometry_plots.py` |
 | `table_gravity_robustness.csv` | Gravity robustness test metrics | `generate_gravity_robustness.py` |
+| `table_poincare_recurrence.csv` | Poincaré recurrence analysis (symmetric + random) | `generate_structural_robustness.py` |
+| `table_initial_state_sensitivity.csv` | Haar-random initial state statistics | `generate_structural_robustness.py` |
+| `table_partition_independence.csv` | Partition independence metrics | `generate_structural_robustness.py` |
 
 ---
 

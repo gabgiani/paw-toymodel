@@ -1,0 +1,11 @@
+hamiltonian,system_qubit,label,S_eff_final,arrow_strength,monotonicity
+symmetric,0,qubit_0,0.692824,0.9995,1.0000
+symmetric,1,qubit_1,0.692824,0.9995,1.0000
+symmetric,2,qubit_2,0.692824,0.9995,1.0000
+symmetric,3,qubit_3,0.692824,0.9995,1.0000
+symmetric,4,qubit_4,0.692824,0.9995,1.0000
+asymmetric,0,q0 (S),0.692824,0.9995,1.0000
+asymmetric,1,q1 (E1),0.611144,0.8817,1.0000
+asymmetric,2,q2 (E2),0.611144,0.8817,1.0000
+asymmetric,3,q3 (E3),0.611144,0.8817,1.0000
+asymmetric,4,q4 (E4),0.611144,0.8817,1.0000

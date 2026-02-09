@@ -34,6 +34,7 @@ Implemented with [QuTiP](https://qutip.org/).
 | **[Geometric Structure](docs/GEOMETRY.md)** | Bloch trajectory, relational bundle, and the arrow as geometry |
 | **[Step-by-Step Derivation](docs/DERIVATION.md)** | The formula developed from first principles, operation by operation |
 | **[Gravity Robustness](docs/THEORY.md#gravity-robustness)** | Three tests: backreaction, fuzzy boundaries, clock uncertainty |
+| **[Structural Robustness](docs/THEORY.md#structural-robustness)** | Poincaré recurrences, initial states, partition independence |
 
 ---
 
@@ -51,6 +52,7 @@ python generate_pillar3_plot.py         # Pillar 3 (two-clock comparison)
 python generate_god_observer_plots.py   # Boundary analysis (omniscient observer)
 python generate_geometry_plots.py       # Geometric interpretation (Bloch trajectory)
 python generate_gravity_robustness.py  # Gravity robustness (3 tests)
+python generate_structural_robustness.py # Structural robustness (3 tests)
 ```
 
 All figures (PNG) and tables (CSV) are saved to `output/`.
@@ -90,11 +92,12 @@ Two clocks (dt = 0.20 vs 0.35) produce different temporal narratives from the sa
 | `generate_god_observer_plots.py` | Omniscient observer boundary analysis |
 | `generate_geometry_plots.py` | Geometric interpretation (Bloch trajectory + bundle) |
 | `generate_gravity_robustness.py` | Gravity robustness (backreaction, fuzzy boundaries, clock blur) |
+| `generate_structural_robustness.py` | Structural robustness (Poincaré, initial states, partitions) |
 | `test_god_observer.py` | Console validation of three omniscience levels |
 | `run_essay_validation.py` | All 3 pillars — clean ASCII output |
 | `paw_toymodel.ipynb` | Interactive Jupyter notebook |
 | `requirements.txt` | Python dependencies |
-| `output/` | 17 figures (PNG) + 8 data tables (CSV) |
+| `output/` | 21 figures (PNG) + 11 data tables (CSV) |
 
 ## Reference Parameters
 
