@@ -153,6 +153,53 @@ How far does the conditioned state deviate from ideal Schrödinger evolution?
 
 ---
 
+## Geometric Structure Underlying the Framework
+
+The three pillars have a geometric interpretation that connects the previous numerical results to the mathematical structure of the theory.
+
+### 1. The Fundamental Object
+
+The fundamental geometric object is a **stationary pure state** |Ψ⟩ satisfying Ĉ|Ψ⟩ = 0, residing as a fixed point on the constraint hypersurface within the projective Hilbert space CP(H).
+
+- There is no metric, no foliation, no temporal structure at this level.
+- S\_eff = 0: the global state carries no entropy, no arrow.
+- This is the **timeless object** from which everything else is extracted.
+
+### 2. The Relational Bundle
+
+Upon an operational tensor factorization H = H\_C ⊗ H\_S ⊗ H\_E, the conditional map
+
+```
+k  ↦  ρ_S(k) = Tr_E [ ⟨k|_C |Ψ⟩⟨Ψ| |k⟩_C ] / p(k)
+```
+
+defines a **section** of a trivial quantum bundle over the base space of distinguishable clock readings in C. The observer's projection ⟨k|\_C selects a particular fiber, generating apparent temporal evolution.
+
+### 3. The Arrow as Geometry
+
+The thermodynamic arrow is geometrically encoded as the **monotonic increase** of the von Neumann entropy S\_eff(k) along the curve ρ\_S(k) in the convex manifold of reduced density operators D(H\_S). The partial trace Tr\_E — a contractive CPTP map — systematically displaces states toward the maximally mixed interior.
+
+In the **Bloch ball** representation (valid for the qubit system):
+- **Version A** (n\_env = 0): the Bloch vector stays on the sphere surface (|r| = 1, pure, reversible) — tracing a great circle.
+- **Version B** (n\_env = 4, Tr\_E): the Bloch vector spirals inward (|r| → 0.025, mixed, irreversible) — converging toward I/2 at the center.
+
+The arrow of time is the direction of this spiral.
+
+| Script | Output |
+|--------|--------|
+| `generate_geometry_plots.py` | `output/geometric_interpretation.png` |
+| `generate_geometry_plots.py` | `output/bloch_trajectory.png` |
+
+![Geometric interpretation — from timeless state to emergent temporal curve](../output/geometric_interpretation.png)
+
+Left: |Ψ⟩ as a fixed point on the constraint surface Ĉ = 0 in CP(H). Center: the relational bundle over clock readings, with the section ρ\_S(k) connecting the fibers. Right: the trajectory in the Bloch disk (y–z plane) — Version B spirals from the surface toward I/2.
+
+![Bloch trajectory — purity decay and entropy growth](../output/bloch_trajectory.png)
+
+Left: Bloch disk showing Version A (circle on boundary) vs Version B (spiral toward center, colored by S\_eff). Right: Bloch radius decay (|r| → 0) mirroring entropy growth (S\_eff → ln 2). The two curves are dual descriptions of the same geometric fact: partial trace drives states toward the maximally mixed interior.
+
+---
+
 ## The Observer as an Anomaly
 
 The three pillars converge on a single insight:

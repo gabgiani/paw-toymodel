@@ -16,6 +16,7 @@ pip install -r requirements.txt
 python run_all.py                    # Full pipeline (Pillars 1 & 2 + metrics)
 python generate_pillar3_plot.py      # Pillar 3 (two-clock comparison)
 python generate_god_observer_plots.py # Boundary analysis (omniscient observer)
+python generate_geometry_plots.py     # Geometric interpretation (Bloch trajectory)
 ```
 
 All outputs are saved to `output/`.
@@ -146,6 +147,30 @@ No figure output — console only. Use `validate_formula.py` and `generate_pilla
 
 ---
 
+### `generate_geometry_plots.py` — Geometric Interpretation
+
+**What it does:** Computes Bloch vector trajectories for Version A and B, then generates two figures showing the geometric structure underlying the framework: the timeless global state, the relational bundle, and the Bloch trajectory spiraling inward.
+
+**Validates:** Geometric interpretation — purity decay ↔ entropy growth duality.
+
+| Output | Description |
+|--------|-------------|
+| `output/geometric_interpretation.png` | 3-panel: constraint surface, relational bundle, Bloch disk trajectory |
+| `output/bloch_trajectory.png` | Bloch disk + purity/entropy dual plot |
+
+**Key results:**
+```
+Version A: |r| = 1.000 → 1.000  (stays on Bloch surface)
+Version B: |r| = 1.000 → 0.025  (spirals toward I/2)
+S_eff:     0.000 → 0.693        (→ ln 2)
+```
+
+![geometric_interpretation.png](../output/geometric_interpretation.png)
+
+![bloch_trajectory.png](../output/bloch_trajectory.png)
+
+---
+
 ### `test_god_observer.py` — God Observer Console Test
 
 **What it does:** Quick numerical validation of three levels of omniscience. Console output only.
@@ -177,6 +202,8 @@ Jupyter notebook for interactive exploration. Contains the same computations as 
 | `god_progressive_blindness.png` | boundary | `generate_god_observer_plots.py` |
 | `god_level2_frozen.png` | boundary | `generate_god_observer_plots.py` |
 | `god_three_levels.png` | boundary | `generate_god_observer_plots.py` |
+| `geometric_interpretation.png` | geometry | `generate_geometry_plots.py` |
+| `bloch_trajectory.png` | geometry | `generate_geometry_plots.py` |
 
 ### Data Tables (CSV)
 
