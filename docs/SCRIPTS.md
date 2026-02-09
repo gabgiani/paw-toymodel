@@ -53,9 +53,9 @@ Max deviation from analytic: 4.44e-16
 Final S_eff = 0.6928  (ln 2 = 0.6931)
 ```
 
-![validation_pillar1.png](output/validation_pillar1.png)
+![validation_pillar1.png](../output/validation_pillar1.png)
 
-![validation_unified.png](output/validation_unified.png)
+![validation_unified.png](../output/validation_unified.png)
 
 ---
 
@@ -85,17 +85,17 @@ Final S_eff = 0.6928  (ln 2 = 0.6931)
 | `output/table_version_B_all.csv` | Full data for all n\_env values |
 | `output/table_multi_nenv_summary.csv` | Summary statistics per environment size |
 
-![version_A_oscillation.png](output/version_A_oscillation.png)
+![version_A_oscillation.png](../output/version_A_oscillation.png)
 
-![version_B_n4.png](output/version_B_n4.png)
+![version_B_n4.png](../output/version_B_n4.png)
 
-![multi_nenv_grid.png](output/multi_nenv_grid.png)
+![multi_nenv_grid.png](../output/multi_nenv_grid.png)
 
-![entropy_comparison.png](output/entropy_comparison.png)
+![entropy_comparison.png](../output/entropy_comparison.png)
 
-![fidelity_comparison.png](output/fidelity_comparison.png)
+![fidelity_comparison.png](../output/fidelity_comparison.png)
 
-![back_action.png](output/back_action.png)
+![back_action.png](../output/back_action.png)
 
 ---
 
@@ -113,7 +113,7 @@ Final S_eff = 0.6928  (ln 2 = 0.6931)
 
 **Key insight:** At clock tick k = 5, observer C₁ reports ⟨σ\_z⟩ ≈ 0.50 while observer C₂ reports ⟨σ\_z⟩ ≈ −0.14. Neither is wrong. Time is relational.
 
-![validation_pillar3_two_clocks.png](output/validation_pillar3_two_clocks.png)
+![validation_pillar3_two_clocks.png](../output/validation_pillar3_two_clocks.png)
 
 ---
 

@@ -36,7 +36,7 @@ The universe oscillates forever, perfectly reversible.
 |--------|--------|
 | `generate_god_observer_plots.py` | `output/god_vs_limited.png` |
 
-![God vs limited observer](output/god_vs_limited.png)
+![God vs limited observer](../output/god_vs_limited.png)
 
 Orange: the limited observer sees entropy grow. Blue: the omniscient observer sees S\_eff = 0 at all times.
 
@@ -52,7 +52,7 @@ The observer sees the full global state |Ψ⟩ directly — no clock conditionin
 |--------|--------|
 | `generate_god_observer_plots.py` | `output/god_level2_frozen.png` |
 
-![Level 2: frozen universe](output/god_level2_frozen.png)
+![Level 2: frozen universe](../output/god_level2_frozen.png)
 
 ---
 
@@ -87,7 +87,7 @@ The arrow of time increases **monotonically** with ignorance.
 | `generate_god_observer_plots.py` | `output/god_progressive_blindness.png` |
 | | `output/table_god_progressive_blindness.csv` |
 
-![Progressive blindness](output/god_progressive_blindness.png)
+![Progressive blindness](../output/god_progressive_blindness.png)
 
 ---
 
@@ -97,7 +97,7 @@ The arrow of time increases **monotonically** with ignorance.
 |--------|--------|
 | `generate_god_observer_plots.py` | `output/god_three_levels.png` |
 
-![Three levels of omniscience](output/god_three_levels.png)
+![Three levels of omniscience](../output/god_three_levels.png)
 
 | Level | Has clock? | Traces out E? | Dynamics? | Arrow? | Time? |
 |-------|-----------|---------------|-----------|--------|-------|

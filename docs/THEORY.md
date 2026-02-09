@@ -51,7 +51,7 @@ No external time parameter is needed. The ordering comes entirely from correlati
 | `validate_formula.py` | `output/validation_pillar1.png` |
 | `run_all.py` | `output/version_A_oscillation.png` |
 
-![Pillar 1 — Projection yields Schrödinger dynamics](output/validation_pillar1.png)
+![Pillar 1 — Projection yields Schrödinger dynamics](../output/validation_pillar1.png)
 
 The blue dots are computed from the formula; the dashed line is the analytic cos(ωkdt). They overlap exactly.
 
@@ -76,7 +76,7 @@ grows with the clock reading k. This is an **informational arrow of time**: irre
 | `validate_formula.py` | `output/validation_unified.png` |
 | `run_all.py` | `output/version_B_n4.png`, `output/entropy_comparison.png` |
 
-![Pillar 2 — Partial trace yields the informational arrow](output/validation_unified.png)
+![Pillar 2 — Partial trace yields the informational arrow](../output/validation_unified.png)
 
 Left: damped ⟨σ\_z⟩. Center: entropy growth (the arrow). Right: Version A (reversible) vs Version B (irreversible) — same formula, different access structure.
 
@@ -88,7 +88,7 @@ The arrow strengthens with more environment qubits. Recurrences become exponenti
 |--------|--------|
 | `run_all.py` | `output/multi_nenv_grid.png` |
 
-![Multi-environment comparison](output/multi_nenv_grid.png)
+![Multi-environment comparison](../output/multi_nenv_grid.png)
 
 ---
 
@@ -117,7 +117,7 @@ Both observers reach the same asymptotic entropy (ln 2), but their entire dynami
 | `generate_pillar3_plot.py` | `output/validation_pillar3_two_clocks.png` |
 | | `output/table_pillar3_two_clocks.csv` |
 
-![Pillar 3 — Two clocks, two narratives, one universe](output/validation_pillar3_two_clocks.png)
+![Pillar 3 — Two clocks, two narratives, one universe](../output/validation_pillar3_two_clocks.png)
 
 ---
 
@@ -133,7 +133,7 @@ How much does the system–environment interaction disturb the clock?
 |--------|--------|
 | `run_all.py` | `output/back_action.png` |
 
-![Back-action on the clock](output/back_action.png)
+![Back-action on the clock](../output/back_action.png)
 
 ### Fidelity: F(k)
 
@@ -143,7 +143,7 @@ How far does the conditioned state deviate from ideal Schrödinger evolution?
 |--------|--------|
 | `run_all.py` | `output/fidelity_comparison.png` |
 
-![Fidelity decay](output/fidelity_comparison.png)
+![Fidelity decay](../output/fidelity_comparison.png)
 
 ### Entropy comparison: S\_eff across environments
 
