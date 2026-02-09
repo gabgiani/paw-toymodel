@@ -318,7 +318,7 @@ Jupyter notebook for interactive exploration. Contains the same computations as 
 | `IBMquantum/output/ibm_quantum_validation.png` | Three-panel plot: ⟨σ\_z⟩, S\_eff, and \|r\| vs step for exact, simulator, and hardware |
 | `IBMquantum/output/table_ibm_quantum_validation.csv` | Full Bloch vector and entropy data for all three sources |
 
-**Key result:** S\_eff grows from 0.011 → 0.550 on ibm\_torino (96.5% of exact value). Trotter error = 0 (exact decomposition). Hardware deviation = 0.166 (pure QPU noise).
+**Key result:** S\_eff grows from ~0 → 0.550 on ibm\_torino (single run, 96.5% of exact value). Trotter error = 0 (exact decomposition). See `run_ibm_enhanced.py` below for the enhanced 3-run result: S\_eff = 0.583 ± 0.005 (102.2% of exact).
 
 ---
 
