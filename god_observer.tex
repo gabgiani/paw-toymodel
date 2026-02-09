@@ -1,0 +1,239 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\graphicspath{{output/}}
+
+\title{The Omniscient Observer:\\
+What Happens to Time When Nothing Is Hidden?}
+\author{Gabriel Giani Moreno}
+\date{Companion note --- February 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We take the unified Page--Wootters formula $\rho_S(t) = \mathrm{Tr}_E[\langle t|_C |\Psi\rangle\langle\Psi| |t\rangle_C] / p(t)$ and ask: what happens if the observer has total access to all degrees of freedom --- if the observer is, operationally, ``God''? We show analytically and numerically that the formula remains perfectly valid but produces a universe with no arrow of time (Level~1), no dynamics (Level~2), and ultimately no time at all (Level~3). Progressive restriction of the observer's access monotonically increases the emergent arrow, confirming the central thesis: \emph{time is not a property of the universe, but a property of ignorance}. All results are obtained from the same code and the same formula used in the main paper, with no modifications.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Page--Wootters; omniscient observer; arrow of time; information; atemporality; emergence.
+
+\bigskip
+\noindent This note is a companion to the paper \emph{``The Observer as a Local Breakdown of Atemporality''} and uses the same codebase available at \url{https://github.com/gabgiani/paw-toymodel}.
+
+% ──────────────────────────────────────────────────
+\section{The Question}
+
+The central formula of the Page--Wootters (PaW) framework is:
+\begin{equation}\label{eq:formula}
+    \rho_S(t) \;=\; \frac{\mathrm{Tr}_E\!\left[\langle t|_C\,|\Psi\rangle\langle\Psi|\,|t\rangle_C\right]}{p(t)}.
+\end{equation}
+
+This single expression produces three pillars of the problem of time:
+\begin{enumerate}
+    \item \textbf{Quantum dynamics:} from the projection $\langle t|_C$ onto clock states.
+    \item \textbf{Thermodynamic arrow:} from the partial trace $\mathrm{Tr}_E$ over inaccessible environmental degrees of freedom.
+    \item \textbf{Observer-dependent time:} from the fact that $C$ is a local physical subsystem, not a global parameter.
+\end{enumerate}
+
+A natural question arises: \emph{what if the observer has no limitations?} What if the observer can see every qubit, every degree of freedom, every correlation in the universe --- including the clock itself? Does the formula break? Does time still emerge?
+
+This note answers that question numerically and analytically, using the exact same formula and the exact same code as the main paper.
+
+% ──────────────────────────────────────────────────
+\section{Three Levels of Omniscience}
+
+We define three progressively stronger notions of ``total access'' and test the formula at each level.
+
+\subsection{Level 1: God Uses a Clock but Sees Everything}
+
+\noindent\textbf{Setup.} The observer conditions on a physical clock $C$ (projection $\langle t|_C$ is performed), but has complete access to the environment $E$. Operationally, this means $n_{\mathrm{env}} = 0$: there are no hidden degrees of freedom. The partial trace $\mathrm{Tr}_E$ acts as the identity.
+
+\noindent\textbf{Prediction.} Since $\mathrm{Tr}_E = \mathbb{I}$, the conditional state $\rho_S(k)$ remains pure at every tick. The von Neumann entropy satisfies $S_{\mathrm{eff}}(k) = 0$ for all $k$. Dynamics exist (the projection $\langle k|_C$ still generates a temporal sequence), but the dynamics are \emph{fully reversible}. No information is lost, no arrow emerges.
+
+\noindent\textbf{Numerical result.}
+
+\begin{itemize}
+    \item $\langle\sigma_z\rangle_k$ oscillates as $\cos(\omega k\,dt)$ with machine-precision agreement (max deviation $\sim 4 \times 10^{-16}$).
+    \item $S_{\mathrm{eff}}(k) = 0$ at every tick (maximum value $2.6 \times 10^{-15}$, consistent with floating-point zero).
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{god_vs_limited.png}
+\caption{Top row: God observer ($n_{\mathrm{env}}=0$) --- dynamics are clean and reversible, $S_{\mathrm{eff}} \equiv 0$. Bottom row: limited observer ($n_{\mathrm{env}}=4$) --- oscillations damp, $S_{\mathrm{eff}} \to \ln 2$. Same formula, same universe, different access.}
+\label{fig:god_vs_limited}
+\end{figure}
+
+\noindent\textbf{Interpretation.} An omniscient observer who uses a clock can still \emph{count} (there is a sequence: $k = 0, 1, 2, \ldots$), but the sequence is perfectly reversible. There is no distinction between forward and backward. Time exists as a coordinate label, but \emph{the arrow of time does not exist}. God can ``run the movie backwards'' with no loss of information.
+
+This is precisely what the formula predicts: the arrow comes from $\mathrm{Tr}_E$, and when there is nothing to trace out, the arrow vanishes.
+
+\subsection{Level 2: God Sees Everything, Including the Clock}
+
+\noindent\textbf{Setup.} The observer does not condition on any clock reading. Instead, the observer has direct access to the full global state $|\Psi\rangle$. No projection $\langle t|_C$ is performed. No partial trace $\mathrm{Tr}_E$ is performed.
+
+\noindent\textbf{Prediction.} Without the projection $\langle t|_C$, there is no map $t \mapsto \rho_S(t)$, and therefore \emph{no dynamics}. The system observable $\langle\sigma_z\rangle$ is not a function of time --- it is a single number obtained from the global state. Specifically:
+\[
+\langle\sigma_z\rangle_{\mathrm{global}} = \mathrm{Tr}\!\left[\sigma_z \cdot \mathrm{Tr}_{CE}\!\left(|\Psi\rangle\langle\Psi|\right)\right].
+\]
+This is one static value, not a time series.
+
+\noindent\textbf{Numerical result.}
+
+\begin{itemize}
+    \item The global state $|\Psi\rangle$ is pure: $S_{\mathrm{vn}}(|\Psi\rangle\langle\Psi|) = 5.2 \times 10^{-13} \approx 0$ (machine precision).
+    \item $\langle\sigma_z\rangle_{\mathrm{global}} = 0.0365$ --- a single frozen number.
+    \item $S_{\mathrm{vn}}(\rho_S^{\mathrm{global}}) = 0.6683$ --- the system appears mixed because clock and environment are \emph{entangled} with it in $|\Psi\rangle$, but this entropy is static.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{god_level2_frozen.png}
+\caption{Left: conditioned $\langle\sigma_z\rangle_k$ (green, dynamic) vs.\ global $\langle\sigma_z\rangle$ (red line, frozen). Right: conditioned $S_{\mathrm{eff}}(k)$ (growing) vs.\ global $S_{\mathrm{vn}}$ (purple line, static). Without clock conditioning, all temporal structure disappears.}
+\label{fig:level2}
+\end{figure}
+
+\noindent\textbf{Interpretation.} Dynamics are entirely an artifact of conditioning on a clock. Without the projection $\langle t|_C$, the system has no ``before'' or ``after'' --- only a single, static state. The formula does not produce $\rho_S(t)$ because the operation that creates the time variable $t$ (the clock projection) is not performed. For an observer who sees $|\Psi\rangle$ directly, \emph{time does not exist}.
+
+This validates the core ontological claim of the framework: time is not discovered by the observer --- it is \emph{constructed} by the observer through the act of conditioning on a physical clock.
+
+\subsection{Level 3: The Universe as a Pure Atemporal Object}
+
+\noindent\textbf{Setup.} We examine the global state $|\Psi\rangle$ itself, without any observer.
+
+\noindent\textbf{Result.}
+\begin{itemize}
+    \item $|\Psi\rangle$ has norm 1 (a single vector in Hilbert space).
+    \item $\hat{\mathcal{C}}|\Psi\rangle = 0$ by construction (the Wheeler--DeWitt constraint).
+    \item The von Neumann entropy of the global state is exactly zero: it is a pure state.
+\end{itemize}
+
+\noindent\textbf{Interpretation.} The universe, seen ``from outside'' (if such a perspective were meaningful), is a single timeless mathematical object. It has no history, no arrow, no experience. It simply \emph{is}. This is postulate P0 in its purest form: global atemporality. Every temporal feature --- dynamics, irreversibility, the sense of ``now'' --- arises only when a subsystem (the observer) performs the operations of conditioning and tracing.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{god_three_levels.png}
+\caption{The three levels of omniscience. Left: God with a clock sees reversible dynamics but no arrow ($S_{\mathrm{eff}} = 0$). Center: God without a clock sees a frozen number ($\langle\sigma_z\rangle = 0.0365$), no dynamics. Right: the global state $|\Psi\rangle$ with $\hat{\mathcal{C}}|\Psi\rangle = 0$ is a pure atemporal object.}
+\label{fig:three_levels}
+\end{figure}
+
+% ──────────────────────────────────────────────────
+\section{Progressive Blindness: The Arrow as a Function of Ignorance}
+
+To make the connection between ignorance and the arrow of time quantitative, we run the same formula with progressively larger environments, from $n_{\mathrm{env}} = 0$ (God) to $n_{\mathrm{env}} = 6$ (64 hidden qubits).
+
+\begin{table}[H]
+\centering
+\caption{Progressive blindness: final effective entropy as a function of the number of hidden qubits. The arrow of time grows monotonically with the observer's ignorance.}
+\label{tab:blindness}
+\begin{tabular}{cccc}
+\toprule
+$n_{\mathrm{env}}$ & $d_E = 2^{n_{\mathrm{env}}}$ & $S_{\mathrm{eff}}^{\mathrm{final}}$ & Arrow? \\
+\midrule
+0 (God) & 1   & 0.000000 & \textbf{NO} \\
+1       & 2   & 0.611144 & YES \\
+2       & 4   & 0.680377 & YES \\
+3       & 8   & 0.691118 & YES \\
+4       & 16  & 0.692824 & YES \\
+5       & 32  & 0.693096 & YES \\
+6       & 64  & 0.693139 & YES \\
+\midrule
+$\infty$ & $\infty$ & $\ln 2 = 0.693147\ldots$ & YES \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{god_progressive_blindness.png}
+\caption{Left: entropy growth curves $S_{\mathrm{eff}}(k)$ for each environment size; the God curve ($n_{\mathrm{env}}=0$, thick) is identically zero. Right: final $S_{\mathrm{eff}}$ as a function of $n_{\mathrm{env}}$; the arrow converges to $\ln 2$ as ignorance increases.}
+\label{fig:blindness}
+\end{figure}
+
+The convergence is striking:
+\begin{itemize}
+    \item At $n_{\mathrm{env}} = 0$: $S_{\mathrm{eff}} = 0$ exactly. No arrow. No irreversibility.
+    \item At $n_{\mathrm{env}} = 1$: a single hidden qubit is enough to generate $S_{\mathrm{eff}} = 0.611$, already 88\% of the maximum. One qubit of ignorance creates most of the arrow.
+    \item At $n_{\mathrm{env}} \geq 4$: $S_{\mathrm{eff}} \to \ln 2$ to three decimal places. The arrow is essentially saturated.
+\end{itemize}
+
+This produces a precise quantitative statement: \emph{the arrow of time is a monotonically increasing function of the observer's ignorance}. The function saturates at $\ln 2$ (the maximum entropy of a qubit) as the effective environment dimension grows.
+
+% ──────────────────────────────────────────────────
+\section{Why the Formula Doesn't Break}
+
+A natural concern is whether the formula ``fails'' or becomes ill-defined for the God observer. It does not. The formula~\eqref{eq:formula} is mathematically valid for any value of $n_{\mathrm{env}}$, including zero:
+
+\begin{itemize}
+    \item When $n_{\mathrm{env}} = 0$: $\mathrm{Tr}_E$ reduces to the identity, $\rho_S(k)$ is pure, $S_{\mathrm{eff}} = 0$. The formula returns clean, reversible quantum dynamics.
+    \item When $n_{\mathrm{env}} > 0$: $\mathrm{Tr}_E$ generates irreversibility by discarding correlations. The formula returns damped dynamics with growing entropy.
+    \item When no clock conditioning is performed: the formula simply is not applied. Without $\langle t|_C$, there is no time variable $t$, and no $\rho_S(t)$ is constructed.
+\end{itemize}
+
+The key insight is that the formula does not \emph{assume} limited access --- it \emph{parameterizes} it. The observer's level of ignorance is encoded in which degrees of freedom fall inside $E$ (traced out) versus $S$ (kept). The formula is equally valid for God ($E = \varnothing$) and for a laboratory observer ($E = $ everything outside the lab). What changes is the \emph{output}: the nature of the emergent temporal description.
+
+% ──────────────────────────────────────────────────
+\section{Theological and Philosophical Implications}
+
+While this framework makes no claims about theology, the results have an interesting resonance with several classical philosophical and theological intuitions about the relationship between omniscience and temporality:
+
+\begin{enumerate}
+    \item \textbf{Boethius (6th century):} In \emph{The Consolation of Philosophy}, Boethius argued that God sees all of time simultaneously --- past, present, and future are coexistent for God. This is formally analogous to Level~2: an observer who accesses $|\Psi\rangle$ directly sees a static, atemporal object with no ``before'' or ``after.''
+
+    \item \textbf{Augustine (4th century):} In the \emph{Confessions}, Augustine proposed that time is a feature of creation, not of the Creator. Before creation, there was no time. In our framework: time is a feature of conditioned descriptions under partial access, not of the global state $|\Psi\rangle$. The global state ``exists'' without time.
+
+    \item \textbf{Block Universe (Eternalism):} The predominant interpretation in relativistic physics holds that past, present, and future all exist equally (the ``block universe''). Our framework goes further: the block universe \emph{itself} is an observer-dependent construction. Without conditioning on a clock, there is no block --- there is only $|\Psi\rangle$.
+
+    \item \textbf{The Price of Omniscience:} Perhaps the most provocative result is this: an omniscient observer does not experience time. Omniscience and temporal experience are \emph{mutually exclusive}. To experience time --- to feel the passage from past to future, to remember, to anticipate --- requires ignorance. The arrow of time is the arrow of not knowing.
+\end{enumerate}
+
+% ──────────────────────────────────────────────────
+\section{Summary}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Level} & \textbf{Access} & \textbf{Dynamics?} & \textbf{Arrow?} \\
+\midrule
+1 & Clock + full environment & Yes (reversible) & \textbf{No} ($S_{\mathrm{eff}} = 0$) \\
+2 & Full state $|\Psi\rangle$ & \textbf{No} (frozen) & \textbf{No} (static) \\
+3 & Pure atemporal object & \textbf{No} & \textbf{No} \\
+\midrule
+Limited & Clock + partial access & Yes (damped) & \textbf{Yes} ($S_{\mathrm{eff}} \to \ln 2$) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+\noindent The formula $\rho_S(t) = \mathrm{Tr}_E[\langle t|_C |\Psi\rangle\langle\Psi| |t\rangle_C] / p(t)$ is valid at every level of access. What changes is the emergent physics:
+
+\begin{itemize}
+    \item \textbf{With limited access:} time, dynamics, irreversibility, and the arrow --- the full phenomenology of temporal experience.
+    \item \textbf{With total access:} a static, reversible, atemporal universe. No history. No arrow. No time.
+\end{itemize}
+
+\noindent\textbf{The conclusion is austere and precise:}
+
+\begin{quote}
+\emph{Time is not a property of the universe. Time is a property of ignorance. An omniscient observer experiences no time. The arrow of time is the arrow of not knowing.}
+\end{quote}
+
+% ──────────────────────────────────────────────────
+\section{Reproducibility}
+
+All numerical results in this note are generated by the scripts \texttt{test\_god\_observer.py} and \texttt{generate\_god\_observer\_plots.py}, using the same \texttt{build\_paw\_history()} and \texttt{get\_conditioned\_observables()} functions from \texttt{validate\_formula.py}. No modifications to the core formula code were required. The complete codebase is available at:
+
+\medskip
+\noindent\url{https://github.com/gabgiani/paw-toymodel}
+
+\medskip
+\noindent Reference parameters: $N=30$, $dt=0.2$, $\omega=1.0$, $g=0.1$, $|\phi_0\rangle = |0\rangle$, $H_S = (\omega/2)\sigma_x$, $H_{SE} = g\sum_j \sigma_x^{(S)}\otimes\sigma_x^{(E_j)}$.
+
+\end{document}
