@@ -276,6 +276,7 @@ Jupyter notebook for interactive exploration. Contains the same computations as 
 | `robustness_arrow_scatter.png` | robustness | `generate_structural_robustness.py` |
 | `robustness_partition.png` | robustness | `generate_structural_robustness.py` |
 | `IBMquantum/output/ibm_quantum_validation.png` | experimental | `IBMquantum/run_ibm_validation.py` |
+| `IBMquantum/output/ibm_quantum_enhanced.png` | experimental | `IBMquantum/run_ibm_enhanced.py` |
 
 ### Data Tables (CSV)
 
@@ -293,6 +294,8 @@ Jupyter notebook for interactive exploration. Contains the same computations as 
 | `table_initial_state_sensitivity.csv` | Haar-random initial state statistics | `generate_structural_robustness.py` |
 | `table_partition_independence.csv` | Partition independence metrics | `generate_structural_robustness.py` |
 | `IBMquantum/output/table_ibm_quantum_validation.csv` | IBM Quantum hardware Bloch + entropy data | `IBMquantum/run_ibm_validation.py` |
+| `IBMquantum/output/table_ibm_enhanced.csv` | Enhanced validation: mean/std from 3 runs + Pillar 1 | `IBMquantum/run_ibm_enhanced.py` |
+| `IBMquantum/output/backend_noise_properties.json` | Device noise characterisation (T₁, T₂, gate errors) | `IBMquantum/run_ibm_enhanced.py` |
 
 ---
 
@@ -316,6 +319,41 @@ Jupyter notebook for interactive exploration. Contains the same computations as 
 | `IBMquantum/output/table_ibm_quantum_validation.csv` | Full Bloch vector and entropy data for all three sources |
 
 **Key result:** S\_eff grows from 0.011 → 0.550 on ibm\_torino (96.5% of exact value). Trotter error = 0 (exact decomposition). Hardware deviation = 0.166 (pure QPU noise).
+
+---
+
+### `IBMquantum/run_ibm_enhanced.py` — Enhanced IBM Quantum Validation
+
+**What it does:** Extended hardware validation with noise characterisation, Pillar 1 on QPU, and Pillar 2 with error bars from multiple independent runs. Addresses three reviewer suggestions: (1) comparative graph with error bars, (2) quantified noise (T₁/T₂/gate errors), (3) per-gate noise baseline.
+
+**Pillars demonstrated:**
+- ✅ Pillar 1 (pure Schrödinger dynamics on real hardware, 1 qubit)
+- ✅ Pillar 2 (thermodynamic arrow with statistical error bars, 3 qubits)
+
+**Modes:**
+- `--mode noise-only` — Query backend calibration data only
+- `--mode pillar1` — Single-qubit dynamics (no environment)
+- `--mode errorbars` — Pillar 2 with n repeated runs
+- `--mode all` — All of the above
+
+**Options:** `--n-runs 3` (number of independent hardware runs for error bars)
+
+**Requirements:** `qiskit>=2.0`, `qiskit-ibm-runtime>=0.45`, API key in `apikey.json`
+
+| Output | Description |
+|--------|-------------|
+| `IBMquantum/output/ibm_quantum_enhanced.png` | Publication figure: ⟨σ\_z⟩ and S\_eff with error bars (mean ± 1σ) + noise annotation box |
+| `IBMquantum/output/table_ibm_enhanced.csv` | Full data: exact, hardware mean/std for all observables, Pillar 1 data |
+| `IBMquantum/output/backend_noise_properties.json` | Device noise: T₁, T₂, gate errors, readout errors |
+
+**Key results:**
+```
+Pillar 1: max |⟨σ_z⟩_hw - cos(ωkdt)| = 0.033
+Pillar 2: S_eff = 0.583 ± 0.005 (102.2% of exact, 3 runs)
+Noise:    T1 = 148 μs, T2 = 162 μs, 2Q error = 0.25%, readout = 4.49%
+```
+
+![ibm_quantum_enhanced.png](../IBMquantum/output/ibm_quantum_enhanced.png)
 
 ---
 

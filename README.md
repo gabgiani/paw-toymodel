@@ -35,7 +35,7 @@ Implemented with [QuTiP](https://qutip.org/).
 | **[Step-by-Step Derivation](docs/DERIVATION.md)** | The formula developed from first principles, operation by operation |
 | **[Gravity Robustness](docs/THEORY.md#gravity-robustness)** | Three tests: backreaction, fuzzy boundaries, clock uncertainty |
 | **[Structural Robustness](docs/THEORY.md#structural-robustness)** | Poincaré recurrences, initial states, partition independence |
-| **[IBM Quantum Validation](docs/THEORY.md#experimental-validation-on-ibm-quantum-hardware)** | Pillar 2 confirmed on ibm_torino (real QPU) |
+| **[IBM Quantum Validation](docs/THEORY.md#experimental-validation-on-ibm-quantum-hardware)** | Pillars 1 & 2 confirmed on ibm_torino (real QPU), error bars, noise characterisation |
 
 ---
 
@@ -58,6 +58,7 @@ python generate_structural_robustness.py # Structural robustness (3 tests)
 # IBM Quantum hardware validation (requires API key)
 pip install qiskit qiskit-ibm-runtime
 python IBMquantum/run_ibm_validation.py --mode both
+python IBMquantum/run_ibm_enhanced.py --mode all --n-runs 3  # error bars + noise
 ```
 
 All figures (PNG) and tables (CSV) are saved to `output/`.
@@ -99,12 +100,13 @@ Two clocks (dt = 0.20 vs 0.35) produce different temporal narratives from the sa
 | `generate_gravity_robustness.py` | Gravity robustness (backreaction, fuzzy boundaries, clock blur) |
 | `generate_structural_robustness.py` | Structural robustness (Poincaré, initial states, partitions) |
 | `IBMquantum/run_ibm_validation.py` | IBM Quantum hardware validation (Pillar 2 on real QPU) |
+| `IBMquantum/run_ibm_enhanced.py` | Enhanced validation: error bars, noise characterisation, Pillar 1 on QPU |
 | `test_god_observer.py` | Console validation of three omniscience levels |
 | `run_essay_validation.py` | All 3 pillars — clean ASCII output |
 | `paw_toymodel.ipynb` | Interactive Jupyter notebook |
 | `requirements.txt` | Python dependencies |
 | `output/` | 21 figures (PNG) + 11 data tables (CSV) |
-| `IBMquantum/output/` | 1 figure (PNG) + 1 data table (CSV) — hardware results |
+| `IBMquantum/output/` | 2 figures (PNG) + 2 data tables (CSV) + 1 noise JSON — hardware results |
 
 ## Reference Parameters
 
