@@ -133,4 +133,4 @@ python test_god_observer.py              # Console-only validation
 
 ---
 
-*Back to: [Theory](THEORY.md) | [Scripts & Outputs](SCRIPTS.md)*
+*Back to: [Theory](THEORY.md) | [Geometric Structure](GEOMETRY.md) | [Scripts & Outputs](SCRIPTS.md)*

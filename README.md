@@ -31,6 +31,7 @@ Implemented with [QuTiP](https://qutip.org/).
 | **[Theory](docs/THEORY.md)** | The unified relational formula, three pillars, and the observer as anomaly |
 | **[Scripts & Outputs](docs/SCRIPTS.md)** | Complete guide to every script, figure, and CSV |
 | **[The Omniscient Observer](docs/GOD_OBSERVER.md)** | Boundary analysis: what happens when the observer has complete access |
+| **[Geometric Structure](docs/GEOMETRY.md)** | Bloch trajectory, relational bundle, and the arrow as geometry |
 
 ---
 
@@ -46,6 +47,7 @@ pip install -r requirements.txt
 python run_all.py                       # Pillars 1 & 2 + all metrics
 python generate_pillar3_plot.py         # Pillar 3 (two-clock comparison)
 python generate_god_observer_plots.py   # Boundary analysis (omniscient observer)
+python generate_geometry_plots.py       # Geometric interpretation (Bloch trajectory)
 ```
 
 All figures (PNG) and tables (CSV) are saved to `output/`.
@@ -83,11 +85,12 @@ Two clocks (dt = 0.20 vs 0.35) produce different temporal narratives from the sa
 | `run_all.py` | Full pipeline: all versions, metrics, plots, and CSVs |
 | `generate_pillar3_plot.py` | Two-clock comparison (Pillar 3) |
 | `generate_god_observer_plots.py` | Omniscient observer boundary analysis |
+| `generate_geometry_plots.py` | Geometric interpretation (Bloch trajectory + bundle) |
 | `test_god_observer.py` | Console validation of three omniscience levels |
 | `run_essay_validation.py` | All 3 pillars — clean ASCII output |
 | `paw_toymodel.ipynb` | Interactive Jupyter notebook |
 | `requirements.txt` | Python dependencies |
-| `output/` | 13 figures (PNG) + 6 data tables (CSV) |
+| `output/` | 15 figures (PNG) + 7 data tables (CSV) |
 
 ## Reference Parameters
 

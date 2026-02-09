@@ -441,6 +441,28 @@ def generate_bloch_figure(data):
 #  Main
 # ══════════════════════════════════════════════════════════════
 
+def export_csv(data):
+    """Export Bloch trajectory data to CSV."""
+    import csv
+    outpath = os.path.join(OUTPUT_DIR, 'table_bloch_trajectory.csv')
+    with open(outpath, 'w', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow([
+            'k', 'bx_A', 'by_A', 'bz_A', 'radius_A',
+            'bx_B', 'by_B', 'bz_B', 'radius_B', 'S_eff_B'
+        ])
+        for k in range(N):
+            writer.writerow([
+                k,
+                f"{data['bx_a'][k]:.6f}", f"{data['by_a'][k]:.6f}",
+                f"{data['bz_a'][k]:.6f}", f"{data['bloch_radius_a'][k]:.6f}",
+                f"{data['bx_b'][k]:.6f}", f"{data['by_b'][k]:.6f}",
+                f"{data['bz_b'][k]:.6f}", f"{data['bloch_radius_b'][k]:.6f}",
+                f"{data['s_eff_b'][k]:.6f}"
+            ])
+    print(f"Saved: {outpath}")
+
+
 if __name__ == '__main__':
     print("Computing Bloch trajectories (Version A & B)...")
     data = compute_bloch_trajectories()
@@ -456,6 +478,9 @@ if __name__ == '__main__':
 
     print("Generating Bloch trajectory figure...")
     generate_bloch_figure(data)
+
+    print("Exporting CSV data...")
+    export_csv(data)
 
     print("\nGeometric interpretation:")
     print("  • |Ψ⟩ is a fixed point on the constraint surface Ĉ=0 in CP(H)")

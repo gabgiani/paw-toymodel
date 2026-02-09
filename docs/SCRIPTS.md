@@ -215,6 +215,7 @@ Jupyter notebook for interactive exploration. Contains the same computations as 
 | `table_multi_nenv_summary.csv` | Summary stats per n\_env | `run_all.py` |
 | `table_pillar3_two_clocks.csv` | Two-clock comparison data | `generate_pillar3_plot.py` |
 | `table_god_progressive_blindness.csv` | Progressive access sweep | `generate_god_observer_plots.py` |
+| `table_bloch_trajectory.csv` | Bloch vector data (Version A & B) | `generate_geometry_plots.py` |
 
 ---
 
