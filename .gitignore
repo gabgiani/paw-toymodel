@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+*.egg-info/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# LaTeX auxiliary
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+
+# IDE
+.idea/
+.vscode/
+
+# Pages
+*.pages
+
+# Old intermediate .docx versions
+paper3_v2.docx
+paper3_v3.docx
+paper3_v4.docx
+essay_v2.docx
+companionnotes.docx

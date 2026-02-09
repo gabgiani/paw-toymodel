@@ -1,0 +1,385 @@
+The Observer as a Local Breakdown of Atemporality:
+
+Relational Time and an Informational Arrow from Quantum Clocks
+
+Gabriel Giani Moreno
+(Revised manuscript — February 2026)
+
+⸻
+
+Abstract
+
+We present an operational and falsifiable framework in which temporal structure is not fundamental, but emerges from correlations within a globally stationary quantum state. Building on the Page–Wootters (PaW) mechanism, we formalize a minimal set of postulates (P0–P4) that (i) recover effective Schrödinger dynamics for a subsystem conditioned on a physical clock, (ii) quantify clock quality under finite-dimensional and quasi-ideal clocks, and (iii) derive an informational arrow of time as the monotonic (in expectation) growth of an effective entropy for observers with incomplete access to environmental degrees of freedom. A central result is that the three pillars of the problem of time — quantum dynamics, thermodynamic irreversibility, and relativistic frame dependence — arise as three facets of a single conditional operation: projection onto clock states yields dynamics, partial trace over inaccessible degrees of freedom yields the arrow, and the locality of the physical clock yields frame dependence, all from the same timeless global state. The central thesis is that the observer is not a privileged entity in the universe, but a local physical configuration in which global atemporality becomes operationally broken: time and its arrow arise only inside the observer's coarse-grained description. A minimal demonstrator (clock + qubit + environment) reproduces coherent conditional dynamics in the absence of an environment, and effective decoherence with increasing entropy when inaccessible degrees of freedom are introduced. The framework is positioned within recent advances on temporal quantum reference frames, quasi-ideal clocks, and multi-observer emergent time.
+
+Keywords: relational time; Page–Wootters; quantum clocks; temporal reference frames; decoherence; arrow of time; information; foundations.
+
+⸻
+
+1. Introduction
+
+The "problem of time" appears at the intersection of (i) relativity, where time is observer-dependent and spacetime is dynamical, (ii) quantum theory, where dynamics is typically parameterized by an external time, and (iii) thermodynamics, where an arrow of time emerges despite microscopic reversibility. A standard diagnostic is that these tensions persist not because we lack a better definition of t, but because we frequently treat time as a fundamental background even when our most successful theories already deny a global "now". In this work, time is not a primitive parameter but an emergent label arising from conditioned descriptions under partial access.
+
+This work takes a deliberately operational stance: a theory of time must specify who can access what information, and under which physical constraints. We argue that once this is made explicit, two statements become natural and testable:
+	1.	Relational time: effective evolution arises as a conditional structure within a globally stationary state.
+	2.	Informational arrow: irreversibility is not a property of the global state, but of the observer's restricted description; the arrow emerges from the growth of an effective entropy under partial trace.
+
+A central finding of this work is that these two statements — together with observer-dependent time — are not independent results, but three aspects of a single mathematical operation. The conditional reduced state
+
+	\rho_S(t) = Tr_E[ \langle t|_C |\Psi\rangle\langle\Psi| |t\rangle_C ] / p(t)
+
+contains all three: the projection \langle t|_C onto the clock yields dynamics; the partial trace Tr_E yields irreversibility; and the fact that C is a local physical subsystem (not an absolute parameter) yields observer-dependent time. Three pillars, one formula, one timeless global state.
+
+We develop these claims as a compact postulate set (P0–P4), then implement a minimal demonstrator model.
+
+⸻
+
+2. Related Work and Positioning
+
+Our framework is aligned with, and extends, three active research lines:
+
+(i) Temporal quantum reference frames and operational meaning of measurements. Hausmann et al. [1] compare consistent PaW formulations and clarify the operational meaning of evolution and measurement events relative to temporal quantum reference frames.
+
+(ii) Finite and quasi-ideal clocks, interactions, and effective non-linear dynamics. Mendes et al. [2] study PaW with gravitational interaction between system and finite-dimensional quasi-ideal clocks, deriving effective Schrödinger-like and non-linear equations with clock-induced decoherence.
+
+(iii) Informational arrows of time in extended PaW models. Shaari [3] extends a two-qubit PaW setting by introducing auxiliary degrees of freedom to model the observer's incomplete access, leading to growth of an effective entropy and an informational arrow.
+
+We additionally note recent multi-observer emergent-time proposals that unify relativistic and cosmological regimes in a relational framework [4].
+
+Our contribution is not to re-introduce PaW, quasi-ideal clocks, or informational arrows separately, but to provide an integrated operational pipeline (P0–P4) plus a minimal demonstrator linking: conditional dynamics ↔ clock quality ↔ observer-limited access ↔ informational arrow. We further articulate the ontological reading that the observer corresponds to a local physical regime in which global atemporality becomes operationally broken.
+
+⸻
+
+3. Postulates (P0–P4)
+
+We adopt a minimal postulate set to keep the framework explicit and falsifiable.
+
+P0 — Global Atemporality (Constraint Form)
+
+There exists a global state |\Psi\rangle satisfying a stationarity constraint:
+
+\hat{\mathcal C}\,|\Psi\rangle = 0,
+
+where \hat{\mathcal C} is a global constraint operator (e.g., \hat{\mathcal C}=\hat H_C + \hat H_S + \hat H_E up to additive shifts). For finite-dimensional or quasi-ideal clocks, this condition is satisfied approximately, in the sense that \|\hat{\mathcal C}|\Psi\rangle\| is negligible within the operational support of the clock. Exact cancellation is recovered only in the infinite-resolution limit.
+
+P1 — Factorization is a Choice (Operational Partition)
+
+A partition \mathcal H = \mathcal H_C \otimes \mathcal H_S \otimes \mathcal H_E is not assumed to be ontologically fundamental, but is an operational choice defining what counts as clock, system, and inaccessible environment for an observer.
+
+P2 — Relational Time via Conditioning (Internal Clock Readout)
+
+Let |t\rangle_C be a clock readout (ideal or approximate). The conditional system state is defined by
+
+\rho_S(t) \;\propto\; \mathrm{Tr}_{CE}\Big[\big(|t\rangle\langle t|_C\otimes \mathbb I_{SE}\big)\,\rho_{CSE}\Big],
+
+with normalization by the probability p(t). Effective dynamics arises from correlations between C and S inside |\Psi\rangle.
+
+P3 — Emergent Schrödinger Dynamics (Good-Clock Regime)
+
+When the clock resolution dt is small compared to the characteristic timescale of \hat H_S (i.e., dt \ll 2\pi/\|\hat H_S\|), and the clock dimension N is sufficiently large to admit a controlled continuum limit t_k = k\,dt, the conditional state approximately satisfies
+
+i\,\frac{\partial}{\partial t}\,|\psi_S(t)\rangle \;\approx\; \hat H_S\,|\psi_S(t)\rangle,
+
+or its mixed-state generalization, with deviations controlled by clock imperfection and back-action.
+
+P4 — Informational Arrow from Partial Access
+
+For an observer with incomplete access to E, define an effective entropy
+
+S_{\mathrm{eff}}(t) \;:=\; -\mathrm{Tr}\big[\rho_S(t)\,\ln\rho_S(t)\big].
+
+Even when the global evolution is stationary/unitary, S_{\mathrm{eff}}(t) can grow monotonically in expectation for typical coarse-grainings and sufficiently large environments. Residual oscillations and recurrences are expected for finite environments but are suppressed as the effective environment dimension d_E = 2^{n_{env}} increases: heuristically, the Poincaré recurrence timescale grows as \sim d_E, while the relaxation timescale of S_{\mathrm{eff}} scales as \sim 1/(g^2 d_E), so for n_{env} \gg 1 the entropy plateau is reached well before recurrences become significant.
+
+3.1 Unified Reading: Three Pillars from a Single Conditional State
+
+The core expression of the framework is the conditional reduced state of the system:
+
+\rho_S(t) = \frac{\mathrm{Tr}_E\big[\langle t|_C\,|\Psi\rangle\langle\Psi|\,|t\rangle_C\big]}{p(t)}, \quad p(t) = \mathrm{Tr}_{SE}\big[\langle t|_C\,|\Psi\rangle\langle\Psi|\,|t\rangle_C\big].
+
+This single operation unifies three traditionally separate pillars of the problem of time:
+
+(i) Quantum dynamics (P3). The map t \mapsto \rho_S(t), obtained by projecting onto successive clock states \langle t|_C, reproduces effective Schrödinger evolution i\,\partial_t|\psi_S(t)\rangle \approx \hat H_S|\psi_S(t)\rangle in the good-clock limit. The projection onto clock states is the sole source of temporal ordering.
+
+(ii) Thermodynamic arrow (P4). The partial trace \mathrm{Tr}_E over inaccessible environmental degrees of freedom induces growth of the effective entropy S_{\mathrm{eff}}(t) = -\mathrm{Tr}[\rho_S(t)\ln\rho_S(t)], yielding irreversibility without any non-unitary dynamics. The trace is the sole source of the arrow.
+
+(iii) Observer-dependent time. The time parameter t is the readout of a local physical clock C, not a global coordinate. Different observers correspond to different operational choices of clock subsystem, and conditioning on different clocks defines different temporal descriptions without requiring a global simultaneity surface. Consistency between descriptions is then expressed as transformations between relational clock choices, in the spirit of temporal quantum reference frames [6]. This structure is a necessary (though not sufficient) ingredient for relativistic covariance: the framework does not derive Lorentz transformations, but it eliminates global time as a prerequisite, which is the conceptual step that standard quantum mechanics lacks.
+
+The convergence is summarized as follows:
+
+    Ingredient               Produces                     Pillar
+    ─────────────────────────────────────────────────────────────────
+    \langle t|_C              Temporal ordering            Quantum mechanics
+    \mathrm{Tr}_E             Irreversibility              Thermodynamics
+    C local (not global)      Observer-dependent time      Relativity (structural)
+    |\Psi\rangle with         Atemporal base               Common ground
+      \hat{\mathcal C}|\Psi\rangle=0
+
+While individual components exist in the literature — Page and Wootters [5] for conditioning, Shaari [3] for the informational arrow via partial trace, Höhn, Smith and Lock [6] for temporal quantum reference frames, Mendes et al. [2] for quasi-ideal clock corrections — no prior work explicitly unifies the three pillars as three facets of the same conditional operation on the same timeless object. The present framework makes this unification explicit: quantum dynamics, thermodynamic irreversibility, and observer-dependent time are not three separate problems requiring three separate solutions. They are three readings of a single expression.
+
+⸻
+
+4. Clock Quality and Operational Metrics
+
+A "good clock" is one whose readout states provide near-orthogonal, approximately covariant time labels while minimally disturbing the system.
+
+4.1 Resolution and Support
+
+For finite-dimensional clocks, define effective time resolution \Delta t from the spread of the clock POVM and the density of distinguishable readouts over a support window.
+
+4.2 Back-action and Disturbance
+
+Define back-action via the conditional change in clock energy/number operator:
+
+\Delta E_C(t) := \langle \hat H_C \rangle_{t} - \langle \hat H_C \rangle_{\mathrm{uncond}}.
+
+Small |\Delta E_C(t)| indicates weak back-action.
+
+Figure 5 shows the clock back-action analysis: for each time step k, we plot \Delta E_C(k) and the corresponding deviation in the clock number operator, confirming that the clock perturbation remains bounded and well within acceptable limits for the chosen parameters.
+
+4.3 Jitter and Deviation from Ideal Dynamics
+
+For a target unitary U_S(t), quantify deviation by a distance measure (e.g., trace distance or fidelity) between \rho_S(t) and U_S(t)\rho_S(0)U_S^\dagger(t).
+
+Figure 4 plots the fidelity F(k) = \langle\psi_{\mathrm{ideal}}(k)|\rho_S(k)|\psi_{\mathrm{ideal}}(k)\rangle for Version B with n_{env}=4. The monotonic decay from F \approx 1 to F \approx 0.5 quantifies the progressive deviation from ideal dynamics caused by the system–environment entanglement.
+
+These metrics align with recent analyses of quasi-ideal clocks and effective non-linear corrections in interacting PaW settings [1,2].
+
+⸻
+
+5. Minimal Demonstrator Model
+
+We present a minimal model designed to be calculable and to separate the emergence of time from the emergence of the arrow.
+
+5.1 Hilbert Space
+
+\mathcal H = \mathcal H_C \otimes \mathcal H_S \otimes \mathcal H_E,
+with
+	•	C: finite clock with N levels and Hamiltonian \hat H_C = \frac{2\pi}{N\,dt}\sum_{k=0}^{N-1} k\,|k\rangle\langle k|. The covariant (frequency) basis is obtained via the discrete Fourier transform of the computational basis \{|k\rangle\}, recovering the standard Salecker–Wigner–Peres clock structure in the finite-dimensional setting.
+	•	S: qubit with \hat H_S=\tfrac{\omega}{2}\sigma_x,
+	•	E: environment of n_{env} qubits (inaccessible).
+
+5.2 History State Construction
+
+We construct a PaW-type history state by correlating clock labels with joint system–environment evolution:
+
+|\Psi\rangle = \frac{1}{\sqrt{N}}\sum_{k=0}^{N-1} |k\rangle_C \otimes U_{SE}(t_k)\,|\phi_0\rangle_S\otimes|e_0\rangle_E,
+
+with
+
+U_{SE}(t) = e^{-i(\hat H_S + \hat H_E + \hat H_{SE})t}, \quad t_k = k\,dt.
+
+Version A (no environment) is recovered by setting \hat H_E = \hat H_{SE} = 0, in which case U_{SE} \to U_S = e^{-i\hat H_S t} \otimes \mathbb I_E and the environment factors out trivially.
+
+Conditioning on |k\rangle yields the effective system state \rho_S(k).
+
+5.3 Environment Coupling for the Arrow
+
+To generate an informational arrow under partial access, we include weak coupling between S and E, e.g.
+
+\hat H_{SE} = g\sum_{j=1}^{n_{env}} \sigma_x^{(S)}\otimes \sigma_x^{(E_j)} \quad \text{or} \quad g\sum_j \sigma_z^{(S)}\otimes \sigma_z^{(E_j)}.
+
+The observer conditions on C but traces out E: \rho_S(k)=\mathrm{Tr}_E\,\rho_{SE}(k).
+
+⸻
+
+6. Numerical Illustration (Two Regimes)
+
+All numerical results reported in this section are obtained from explicit unitary simulations of the full clock–system–environment dynamics implemented in Python using the QuTiP library. No stochastic noise models, Lindblad master equations, or phenomenological decoherence terms are introduced at any stage; all observed irreversibility emerges solely from conditioning and partial tracing.
+
+6.1 Version A — No Environment
+
+Parameters: N = 30, dt = 0.2, \omega = 1, no environment.
+
+Observed behavior:
+	•	\langle \sigma_z \rangle oscillates approximately as \cos(\omega\,k\,dt) = \cos(0.2k), with amplitude \approx 1 and period \approx 31 steps.
+	•	The resulting curve is a clean sinusoid for k = 0 \ldots 29.
+
+Figure 1 shows the conditional expectation value \langle \sigma_z \rangle_k overlaid on the analytic prediction \cos(\omega\,k\,dt). The maximum absolute deviation is of order 10^{-16}, confirming machine-precision agreement.
+
+Interpretation:
+	•	Conditioning on the clock within the PaW history state reproduces coherent Schrödinger-like dynamics without invoking any external time parameter.
+
+6.2 Version B — With Environment (n_{env} = 4)
+
+Parameters: same clock and system as in Version A, plus an environment of n_{env} = 4 qubits with weak system–environment coupling.
+
+Observed behavior:
+	•	\langle \sigma_z \rangle oscillations exhibit amplitude damping and increasing irregularity, consistent with effective decoherence.
+	•	The effective entropy S_{\mathrm{eff}}(k) grows from 0 (pure initial state) to \approx 0.693 \approx \ln 2, with residual local oscillations during the transient regime.
+	•	As n_{env} increases, entropy growth becomes more nearly monotonic and recurrences are increasingly suppressed.
+
+Figure 2 displays the damped \langle \sigma_z \rangle oscillations and the growth of S_{\mathrm{eff}}(k) for n_{env}=4. The entropy panel shows S_{\mathrm{eff}} rising from 0 to \approx 0.693 \approx \ln 2, consistent with full decoherence of the qubit into a maximally mixed state in the accessible subspace.
+
+Table 1 summarizes the multi-environment sweep: for each n_{env} \in \{2,4,6,8\} we report the final S_{\mathrm{eff}}, the maximum S_{\mathrm{eff}} reached, and the mean fidelity between \rho_S(k) and the ideal unitary evolution. The convergence S_{\mathrm{eff}} \to \ln 2 and the suppression of oscillations as n_{env} grows corroborate the P4 heuristic on recurrence suppression.
+
+Crucially, these features arise despite the fact that the global evolution remains strictly unitary. They are obtained by conditioning on the clock degrees of freedom and tracing out the environment within a fully unitary QuTiP simulation.
+
+Interpretation:
+	•	The arrow of time emerges as an informational arrow, generated by partial access to environmental degrees of freedom, rather than by any fundamental time asymmetry or non-unitary dynamics.
+
+6.3 Version C — Two-Clock Comparison (Partition Dependence)
+
+To test prediction P4 (partition dependence), we run the same formula a third time with a different clock spacing.
+
+Setup: Two clocks share the same Hilbert-space dimension N = 30, system Hamiltonian H_S = (\omega/2)\sigma_x, and environment of n_{env} = 4 qubits with coupling g = 0.1. The only difference is:
+	•	Clock C: dt = 0.2
+	•	Clock C': dt = 0.35
+
+Both clocks condition on the same global state |\Psi\rangle satisfying \hat{H}|\Psi\rangle = 0, using the same formula \rho_S(t) = \mathrm{Tr}_E[\langle t|_C |\Psi\rangle\langle\Psi| |t\rangle_C] / p(t).
+
+Observed behavior:
+	•	\langle \sigma_z \rangle_k oscillates with the same initial amplitude but different frequencies: clock C produces a period of ~31 steps while clock C' produces a period of ~18 steps (ratio \approx dt'/dt = 0.35/0.2 = 1.75).
+	•	Damping envelopes differ: clock C' samples the same physical decoherence process at coarser time intervals, yielding a faster apparent damping per tick.
+	•	S_{eff}(k) rises toward \ln 2 on both clocks but at different rates per tick: clock C' reaches \approx 0.693 before clock C does, because each tick of C' spans a larger physical interval.
+
+Figure 6 shows the side-by-side comparison of \langle \sigma_z \rangle_k and S_{eff}(k) for both clocks. Table 2 provides the full numerical values exported as output/table_pillar3_two_clocks.csv.
+
+Interpretation:
+	•	The temporal description — oscillation frequency, decoherence rate, entropy growth — depends on the clock choice. This is not a failure of the formalism but its central feature: time is relational, and different clocks yield different but equally valid emergent histories from the same atemporal state. This directly confirms prediction P4 and connects to postulate P3, where different observers (each carrying their own clock) experience genuinely different temporal orderings.
+
+⸻
+
+7. The Observer as a Local Breakdown of Atemporality
+
+This section articulates the ontological reading implied by P0–P4 while remaining operational.
+
+7.1 No Global Present
+
+Finite signal speed implies that each observer accesses only its past light cone; thus, a global "now" is not an observable structure. What exists operationally are local events and the information that reaches an observer.
+
+7.2 Observers as Physical Coarse-Grainings
+
+An observer is modeled as a physical subsystem that:
+	1.	partitions degrees of freedom into accessible vs inaccessible,
+	2.	stores records (memory) of interactions,
+	3.	updates internal states to reduce uncertainty about future interactions.
+
+Under these conditions, the observer does not reveal a pre-existing universal time. Rather, time is constructed as an internal coordinate labeling conditioned correlations, and the arrow is constructed as the growth of effective entropy under partial access.
+
+7.3 Anomaly, Not Privilege
+
+The global universe does not require time, history, or experience to "exist" in the constraint sense (P0). The observer is a local configuration in which atemporality becomes operationally broken: by conditioning on a physical clock and tracing inaccessible degrees of freedom, the observer generates a temporal ordering and an irreversible informational arrow.
+
+⸻
+
+8. Predictions and Falsifiability
+
+The framework yields concrete, parameter-dependent expectations:
+	1.	Clock-size dependence: increasing N and improving clock covariant properties reduces jitter and improves agreement with ideal U_S(t).
+	2.	Environment-size dependence: increasing n_{env} increases typical monotonicity of S_{\mathrm{eff}}(t) and suppresses recurrences.
+	3.	Coupling dependence: stronger g accelerates decoherence and raises S_{\mathrm{eff}} growth rate, but can degrade clock quality via back-action.
+
+Figure 3 consolidates the multi-environment comparison in a grid layout, showing \langle \sigma_z \rangle and S_{\mathrm{eff}} side by side for n_{env} \in \{2,4,6,8\}. The progressive damping and entropy saturation are visually evident.
+
+	4.	Partition dependence: changing the operational partition C,S,E changes the experienced arrow; the arrow is not a global property but a property of restricted descriptions. This prediction is directly confirmed in Section 6.3 (Figure 6, Table 2), where two clock choices yield quantitatively different ⟨σ_z⟩(k) and S_{eff}(k) trajectories from the same global state.
+
+⸻
+
+9. Limitations
+	•	The minimal demonstrator uses simplified clocks and environments; quasi-ideal clocks and more realistic environments should be explored.
+	•	The ontological language is constrained to operational statements; no claims are made about consciousness as a fundamental ingredient.
+	•	Multi-observer consistency is demonstrated numerically for a single-parameter clock variation (Section 6.3); a full treatment with structurally different clock subsystems (e.g., harmonic oscillator vs. spin chain) remains for future work.
+
+⸻
+
+10. Outlook: Incorporating Gravity
+
+The framework presented here unifies three pillars of the problem of time — quantum dynamics, thermodynamic irreversibility, and relativistic frame dependence — without invoking gravitational degrees of freedom. Gravity enters the problem of time in two distinct ways: (i) through gravitational time dilation, where clocks at different positions in a gravitational field tick at different rates, and (ii) through the Wheeler–DeWitt equation, where the full spacetime geometry itself becomes a quantum variable subject to a global constraint Ĥ|Ψ⟩ = 0 [7]. In this section we outline how our operational postulates extend naturally to each of these levels.
+
+10.1 Level 1: External Gravitational Potential
+
+In the simplest extension, the clock subsystem C evolves under a Hamiltonian that includes a gravitational redshift factor. For a clock in a weak Newtonian potential Φ(x), the local tick rate is modified as
+
+	ω_C → ω_C (1 + Φ(x)/c²).
+
+Within our framework this amounts to replacing the clock Hamiltonian Ĥ_C in the global constraint (P0) with a position-dependent version. All other postulates remain unchanged: conditioning on the modified clock yields dynamical equations that automatically include gravitational time dilation, the partial trace still produces an informational arrow, and locality of the clock still implies frame dependence. This extension is analytically straightforward and could be demonstrated with a toy model coupling our existing qubit system to a clock in a linear potential [4,2].
+
+10.2 Level 2: Multiple Gravitating Clocks
+
+A richer scenario places two or more clocks at different gravitational potentials and asks for the conditional state of the system relative to each. The PaW formalism accommodates this naturally via the perspective-neutral framework of Höhn, Smith, and Lock [6], where different internal times correspond to different "jumps" into a reference frame. Our postulate P3 (observer = physical subsystem) is precisely the structure needed: each clock defines its own emergent time, and the mismatch between their readings reproduces gravitational redshift as a kinematic consequence of the global constraint. The informational arrow may differ between observers if their effective environments differ — an empirically testable prediction (see Section 8, prediction 4).
+
+10.3 Level 3: Full Quantum Gravity
+
+The ultimate extension replaces the background metric with quantum degrees of freedom. In canonical quantum gravity, the Wheeler–DeWitt equation Ĥ|Ψ⟩ = 0 is formally identical to our postulate P0, except that the constraint Hamiltonian includes the gravitational field itself. In this setting, both temporal ordering and spatial geometry would emerge from the same conditioning-plus-partial-trace operation that defines ρ_S(t) in our framework. Concretely:
+
+	•	Choose a matter field as the internal clock C (the "dust time" or scalar field clock of [7,4]).
+	•	The remaining gravitational and matter degrees of freedom play the roles of S and E.
+	•	Projection onto clock readings yields a Schrödinger-like evolution for geometry (the Tomonaga–Schwinger picture).
+	•	Tracing out short-wavelength gravitational modes or matter fields inaccessible to the observer produces decoherence of superposed geometries — the gravitational arrow.
+
+This program aligns closely with Ghasemi's multi-observer gravitational framework [4] and with the non-linear Page–Wootters extensions of Mendes et al. [2], who demonstrated that quasi-ideal clocks in curved backgrounds naturally produce interaction-modified evolution equations. Singh's recent work [7] further establishes that the Wheeler–DeWitt constraint, when decomposed relationally, generates the same conditional-state structure we axiomatize in P1.
+
+10.4 What This Paper Contributes to the Gravitational Problem
+
+Our contribution is not to solve quantum gravity, but to provide the conceptual and operational scaffolding within which a solution would be recognized. By demonstrating that three apparently separate problems — dynamics, irreversibility, and frame dependence — are already unified in the flat, non-gravitational case, we establish the pattern that any gravitational extension must preserve. A successful theory of quantum gravity should reduce, in the appropriate limit, to the conditional-state picture presented here: one global constraint, one conditioning operation, one partial trace, and three emergent pillars.
+
+⸻
+
+11. Conclusion
+
+We provided a compact operational framework (P0–P4) in which time and its arrow are not fundamental structures of the universe but emergent features of conditioned correlations under limited access. A key structural result is that the three pillars of the problem of time — quantum dynamics, thermodynamic irreversibility, and relativistic frame dependence — converge as three readings of a single expression: the conditional reduced state \rho_S(t) obtained by projecting onto a local clock and tracing out inaccessible degrees of freedom within a globally stationary state. Projection yields dynamics; partial trace yields the arrow; locality of the clock yields frame dependence. A minimal demonstrator separates (i) coherent emergent dynamics without environment from (ii) an informational arrow under partial access to environmental degrees of freedom. The resulting interpretation is austere: the observer is not the center of the universe, but a local physical configuration in which global atemporality becomes operationally broken.
+
+⸻
+
+Figure Captions
+
+Figure 1: Version A — Conditional \langle \sigma_z \rangle_k vs. analytic \cos(\omega k dt) for a clock with N=30 and dt=0.2. Maximum deviation is \sim 10^{-16}, confirming machine-precision agreement between PaW conditioning and standard Schrödinger evolution.
+
+Figure 2: Version B (n_{env}=4) — Top panel: damped conditional \langle \sigma_z \rangle_k oscillations showing effective decoherence. Bottom panel: growth of effective entropy S_{\mathrm{eff}}(k) from 0 to \approx \ln 2 \approx 0.693.
+
+Table 1: Multi-environment sweep. Final S_{\mathrm{eff}}, maximum S_{\mathrm{eff}}, and mean fidelity for n_{env} \in \{2,4,6,8\}. S_{\mathrm{eff}} converges to \ln 2 as the environment grows; fidelity decreases, reflecting stronger effective decoherence.
+
+Figure 3: Multi-environment grid — \langle \sigma_z \rangle (left column) and S_{\mathrm{eff}} (right column) for n_{env} \in \{2,4,6,8\}. Progressive damping of oscillations and saturation of entropy toward \ln 2 are visually evident.
+
+Figure 4: Fidelity decay — F(k) = \langle\psi_{\mathrm{ideal}}(k)|\rho_S(k)|\psi_{\mathrm{ideal}}(k)\rangle for Version B (n_{env}=4), quantifying the deviation from ideal unitary dynamics as system–environment entanglement builds.
+
+Figure 5: Clock back-action — Conditional change in clock energy \Delta E_C(k) as a function of time step, confirming bounded clock perturbation.
+
+Figure 6: Two-clock comparison (Pillar 3) — Left: conditional ⟨σ_z⟩_k for clock C (dt = 0.2) and clock C′ (dt = 0.35). Right: S_{eff}(k) for the same two clocks. Same global state |Ψ⟩, same formula, different clock choice → different emergent temporal description. Parameters: N = 30, ω = 1.0, g = 0.1, n_{env} = 4.
+
+Table 2: Two-clock comparison — Full numerical values of ⟨σ_z⟩(k) and S_{eff}(k) for clocks C (dt = 0.2) and C′ (dt = 0.35) over all 30 ticks. Data exported as output/table_pillar3_two_clocks.csv.
+
+⸻
+
+References
+	1.	L. Hausmann et al., "Measurement events relative to temporal quantum reference frames," Quantum 9, 1616 (2025). arXiv:2308.10967.
+	2.	L. R. S. Mendes et al., "Non-Linear Equation of Motion for Page–Wootters Mechanism with Interaction and Quasi-Ideal Clocks," Universe 11(9), 308 (2025). arXiv:2107.11452.
+	3.	Jesni Shamsul Shaari, "Informational Arrow of Time in an Extended Two-Qubit Page-Wooters Model," Physics Letters A (available online Feb 2026). (Also circulated as SSRN 5658980.)
+	4.	A. H. Ghasemi, "Relational Emergent Time for Quantum System: A Multi-Observer, Gravitational, and Cosmological Framework," arXiv:2512.15789 (2025).
+	5.	D. N. Page and W. K. Wootters, "Evolution without evolution: Dynamics described by stationary observables," Phys. Rev. D 27, 2885 (1983).
+	6.	P. A. Höhn, A. R. H. Smith, and M. P. E. Lock, "Trinity of relational quantum dynamics," Phys. Rev. D 104, 066001 (2021). arXiv:1912.00033.
+	7.	P. Singh, "Quantum gravity, timelessness, and the Wheeler–DeWitt equation," in Loop Quantum Gravity: The First 30 Years, A. Ashtekar and J. Pullin (eds.), World Scientific (2017). arXiv:1602.02643.
+
+⸻
+
+Appendix A — Reproducibility Notes
+
+All numerical simulations in this work are performed in Python using the QuTiP (Quantum Toolbox in Python) library.
+
+A.1 Version A (No Environment)
+	1.	Define a finite-dimensional clock Hilbert space \mathcal H_C with N basis states |k\rangle.
+	2.	Define the system Hamiltonian \hat H_S = (\omega/2)\sigma_x.
+	3.	Construct the PaW history state:
+|\Psi\rangle = \frac{1}{\sqrt N}\sum_{k=0}^{N-1} |k\rangle_C \otimes e^{-i\hat H_S k dt}|\phi_0\rangle_S.
+	4.	For each k, compute the conditional system state by projection onto |k\rangle_C and normalization.
+	5.	Evaluate observables such as \langle \sigma_z \rangle_k.
+
+Expected result: coherent sinusoidal oscillations matching Schrödinger evolution.
+
+A.2 Version B (With Environment)
+	1.	Extend the Hilbert space by adding n_{env} environment qubits initialized in |0\rangle^{\otimes n_{env}}.
+	2.	Define a system–environment interaction Hamiltonian, e.g.
+\hat H_{SE} = g \sum_j \sigma_x^{(S)} \otimes \sigma_x^{(E_j)}.
+	3.	Construct the joint propagator
+U_{SE}(t) = e^{-i(\hat H_S + \hat H_E + \hat H_{SE})t}
+using QuTiP's exact matrix exponentiation.
+	4.	Build the PaW history state correlating clock labels with U_{SE}(k dt).
+	5.	Condition on clock states, trace out the environment, and compute \rho_S(k).
+	6.	Evaluate \langle \sigma_z \rangle_k and
+S_{\mathrm{eff}}(k) = -\mathrm{Tr}[\rho_S(k)\ln\rho_S(k)].
+
+Observed behavior: damping of coherent oscillations and average growth of effective entropy, despite strictly unitary global dynamics.
+
+Reference parameters: N=30, dt=0.2, \omega=1.0, g=0.1, n_{env} \in \{2,4,6,8\}, |\phi_0\rangle = |0\rangle.
+
+The complete simulation code (Python/QuTiP), including the scripts that generate all figures and tables reported in this work, is publicly available at:
+https://github.com/gianigm/paw-toymodel
