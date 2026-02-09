@@ -1,15 +1,40 @@
-# PaW Toy Model — Page–Wootters Mechanism Demonstrator
+# The Observer as a Local Breakdown of Atemporality
 
-Minimal numerical demonstrator for the paper:
+Numerical demonstrator for the unified relational formula:
 
-> **"The Observer as a Local Breakdown of Atemporality: Relational Time and an Informational Arrow from Quantum Clocks"**
+```
+                    Tr_E [ ⟨t|_C  |Ψ⟩⟨Ψ|  |t⟩_C ]
+    ρ_S(t)   =    ─────────────────────────────────
+                                p(t)
+```
+
+Three pillars of the problem of time from one expression:
+
+| Operation | What it produces | Pillar |
+|-----------|-----------------|--------|
+| ⟨t\|\_C (projection) | Schrödinger dynamics | Quantum mechanics |
+| Tr\_E (partial trace) | Entropy growth, irreversibility | Thermodynamic arrow |
+| C is local (not global) | Observer-dependent time | Relational time |
+
 > Gabriel Giani Moreno (2026)
 
-Implements Sections 5–6 and Appendix A using [QuTiP](https://qutip.org/).
+Implemented with [QuTiP](https://qutip.org/).
 
 **Repository:** [https://github.com/gabgiani/paw-toymodel](https://github.com/gabgiani/paw-toymodel)
 
-## Setup
+---
+
+## Documentation
+
+| Document | Description |
+|----------|-------------|
+| **[Theory](docs/THEORY.md)** | The unified relational formula, three pillars, and the observer as anomaly |
+| **[Scripts & Outputs](docs/SCRIPTS.md)** | Complete guide to every script, figure, and CSV |
+| **[The Omniscient Observer](docs/GOD_OBSERVER.md)** | Boundary analysis: what happens when the observer has complete access |
+
+---
+
+## Quick Start
 
 ```bash
 python -m venv venv
@@ -17,56 +42,52 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Run
-
 ```bash
-python run_all.py                    # Full pipeline: all versions + plots + CSVs
-python validate_formula.py           # Formula validation (Pillars 1 & 2)
-python run_essay_validation.py       # Essay validation (all 3 pillars, ASCII output)
-python generate_pillar3_plot.py      # Two-clock comparison (Pillar 3 plot + CSV)
+python run_all.py                       # Pillars 1 & 2 + all metrics
+python generate_pillar3_plot.py         # Pillar 3 (two-clock comparison)
+python generate_god_observer_plots.py   # Boundary analysis (omniscient observer)
 ```
 
 All figures (PNG) and tables (CSV) are saved to `output/`.
+
+---
+
+## Key Results at a Glance
+
+### Pillar 1 — Projection yields dynamics
+
+![Pillar 1](output/validation_pillar1.png)
+
+Conditional ⟨σ\_z⟩(k) matches analytic cos(ωkdt) with machine precision (max deviation ~ 4×10⁻¹⁶).
+
+### Pillar 2 — Partial trace yields the arrow
+
+![Pillar 2](output/validation_unified.png)
+
+Adding an environment: oscillations damp, entropy grows from 0 → ln 2. Same formula, different access.
+
+### Pillar 3 — Clock locality yields observer-dependent time
+
+![Pillar 3](output/validation_pillar3_two_clocks.png)
+
+Two clocks (dt = 0.20 vs 0.35) produce different temporal narratives from the same global state.
+
+---
 
 ## Structure
 
 | File | Description |
 |------|-------------|
 | `paw_core.py` | Core simulation functions (reusable module) |
-| `run_all.py` | Full pipeline: runs both versions, generates all plots and CSVs |
 | `validate_formula.py` | Formula validation with step-by-step pillar verification |
-| `run_essay_validation.py` | All 3 pillars validation with clean ASCII output |
-| `generate_pillar3_plot.py` | Two-clock comparison (Pillar 3) — plot and CSV |
+| `run_all.py` | Full pipeline: all versions, metrics, plots, and CSVs |
+| `generate_pillar3_plot.py` | Two-clock comparison (Pillar 3) |
+| `generate_god_observer_plots.py` | Omniscient observer boundary analysis |
+| `test_god_observer.py` | Console validation of three omniscience levels |
+| `run_essay_validation.py` | All 3 pillars — clean ASCII output |
 | `paw_toymodel.ipynb` | Interactive Jupyter notebook |
-| `paper3.tex` | LaTeX source of the paper |
-| `essay_v2` | Philosophical essay (English) |
 | `requirements.txt` | Python dependencies |
-| `output/` | Generated figures and tables |
-
-## What it computes
-
-### Version A — No Environment (Pillar 1: Quantum Dynamics)
-- PaW history state with N=30 clock levels
-- Conditional ⟨σ_z⟩(k) → clean sinusoidal oscillation
-- Comparison with theoretical cos(ωkdt)
-- Machine-precision agreement (max deviation ~ 4×10⁻¹⁶)
-
-### Version B — With Environment (Pillar 2: Thermodynamic Arrow)
-- PaW history state with system–environment coupling
-- Damped oscillations in ⟨σ_z⟩ (effective decoherence)
-- Growing effective entropy S_eff(k) from 0 → ln 2 ≈ 0.693 (informational arrow)
-- Fidelity vs ideal Schrödinger evolution
-- Multi-environment comparison: n_env ∈ {2, 4, 6, 8}
-
-### Version C — Two-Clock Comparison (Pillar 3: Observer-Dependent Time)
-- Same global state |Ψ⟩, same formula, two different clock spacings (dt=0.2 vs dt=0.35)
-- Different oscillation frequencies, damping rates, and entropy trajectories
-- Demonstrates partition dependence: time is relational, not absolute
-
-### Metrics (Sec. 4)
-- **Back-action** ΔE_C(k) — clock disturbance metric
-- **Fidelity** F²(k) — deviation from ideal dynamics
-- **Entropy** S_eff(k) — informational arrow indicator
+| `output/` | 13 figures (PNG) + 6 data tables (CSV) |
 
 ## Reference Parameters
 
@@ -76,13 +97,5 @@ All figures (PNG) and tables (CSV) are saved to `output/`.
 | dt (time step) | 0.2 |
 | ω (system frequency) | 1.0 |
 | g (coupling strength) | 0.1 |
-| n_env (environment qubits) | 2, 4, 6, 8 |
-| \|ψ₀⟩_S (initial state) | \|0⟩ |
-
-## Important Correction
-
-The paper specifies H_S = (ω/2)σ_z. However, σ_z generates only phase
-rotations, leaving ⟨σ_z⟩ constant for any initial state. To reproduce the
-claimed ⟨σ_z⟩(t) = cos(ωt) oscillations, we use **H_S = (ω/2)σ_x** with
-initial state |0⟩. This is related by a π/2 basis rotation and is
-physically equivalent.
+| n\_env (environment qubits) | 2, 4, 6, 8 |
+| \|ψ₀⟩\_S (initial state) | \|0⟩ |
