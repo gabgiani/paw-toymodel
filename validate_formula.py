@@ -1,5 +1,6 @@
 """
-Validation script for the unified PaW formula:
+Validation script for the unified relational formula
+(extending the Page–Wootters mechanism):
   ρ_S(t) = Tr_E[⟨t|_C |Ψ⟩⟨Ψ| |t⟩_C] / p(t)
 
 Three pillars from one operation:
@@ -95,7 +96,7 @@ def build_paw_history(N, dt, omega, initial_S, n_env=0, g=0.0):
 
 def get_conditioned_observables(psi, N, n_env=0):
     """
-    Page–Wootters conditioning — exact implementation of the unified formula:
+    Relational conditioning — exact implementation of the unified formula:
 
       Step 1: |ψ_SE(k)⟩ = (⟨k|_C ⊗ I_SE) |Ψ⟩      ← Pillar 1: projection → dynamics
       Step 2: ρ_SE(k) = |ψ_SE(k)⟩⟨ψ_SE(k)| / p(k)
