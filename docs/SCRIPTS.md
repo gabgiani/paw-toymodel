@@ -17,6 +17,7 @@ python run_all.py                    # Full pipeline (Pillars 1 & 2 + metrics)
 python generate_pillar3_plot.py      # Pillar 3 (two-clock comparison)
 python generate_god_observer_plots.py # Boundary analysis (omniscient observer)
 python generate_geometry_plots.py     # Geometric interpretation (Bloch trajectory)
+python generate_gravity_robustness.py # Gravity robustness (3 tests)
 ```
 
 All outputs are saved to `output/`.
@@ -171,6 +172,31 @@ S_eff:     0.000 → 0.693        (→ ln 2)
 
 ---
 
+### `generate_gravity_robustness.py` — Gravity Robustness Tests
+
+**What it does:** Three computational tests probing whether the unified relational formula is robust against perturbations that mimic aspects of quantum gravity: (1) clock backreaction, (2) fuzzy subsystem boundaries, (3) Gaussian-smeared clock projection.
+
+**Validates:** Structural robustness — the arrow of time is not an artifact of idealised assumptions.
+
+| Output | Description |
+|--------|-------------|
+| `output/gravity_robustness_curves.png` | 2×3 grid: S_eff(k) and ⟨σ_z⟩(k) for each test at multiple perturbation values |
+| `output/gravity_robustness_summary.png` | Arrow strength and monotonicity vs perturbation for all three tests |
+| `output/table_gravity_robustness.csv` | Numerical summary: S_eff, arrow strength, monotonicity per configuration |
+
+**Key results:**
+```
+Test 1 (backreaction ε=1.0):  arrow = 0.290, mono = 0.586  — degrades but persists
+Test 2 (fuzzy boundary θ=π/2): arrow = 0.882, mono = 1.000  — survives full SWAP
+Test 3 (clock blur σ=4.0):    arrow = 0.997, mono = 1.000  — essentially immune
+```
+
+![gravity_robustness_curves.png](../output/gravity_robustness_curves.png)
+
+![gravity_robustness_summary.png](../output/gravity_robustness_summary.png)
+
+---
+
 ### `test_god_observer.py` — God Observer Console Test
 
 **What it does:** Quick numerical validation of three levels of omniscience. Console output only.
@@ -204,6 +230,8 @@ Jupyter notebook for interactive exploration. Contains the same computations as 
 | `god_three_levels.png` | boundary | `generate_god_observer_plots.py` |
 | `geometric_interpretation.png` | geometry | `generate_geometry_plots.py` |
 | `bloch_trajectory.png` | geometry | `generate_geometry_plots.py` |
+| `gravity_robustness_curves.png` | robustness | `generate_gravity_robustness.py` |
+| `gravity_robustness_summary.png` | robustness | `generate_gravity_robustness.py` |
 
 ### Data Tables (CSV)
 
@@ -216,6 +244,7 @@ Jupyter notebook for interactive exploration. Contains the same computations as 
 | `table_pillar3_two_clocks.csv` | Two-clock comparison data | `generate_pillar3_plot.py` |
 | `table_god_progressive_blindness.csv` | Progressive access sweep | `generate_god_observer_plots.py` |
 | `table_bloch_trajectory.csv` | Bloch vector data (Version A & B) | `generate_geometry_plots.py` |
+| `table_gravity_robustness.csv` | Gravity robustness test metrics | `generate_gravity_robustness.py` |
 
 ---
 

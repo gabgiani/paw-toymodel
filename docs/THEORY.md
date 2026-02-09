@@ -200,6 +200,61 @@ Left: Bloch disk showing Version A (circle on boundary) vs Version B (spiral tow
 
 ---
 
+## Gravity Robustness
+
+The formula operates within non-relativistic quantum mechanics with a fixed tensor-product structure H\_C ⊗ H\_S ⊗ H\_E. In quantum gravity, this structure may not be globally well-defined. Three computational tests probe whether the mechanism is fragile or structurally robust against perturbations that mimic gravitational effects.
+
+### Test 1 — Clock backreaction
+
+In the standard model, the clock C is ideal — it records time without affecting the system. In gravity, the clock's mass-energy would shift the system's energy levels. We model this by adding a k-dependent term:
+
+```
+H_eff(k) = H_SE + ε (k/N) σ_z ⊗ I_E
+```
+
+Result: the arrow degrades gradually with ε but persists. Even at ε = 1.0 (10× the S–E coupling g), the arrow strength remains 0.29 — weakened but not destroyed.
+
+### Test 2 — Fuzzy subsystem boundaries
+
+The "problem of subsystems" in QG: what we call S and E may not have sharp definitions. We apply a partial SWAP between S and E₁ before tracing:
+
+```
+V(θ) = cos(θ) I − i sin(θ) SWAP_{S,E₁}
+```
+
+Result: at θ = π/2 (S and E₁ fully swapped), the arrow **recovers** to strength 0.882 with perfect monotonicity. This demonstrates that the arrow does not depend on which subsystem we label as "system" — it is a structural consequence of the partial trace over a large Hilbert space.
+
+### Test 3 — Clock uncertainty
+
+Gravitational time dilation makes clock readings inherently uncertain. We replace sharp projections |k⟩ with Gaussian-smeared states:
+
+```
+|k̃⟩ = Σ_j c_j |j⟩,   c_j ∝ exp(−(j−k)²/(2σ²))
+```
+
+Result: the arrow is **essentially immune** to clock uncertainty. Even σ = 4.0 (smearing over ±12 clock ticks) yields arrow strength 0.997 with perfect monotonicity.
+
+### Summary
+
+| Test | Max perturbation | Arrow strength | Monotonicity |
+|------|-----------------|----------------|--------------|
+| Backreaction (ε) | 1.0 (10× coupling) | 0.290 | 0.586 |
+| Fuzzy boundaries (θ) | π/2 (full swap) | 0.882 | 1.000 |
+| Clock uncertainty (σ) | 4.0 (±12 ticks) | 0.997 | 1.000 |
+
+**Conclusion:** the arrow of time is structurally robust — it is not an artifact of idealized assumptions. The dynamics (Pillar 1) degrade more readily, as expected: perfect cos(ωkdt) requires an ideal Hamiltonian. But irreversibility (Pillar 2) is generic: it survives fuzzy clocks, fuzzy boundaries, and backreaction.
+
+| Script | Output |
+|--------|--------|
+| `generate_gravity_robustness.py` | `output/gravity_robustness_curves.png` |
+| `generate_gravity_robustness.py` | `output/gravity_robustness_summary.png` |
+
+![Gravity robustness — entropy and dynamics under perturbation](../output/gravity_robustness_curves.png)
+
+![Gravity robustness — arrow survival summary](../output/gravity_robustness_summary.png)
+
+---
+
 ## The Observer as an Anomaly
 
 The three pillars converge on a single insight:
