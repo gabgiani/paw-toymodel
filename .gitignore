@@ -32,6 +32,7 @@ venv/
 # Generated outputs (regenerable from .tex sources)
 *.docx
 *.pdf
+*.tex
 
 # Internal working documents (kept in ../paw-internal-docs/)
 paper
