@@ -232,4 +232,4 @@ Jupyter notebook for interactive exploration. Contains the same computations as 
 
 ---
 
-*Back to: [Theory](THEORY.md) | [The Omniscient Observer](GOD_OBSERVER.md)*
+*Back to: [Theory](THEORY.md) | [Derivation](DERIVATION.md) | [Geometric Structure](GEOMETRY.md) | [The Omniscient Observer](GOD_OBSERVER.md)*

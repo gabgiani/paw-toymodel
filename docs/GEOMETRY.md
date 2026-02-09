@@ -232,4 +232,4 @@ Repository: [github.com/gabgiani/paw-toymodel](https://github.com/gabgiani/paw-t
 
 ---
 
-*Back to: [Theory](THEORY.md) | [Scripts & Outputs](SCRIPTS.md) | [The Omniscient Observer](GOD_OBSERVER.md)*
+*Back to: [Theory](THEORY.md) | [Derivation](DERIVATION.md) | [Scripts & Outputs](SCRIPTS.md) | [The Omniscient Observer](GOD_OBSERVER.md)*
