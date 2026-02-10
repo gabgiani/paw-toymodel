@@ -37,6 +37,9 @@ apikey.json
 *.pdf
 *.tex
 
+# Exception: publication PDFs are tracked
+!publications/*.pdf
+
 # Internal working documents (kept in ../paw-internal-docs/)
 paper
 paper2

@@ -97,6 +97,19 @@ Implemented with [QuTiP](https://qutip.org/). Hardware validation on [IBM Quantu
 |----------|-------------|
 | **[Access Asymmetry](extensions/access_asymmetry/ACCESS_ASYMMETRY.md)** | Observational asymmetry between systems with different access structures |
 
+### Publications (PDF)
+
+| Document | Description |
+|----------|-------------|
+| **[Main Paper](publications/paper3.pdf)** | Full technical paper with postulates, three pillars, robustness tests, and IBM Quantum validation |
+| **[Philosophical Essay](publications/essay.pdf)** | Non-technical essay on time, information, and the observer — no equations needed |
+| **[Ensayo (Español)](publications/essay_spanish.pdf)** | Versión original en español del ensayo filosófico |
+| **[Companion Notes](publications/companion_notes.pdf)** | Pedagogical walkthrough: from classical physics to the framework |
+| **[Geometric Structure](publications/geometric_structure.pdf)** | Fiber bundles, connections, and curvature underlying the formula |
+| **[Omniscient Observer](publications/god_observer.pdf)** | Boundary analysis: full access → time disappears |
+
+See [publications/README.md](publications/README.md) for suggested reading order.
+
 ---
 
 ## Quick Start
