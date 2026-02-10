@@ -4,7 +4,11 @@ Validates the unified relational time formula on real quantum hardware via IBM Q
 
 ## What it does
 
-Runs a 3-qubit experiment (1 system + 2 environment) that demonstrates **Pillar 2** — the thermodynamic arrow of time emerging from the partial trace.
+Runs 3-qubit experiments (1 system + 2 environment) that demonstrate all three pillars of the unified relational time formula on quantum circuits:
+
+- **Pillar 1** — Pure Schrödinger dynamics (1 qubit, no environment)
+- **Pillar 2** — Thermodynamic arrow of time (3 qubits, partial trace)
+- **Pillar 3** — Observer-dependent time (3 qubits, two different clocks)
 
 The Hamiltonian is Trotterized into quantum circuits:
 
@@ -23,10 +27,17 @@ cd /path/to/paw-toymodel
 
 This verifies the Trotter circuits match QuTiP exactly. Run this first!
 
-### Step 2: Run on IBM Quantum hardware
+### Step 2: Pillar 3 — two-clock comparison (simulator)
+
+```bash
+./venv/bin/python IBMquantum/run_ibm_pillar3.py --mode simulator
+```
+
+### Step 3: Run on IBM Quantum hardware
 
 ```bash
 ./venv/bin/python IBMquantum/run_ibm_validation.py --mode hardware
+./venv/bin/python IBMquantum/run_ibm_pillar3.py --mode hardware   # if QPU budget allows
 ```
 
 Or both in one run:
@@ -51,8 +62,10 @@ Or both in one run:
 
 | File | Description |
 |------|-------------|
-| `output/ibm_quantum_validation.png` | 3-panel comparison: ⟨σ\_z⟩, S\_eff, and purity |
-| `output/table_ibm_quantum_validation.csv` | Full numerical data |
+| `output/ibm_quantum_validation.png` | 3-panel comparison: ⟨σ\_z⟩, S\_eff, and purity (Pillar 2) |
+| `output/table_ibm_quantum_validation.csv` | Full numerical data (Pillar 2) |
+| `output/ibm_pillar3_validation.png` | 4-panel two-clock comparison (Pillar 3) |
+| `output/table_ibm_pillar3.csv` | Two-clock numerical data (Pillar 3) |
 
 ## Expected Results
 

@@ -36,6 +36,7 @@ flowchart TD
 
     V1 --> QPU["IBM Quantum<br/>(ibm_torino)"]
     V2 --> QPU
+    V3 --> QPU
 
     P1 --> R["Robustness tests"]
     P2 --> R
@@ -120,6 +121,7 @@ python extensions/access_asymmetry/generate_access_asymmetry.py
 # IBM Quantum hardware validation (requires API key)
 pip install qiskit qiskit-ibm-runtime
 python IBMquantum/run_ibm_validation.py --mode both
+python IBMquantum/run_ibm_pillar3.py --mode simulator          # Pillar 3 (two clocks)
 python IBMquantum/run_ibm_enhanced.py --mode all --n-runs 3  # error bars + noise
 ```
 
@@ -163,13 +165,14 @@ Two observers choose different clocks (dt = 0.20 vs dt = 0.35) applied to the sa
 | `generate_structural_robustness.py` | Structural robustness (Poincaré, initial states, partitions) |
 | `IBMquantum/run_ibm_validation.py` | IBM Quantum hardware validation (Pillar 2 on real QPU) |
 | `IBMquantum/run_ibm_enhanced.py` | Enhanced validation: error bars, noise characterisation, Pillar 1 on QPU |
+| `IBMquantum/run_ibm_pillar3.py` | Pillar 3 on QPU/simulator: two clocks, observer-dependent time |
 | `extensions/access_asymmetry/` | Observational asymmetry analysis (separate from main paper) |
 | `test_god_observer.py` | Console validation of three omniscience levels |
 | `run_essay_validation.py` | All 3 pillars — clean ASCII output |
 | `paw_toymodel.ipynb` | Interactive Jupyter notebook |
 | `requirements.txt` | Python dependencies |
 | `output/` | 21 figures (PNG) + 11 data tables (CSV) |
-| `IBMquantum/output/` | 2 figures (PNG) + 2 data tables (CSV) + 1 noise JSON — hardware results |
+| `IBMquantum/output/` | 3 figures (PNG) + 3 data tables (CSV) + 1 noise JSON — hardware results |
 
 ## Reference Parameters
 

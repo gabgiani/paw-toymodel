@@ -280,6 +280,7 @@ Jupyter notebook for interactive exploration. Contains the same computations as 
 | `robustness_partition.png` | robustness | `generate_structural_robustness.py` |
 | `IBMquantum/output/ibm_quantum_validation.png` | experimental | `IBMquantum/run_ibm_validation.py` |
 | `IBMquantum/output/ibm_quantum_enhanced.png` | experimental | `IBMquantum/run_ibm_enhanced.py` |
+| `IBMquantum/output/ibm_pillar3_validation.png` | experimental | `IBMquantum/run_ibm_pillar3.py` |
 
 ### Data Tables (CSV)
 
@@ -298,6 +299,7 @@ Jupyter notebook for interactive exploration. Contains the same computations as 
 | `table_partition_independence.csv` | Partition independence metrics | `generate_structural_robustness.py` |
 | `IBMquantum/output/table_ibm_quantum_validation.csv` | IBM Quantum hardware Bloch + entropy data | `IBMquantum/run_ibm_validation.py` |
 | `IBMquantum/output/table_ibm_enhanced.csv` | Enhanced validation: mean/std from 3 runs + Pillar 1 | `IBMquantum/run_ibm_enhanced.py` |
+| `IBMquantum/output/table_ibm_pillar3.csv` | Two-clock Pillar 3 data (simulator/hardware) | `IBMquantum/run_ibm_pillar3.py` |
 | `IBMquantum/output/backend_noise_properties.json` | Device noise characterisation (T₁, T₂, gate errors) | `IBMquantum/run_ibm_enhanced.py` |
 
 ---
@@ -357,6 +359,34 @@ Noise:    T1 = 148 μs, T2 = 162 μs, 2Q error = 0.25%, readout = 4.49%
 ```
 
 ![ibm_quantum_enhanced.png](../IBMquantum/output/ibm_quantum_enhanced.png)
+
+---
+
+### `IBMquantum/run_ibm_pillar3.py` — Pillar 3: Observer-Dependent Time
+
+**What it does:** Runs two Trotter circuits with different time steps (dt = 0.20 and dt = 0.35) on the same 3-qubit Hamiltonian. The two clocks produce different ⟨σ_z⟩ dynamics and different entropy trajectories from the same global state — confirming that time is observer-dependent.
+
+**Pillar demonstrated:**
+- ✅ Pillar 3 (observer-dependent time on simulator or real QPU)
+
+**Modes:**
+- `--mode simulator` — Local statevector simulation (default)
+- `--mode hardware` — IBM Quantum hardware
+- `--mode both` — Simulator + hardware comparison
+
+**Requirements:** `qiskit>=2.0`, `qiskit-ibm-runtime>=0.30`, API key in `apikey.json`
+
+| Output | Description |
+|--------|-------------|
+| `IBMquantum/output/ibm_pillar3_validation.png` | Four-panel plot: ⟨σ\_z⟩ and S\_eff for each clock |
+| `IBMquantum/output/table_ibm_pillar3.csv` | Full Bloch vector and entropy data for both clocks |
+
+**Key result (simulator):**
+```
+Max |⟨σ_z⟩_C - ⟨σ_z⟩_C'| = 0.8011
+Max |S_C - S_C'|            = 0.2509
+✓ Temporal descriptions DIFFER — Pillar 3 confirmed
+```
 
 ---
 
