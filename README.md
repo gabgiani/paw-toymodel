@@ -20,6 +20,29 @@ The key insight is that the **observer** is not a passive spectator — it is a 
 | Tr\_E (partial trace) | Entropy growth, irreversibility | Thermodynamic arrow |
 | C is local (not global) | Observer-dependent time | Relational time |
 
+### When Do You Need This Framework?
+
+```mermaid
+flowchart TD
+    A["What system are you studying?"] --> B{"Is there an<br/>external time parameter?"}
+    B -- "Yes" --> C{"Single isolated<br/>system?"}
+    C -- "Yes" --> D["✅ Standard Schrödinger equation<br/><i>No PaW needed</i>"]
+    C -- "No: open system<br/>with known bath" --> E["✅ Standard decoherence theory<br/><i>Lindblad, master equations</i>"]
+    B -- "No: closed universe /<br/>quantum gravity" --> F["Global constraint<br/>𝐻 |Ψ⟩ = 0"]
+    F --> G{"Does the observer<br/>have full access?"}
+    G -- "Yes: omniscient" --> H["Global unitary — no arrow of time<br/><i>See: <a href='docs/GOD_OBSERVER.md'>Omniscient Observer</a></i>"]
+    G -- "No: partial access" --> I["Conditioning + partial trace<br/><b>→ This framework</b>"]
+    I --> J["Produces all three pillars:<br/>dynamics + arrow + observer-dependence"]
+
+    style D fill:#d4edda,stroke:#28a745
+    style E fill:#d4edda,stroke:#28a745
+    style H fill:#fff3cd,stroke:#ffc107
+    style I fill:#cce5ff,stroke:#007bff
+    style J fill:#cce5ff,stroke:#007bff
+```
+
+In short: if your system has an external clock, standard quantum mechanics works fine. This framework becomes necessary when time itself must emerge from the theory — the regime of quantum gravity and closed-universe cosmology.
+
 ### What's in This Repository
 
 Everything here is **numerically verifiable**. The repository contains:
