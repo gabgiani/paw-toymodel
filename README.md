@@ -20,28 +20,40 @@ The key insight is that the **observer** is not a passive spectator — it is a 
 | Tr\_E (partial trace) | Entropy growth, irreversibility | Thermodynamic arrow |
 | C is local (not global) | Observer-dependent time | Relational time |
 
-### When Do You Need This Framework?
+### How the Framework Fits Together
 
 ```mermaid
 flowchart TD
-    A["What system are you studying?"] --> B{"Is there an<br/>external time parameter?"}
-    B -- "Yes" --> C{"Single isolated<br/>system?"}
-    C -- "Yes" --> D["✅ Standard Schrödinger equation<br/><i>No PaW needed</i>"]
-    C -- "No: open system<br/>with known bath" --> E["✅ Standard decoherence theory<br/><i>Lindblad, master equations</i>"]
-    B -- "No: closed universe /<br/>quantum gravity" --> F["Global constraint<br/>𝐻 |Ψ⟩ = 0"]
-    F --> G{"Does the observer<br/>have full access?"}
-    G -- "Yes: omniscient" --> H["Global unitary — no arrow of time<br/><i>See: <a href='docs/GOD_OBSERVER.md'>Omniscient Observer</a></i>"]
-    G -- "No: partial access" --> I["Conditioning + partial trace<br/><b>→ This framework</b>"]
-    I --> J["Produces all three pillars:<br/>dynamics + arrow + observer-dependence"]
+    F["<b>Unified Relational Time Formula</b><br/>ρ_S(t) = Tr_E[ ⟨t|_C |Ψ⟩⟨Ψ| |t⟩_C ] / p(t)"]
 
-    style D fill:#d4edda,stroke:#28a745
-    style E fill:#d4edda,stroke:#28a745
-    style H fill:#fff3cd,stroke:#ffc107
-    style I fill:#cce5ff,stroke:#007bff
-    style J fill:#cce5ff,stroke:#007bff
+    F --> P1["<b>Pillar 1 — Dynamics</b><br/>⟨t|_C projection<br/>→ Schrödinger evolution"]
+    F --> P2["<b>Pillar 2 — Arrow of time</b><br/>Tr_E partial trace<br/>→ entropy growth"]
+    F --> P3["<b>Pillar 3 — Observer-dependence</b><br/>Clock C is local<br/>→ relational time"]
+
+    P1 --> V1["Toy model<br/><i>max deviation ~ 10⁻¹⁶</i>"]
+    P2 --> V2["Toy model + environment<br/><i>S → ln 2 monotonically</i>"]
+    P3 --> V3["Two-clock comparison<br/><i>same |Ψ⟩, different histories</i>"]
+
+    V1 --> QPU["IBM Quantum<br/>(ibm_torino)"]
+    V2 --> QPU
+
+    P1 --> R["Robustness tests"]
+    P2 --> R
+    R --> RG["Gravity: backreaction,<br/>fuzzy boundaries, clock blur"]
+    R --> RS["Structural: Poincaré,<br/>initial states, partitions"]
+
+    F --> GO["<b>Boundary analysis</b><br/>Omniscient observer<br/>→ time disappears"]
+
+    F --> GEO["<b>Geometric interpretation</b><br/>Bloch trajectory,<br/>relational bundle"]
+
+    style F fill:#cce5ff,stroke:#007bff
+    style P1 fill:#d4edda,stroke:#28a745
+    style P2 fill:#d4edda,stroke:#28a745
+    style P3 fill:#d4edda,stroke:#28a745
+    style QPU fill:#f8d7da,stroke:#dc3545
+    style GO fill:#fff3cd,stroke:#ffc107
+    style GEO fill:#fff3cd,stroke:#ffc107
 ```
-
-In short: if your system has an external clock, standard quantum mechanics works fine. This framework becomes necessary when time itself must emerge from the theory — the regime of quantum gravity and closed-universe cosmology.
 
 ### What's in This Repository
 
