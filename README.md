@@ -107,6 +107,7 @@ Implemented with [QuTiP](https://qutip.org/). Hardware validation on [IBM Quantu
 | **[Companion Notes](publications/companion_notes.pdf)** | Pedagogical walkthrough: from classical physics to the framework |
 | **[Geometric Structure](publications/geometric_structure.pdf)** | Fiber bundles, connections, and curvature underlying the formula |
 | **[Omniscient Observer](publications/god_observer.pdf)** | Boundary analysis: full access → time disappears |
+| **[📖 The Time We Need](https://books.apple.com/gb/book/the-time-we-need/id6758966927)** | Book on Apple Books — the complete narrative in published form |
 
 See [publications/README.md](publications/README.md) for suggested reading order.
 

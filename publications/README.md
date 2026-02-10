@@ -15,6 +15,12 @@ Pre-print and companion documents for the Page–Wootters toy-model project. The
 | **[geometric_structure.pdf](geometric_structure.pdf)** | **Geometric interpretation.** Identifies the geometric objects (fiber bundles, connections, curvature) underlying the unified relational time formula and validates them numerically with the toy model. |
 | **[god_observer.pdf](god_observer.pdf)** | **Boundary analysis.** *The Omniscient Observer.* What happens when the observer has full access to all degrees of freedom? Time and irreversibility disappear — confirming the formula's predictions at the boundary. |
 
+### Book
+
+| | |
+|--|--|
+| **[📖 The Time We Need](https://books.apple.com/gb/book/the-time-we-need/id6758966927)** | The complete narrative in published book form, available on Apple Books. |
+
 ---
 
 ## Suggested Reading Order
