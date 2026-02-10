@@ -89,7 +89,7 @@ Implemented with [QuTiP](https://qutip.org/). Hardware validation on [IBM Quantu
 | **[Glossary & Reading Guide](docs/GLOSSARY.md)** | Non-specialist dictionary: every term, symbol, and concept explained in plain language |
 | **[Gravity Robustness](docs/THEORY.md#gravity-robustness)** | Three tests: backreaction, fuzzy boundaries, clock uncertainty |
 | **[Structural Robustness](docs/THEORY.md#structural-robustness)** | Poincaré recurrences, initial states, partition independence |
-| **[IBM Quantum Validation](docs/THEORY.md#experimental-validation-on-ibm-quantum-hardware)** | Pillars 1 & 2 confirmed on ibm_torino (real QPU), error bars, noise characterisation |
+| **[IBM Quantum Validation](docs/THEORY.md#experimental-validation-on-ibm-quantum-hardware)** | All 3 pillars confirmed on ibm_torino (real QPU), error bars, noise characterisation |
 
 ### Extensions
 
