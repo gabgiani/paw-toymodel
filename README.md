@@ -101,19 +101,19 @@ All figures (PNG) and tables (CSV) are saved to `output/`.
 
 ![Pillar 1](output/validation_pillar1.png)
 
-Conditional ⟨σ\_z⟩(k) matches analytic cos(ωkdt) with machine precision (max deviation ~ 4×10⁻¹⁶).
+The blue dots show ⟨σ\_z⟩ computed from the Page–Wootters formula at each clock reading *k*; the dashed black line is the analytic solution cos(ωk·dt). They overlap exactly (max deviation ~ 4×10⁻¹⁶), confirming that temporal dynamics emerge from projection alone — no external time parameter is needed.
 
 ### Pillar 2 — Partial trace yields the arrow
 
 ![Pillar 2](output/validation_unified.png)
 
-Adding an environment: oscillations damp, entropy grows from 0 → ln 2. Same formula, different access.
+Three panels, same formula with a 4-qubit environment added. **Left:** ⟨σ\_z⟩ now decays (green) instead of oscillating indefinitely — decoherence from the partial trace. **Center:** the von Neumann entropy S\_eff grows monotonically from 0 to ln 2 ≈ 0.693, defining the thermodynamic arrow. **Right:** direct comparison — Version A (blue, no environment, reversible) vs Version B (green, with environment, irreversible). The arrow emerges from the same formula by adding Tr\_E.
 
 ### Pillar 3 — Clock locality yields observer-dependent time
 
 ![Pillar 3](output/validation_pillar3_two_clocks.png)
 
-Two clocks (dt = 0.20 vs 0.35) produce different temporal narratives from the same global state.
+Two observers choose different clocks (dt = 0.20 vs dt = 0.35) applied to the same global state |Ψ⟩. **Left panels:** ⟨σ\_z⟩ dynamics differ — faster clock (top) resolves more oscillations. **Right panels:** both observers see entropy grow to ln 2, but along different paths. Neither narrative is "correct" — both are valid relational descriptions.
 
 ---
 

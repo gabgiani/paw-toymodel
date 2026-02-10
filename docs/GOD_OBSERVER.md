@@ -99,6 +99,8 @@ The arrow of time increases **monotonically** with ignorance.
 
 ![Three levels of omniscience](../output/god_three_levels.png)
 
+Three panels summarising the boundary analysis. **Level 1** (god with a clock): dynamics present but S\_eff = 0 at all times — an eternally reversible universe. **Level 2** (god without a clock): a single flat line — constant ⟨σ\_z⟩ ≈ 0.037, the universe is frozen. **Standard observer**: both dynamics (decaying oscillation) and entropy growth (arrow) are present. The grid below summarises:
+
 | Level | Has clock? | Traces out E? | Dynamics? | Arrow? | Time? |
 |-------|-----------|---------------|-----------|--------|-------|
 | 1 | ✅ | ❌ | ✅ | ❌ | Partial |

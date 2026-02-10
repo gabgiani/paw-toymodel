@@ -90,6 +90,8 @@ The arrow strengthens with more environment qubits. Recurrences become exponenti
 
 ![Multi-environment comparison](../output/multi_nenv_grid.png)
 
+A grid of panels, one per environment size (n\_env = 2, 4, 6, 8). Each panel shows ⟨σ\_z⟩ (blue) and S\_eff (red) vs clock reading k. With more environment qubits, oscillations damp faster and entropy saturates earlier — demonstrating that dim(E) controls the rate at which the arrow develops.
+
 ---
 
 ### Pillar 3: Observer-Dependent Time — from the locality of C
@@ -135,6 +137,8 @@ How much does the system–environment interaction disturb the clock?
 
 ![Back-action on the clock](../output/back_action.png)
 
+The plot shows ΔE\_C(k) — the change in clock energy due to S–E interaction — across clock readings. For an ideal clock, ΔE\_C = 0 everywhere. Deviations indicate that the system–environment dynamics are "leaking" back into the clock. Small ΔE\_C confirms the good-clock approximation.
+
 ### Fidelity: F(k)
 
 How far does the conditioned state deviate from ideal Schrödinger evolution?
@@ -145,11 +149,17 @@ How far does the conditioned state deviate from ideal Schrödinger evolution?
 
 ![Fidelity decay](../output/fidelity_comparison.png)
 
+Fidelity F(k) = ⟨ψ\_ideal(k)|ρ\_S(k)|ψ\_ideal(k)⟩ measures the overlap between the conditioned state (from the formula) and the ideal Schrödinger evolution. Version A (no environment) maintains F = 1. Version B (with environment) shows fidelity decay as the partial trace drives the state toward I/2 — an alternative view of the entropy growth from Pillar 2.
+
 ### Entropy comparison: S\_eff across environments
 
 | Script | Output |
 |--------|--------|
 | `run_all.py` | `output/entropy_comparison.png` |
+
+![Entropy comparison](../output/entropy_comparison.png)
+
+S\_eff(k) curves for different environment sizes (n\_env = 2, 4, 6, 8). Larger environments produce faster entropy growth and higher final entropy, all approaching ln 2. This shows that the arrow strength scales with the number of inaccessible degrees of freedom.
 
 ---
 
@@ -251,7 +261,11 @@ Result: the arrow is **essentially immune** to clock uncertainty. Even σ = 4.0 
 
 ![Gravity robustness — entropy and dynamics under perturbation](../output/gravity_robustness_curves.png)
 
+Three rows, one per test (backreaction, fuzzy boundaries, clock uncertainty). **Left columns:** ⟨σ\_z⟩ dynamics under increasing perturbation strength. **Right columns:** S\_eff curves. The arrow (entropy growth) persists across all three tests — dynamics degrade first, but irreversibility is structurally robust.
+
 ![Gravity robustness — arrow survival summary](../output/gravity_robustness_summary.png)
+
+Summary scatter plot: arrow strength (S\_final / ln 2) and monotonicity score vs perturbation parameter for each test. Clock uncertainty (σ) barely affects the arrow. Fuzzy boundaries (θ) maintain the arrow even at full swap. Backreaction (ε) is the strongest perturbation, yet the arrow survives up to 10× the coupling strength.
 
 ---
 
@@ -324,11 +338,19 @@ The unified relational formula produces a thermodynamic arrow that is:
 
 ![Poincaré recurrences — symmetric vs random coupling](../output/robustness_poincare.png)
 
+Entropy S\_eff(t) over extended time, comparing symmetric coupling (sharp recurrences, S returns to 0) vs random coupling (recurrences suppressed, S stays elevated). Each line is a different environment size. The random model shows that spectral complexity prevents entropy from returning to its initial value.
+
 ![Initial state sensitivity — entropy distributions](../output/robustness_initial_states.png)
+
+Histograms of final S\_eff for 100 random product states and 100 random entangled states. The entangled distribution peaks near ln 2 (strong arrow); the product distribution is broader but still predominantly above 0.5. The arrow is generic, not fine-tuned.
 
 ![Initial state sensitivity — arrow strength scatter](../output/robustness_arrow_scatter.png)
 
+Scatter plot of arrow strength (S\_final / ln 2) for each trial. Product states (blue) show a wide range with most above 0.5. Entangled states (orange) cluster near 1.0. The dashed line marks S\_final / ln 2 = 0.5 as a threshold.
+
 ![Partition independence — all qubit partitions](../output/robustness_partition.png)
+
+S\_eff(k) curves when each of the 5 qubits (1 system + 4 environment) is individually designated as "the system" and the rest are traced out. Under symmetric H, all 5 curves overlap perfectly. Under asymmetric H, the designated system qubit shows the strongest arrow, but all qubits exhibit entropy growth — confirming the arrow is a property of the partial trace, not the labeling.
 
 ---
 
