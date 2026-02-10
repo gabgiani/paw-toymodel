@@ -50,7 +50,8 @@ import matplotlib.pyplot as plt
 import csv
 import os
 
-os.makedirs('output', exist_ok=True)
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)))
+os.makedirs(OUT, exist_ok=True)
 
 # ── Parameters ──────────────────────────────────────────────
 N      = 30       # clock ticks
@@ -235,8 +236,8 @@ axes1[1].grid(alpha=0.3)
 fig1.suptitle('Asymmetric informational arrow from $\\mathrm{Tr}_E$',
               fontsize=13, fontweight='bold')
 plt.tight_layout()
-plt.savefig('output/access_asymmetry_arrows.png', dpi=150)
-print("  → output/access_asymmetry_arrows.png")
+plt.savefig(os.path.join(OUT, 'access_asymmetry_arrows.png'), dpi=150)
+print(f"  → {os.path.join(OUT, 'access_asymmetry_arrows.png')}")
 plt.show()
 
 
@@ -294,8 +295,8 @@ fig2.suptitle('Observational asymmetry: $\\mathrm{Tr}_E$ structure '
               'determines mutual visibility',
               fontsize=13, fontweight='bold')
 plt.tight_layout()
-plt.savefig('output/access_asymmetry_observability.png', dpi=150)
-print("  → output/access_asymmetry_observability.png")
+plt.savefig(os.path.join(OUT, 'access_asymmetry_observability.png'), dpi=150)
+print(f"  → {os.path.join(OUT, 'access_asymmetry_observability.png')}")
 plt.show()
 
 
@@ -352,8 +353,8 @@ axes3[2].grid(alpha=0.3)
 fig3.suptitle('Access coupling sweep: detection, correlation, and arrow',
               fontsize=13, fontweight='bold')
 plt.tight_layout()
-plt.savefig('output/access_asymmetry_sweep.png', dpi=150)
-print("  → output/access_asymmetry_sweep.png")
+plt.savefig(os.path.join(OUT, 'access_asymmetry_sweep.png'), dpi=150)
+print(f"  → {os.path.join(OUT, 'access_asymmetry_sweep.png')}")
 plt.show()
 
 
@@ -361,7 +362,7 @@ plt.show()
 #  CSV Output
 # ═══════════════════════════════════════════════════════════════
 
-with open('output/table_access_asymmetry.csv', 'w', newline='') as f:
+with open(os.path.join(OUT, 'table_access_asymmetry.csv'), 'w', newline='') as f:
     w = csv.writer(f)
     w.writerow(['g_BE', 'max_detection_signal', 'mean_detection_signal',
                 'max_mutual_info', 'S_B_final'])
@@ -369,7 +370,7 @@ with open('output/table_access_asymmetry.csv', 'w', newline='') as f:
         w.writerow([f'{g_val:.4f}', f'{max_sig[i]:.6f}',
                      f'{mean_sig[i]:.6f}', f'{max_mi[i]:.6f}',
                      f'{arrow_B[i]:.6f}'])
-print("  → output/table_access_asymmetry.csv")
+print(f"  → {os.path.join(OUT, 'table_access_asymmetry.csv')}")
 
 
 # ═══════════════════════════════════════════════════════════════

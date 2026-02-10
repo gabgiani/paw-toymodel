@@ -20,6 +20,9 @@ python generate_geometry_plots.py     # Geometric interpretation (Bloch trajecto
 python generate_gravity_robustness.py # Gravity robustness (3 tests)
 python generate_structural_robustness.py # Structural robustness (3 tests)
 
+# Extension: Observational asymmetry (independent analysis)
+python extensions/access_asymmetry/generate_access_asymmetry.py
+
 # IBM Quantum hardware (requires API key in apikey.json)
 pip install qiskit qiskit-ibm-runtime
 python IBMquantum/run_ibm_validation.py --mode both
@@ -367,6 +370,40 @@ Noise:    T1 = 148 μs, T2 = 162 μs, 2Q error = 0.25%, readout = 4.49%
 | Coupling strength | g | 0.1 | H\_SE = g Σ σ\_x ⊗ σ\_x |
 | Environment qubits | n\_env | 2, 4, 6, 8 | Number of environment spins |
 | Initial state | \|ψ₀⟩ | \|0⟩ | Eigenstate of σ\_z |
+
+---
+
+## Extensions
+
+### `extensions/access_asymmetry/generate_access_asymmetry.py` — Observational Asymmetry
+
+**What it does:** Demonstrates that the partial trace Tr_E generates a fundamental observational asymmetry between subsystems with different effective access to the environment.
+
+**Not connected to the main paper.** This is an independent extension exploring consequences of the unified formula in a multi-subsystem scenario.
+
+**Setup:** Two subsystems Q_A (strongly coupled to E) and Q_B (controllable coupling to E) sharing a 3-qubit environment. Sweeps the B↔E coupling from 0 to g_AE.
+
+**Key result:** A's detection signal for B is invariant under changes in g_BE (always ~0.0095), while B can fully observe A's decohered dynamics. The asymmetry is structural, not technological.
+
+| Output | Description |
+|--------|-------------|
+| `extensions/access_asymmetry/access_asymmetry_arrows.png` | Asymmetric entropy and coherence for A vs B |
+| `extensions/access_asymmetry/access_asymmetry_observability.png` | Four-panel observability analysis |
+| `extensions/access_asymmetry/access_asymmetry_sweep.png` | Detection signal, mutual info, and B's arrow vs coupling |
+| `extensions/access_asymmetry/table_access_asymmetry.csv` | Numerical data for the coupling sweep |
+| `extensions/access_asymmetry/ACCESS_ASYMMETRY.md` | Full formal analysis document |
+
+**Key results:**
+```
+Arrow asymmetry:  S_vn(A) = 0.691,  S_vn(B decoupled) = 0.135
+Detection signal: max|Δ⟨σ_z⟩| = 0.0095 (invariant under g_BE)
+Mutual info:      I(A:B) = 0.135 (decoupled) → 0.372 (coupled)
+```
+
+```bash
+cd extensions/access_asymmetry/
+python generate_access_asymmetry.py
+```
 
 ---
 

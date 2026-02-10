@@ -37,6 +37,12 @@ Implemented with [QuTiP](https://qutip.org/).
 | **[Structural Robustness](docs/THEORY.md#structural-robustness)** | Poincaré recurrences, initial states, partition independence |
 | **[IBM Quantum Validation](docs/THEORY.md#experimental-validation-on-ibm-quantum-hardware)** | Pillars 1 & 2 confirmed on ibm_torino (real QPU), error bars, noise characterisation |
 
+### Extensions
+
+| Document | Description |
+|----------|-------------|
+| **[Access Asymmetry](extensions/access_asymmetry/ACCESS_ASYMMETRY.md)** | Observational asymmetry between systems with different access structures |
+
 ---
 
 ## Quick Start
@@ -54,6 +60,9 @@ python generate_god_observer_plots.py   # Boundary analysis (omniscient observer
 python generate_geometry_plots.py       # Geometric interpretation (Bloch trajectory)
 python generate_gravity_robustness.py  # Gravity robustness (3 tests)
 python generate_structural_robustness.py # Structural robustness (3 tests)
+
+# Extension: Observational asymmetry (independent analysis)
+python extensions/access_asymmetry/generate_access_asymmetry.py
 
 # IBM Quantum hardware validation (requires API key)
 pip install qiskit qiskit-ibm-runtime
@@ -101,6 +110,7 @@ Two clocks (dt = 0.20 vs 0.35) produce different temporal narratives from the sa
 | `generate_structural_robustness.py` | Structural robustness (Poincaré, initial states, partitions) |
 | `IBMquantum/run_ibm_validation.py` | IBM Quantum hardware validation (Pillar 2 on real QPU) |
 | `IBMquantum/run_ibm_enhanced.py` | Enhanced validation: error bars, noise characterisation, Pillar 1 on QPU |
+| `extensions/access_asymmetry/` | Observational asymmetry analysis (separate from main paper) |
 | `test_god_observer.py` | Console validation of three omniscience levels |
 | `run_essay_validation.py` | All 3 pillars — clean ASCII output |
 | `paw_toymodel.ipynb` | Interactive Jupyter notebook |
