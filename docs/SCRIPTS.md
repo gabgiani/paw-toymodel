@@ -1,6 +1,12 @@
 # Scripts & Outputs — Reproduction Guide
 
-Every claim in the theory is backed by a numerical computation. This page maps each script to the outputs it produces and the pillar it validates.
+Every claim in the theory is backed by a numerical computation. This page maps each script to the outputs it produces, explains the physics behind each computation, and tells you exactly what to expect when you run it.
+
+All scripts use the same unified formula at their core:
+
+$$\rho_S(t) = \frac{\mathrm{Tr}_E\!\big[\langle t|_C\;|\Psi\rangle\langle\Psi|\;|t\rangle_C\big]}{p(t)}$$
+
+The difference between scripts is *which configuration* they feed into this formula and *which aspect* of the result they examine.
 
 ---
 
@@ -26,21 +32,33 @@ python extensions/access_asymmetry/generate_access_asymmetry.py
 # IBM Quantum hardware (requires API key in apikey.json)
 pip install qiskit qiskit-ibm-runtime
 python IBMquantum/run_ibm_validation.py --mode both
+python IBMquantum/run_ibm_pillar3.py --mode simulator
 ```
 
 All outputs are saved to `output/`.
 
 ---
 
-## Script-by-Script Guide
+## Core Architecture
 
 ### `paw_core.py` — Core Module
 
-Shared library imported by all other scripts. Contains:
-- `build_paw_history(N, dt, omega, initial_S, n_env, g)` — Constructs the history state |Ψ⟩
-- `get_conditioned_observables(psi, N, n_env)` — Implements the three-step formula: project → normalize → trace
+This is the shared library imported by all other scripts. It contains the implementations of both "versions" of the toy model and is the single point where the PaW mechanism is computed.
 
-This is the single function that produces all three pillars depending on configuration.
+**Important note on the Hamiltonian:** The paper specifies $H_S = (\omega/2)\sigma_z$, but $\sigma_z$ only generates phase rotations, leaving $\langle\sigma_z\rangle$ time-independent. To produce the physically meaningful $\langle\sigma_z\rangle(t) = \cos(\omega t)$, the code uses $H_S = (\omega/2)\sigma_x$ with $|\psi_0\rangle = |0\rangle$. These are related by a $\pi/2$ basis rotation — the physics is identical.
+
+**Key functions:**
+
+| Function | What it computes |
+|----------|------------------|
+| `run_version_a(N, dt, omega)` | PaW history **without** environment. Constructs $\|\Psi\rangle = \frac{1}{\sqrt{N}} \sum_k \|k\rangle_C \otimes U_S(t_k)\|\psi_0\rangle_S$, projects onto each clock tick, and extracts $\langle\sigma_z\rangle(k)$. Has two modes: full tensor-product construction (pedagogical) and an efficient direct computation. Returns `VersionAResult`. |
+| `_build_H_total(omega, g, n_env)` | Builds the total Hamiltonian on $\mathcal{H}_S \otimes \mathcal{H}_E$: $H_{tot} = \frac{\omega}{2}\sigma_x^{(S)} \otimes I_E + g\sum_j \sigma_x^{(S)} \otimes \sigma_x^{(E_j)}$. Uses $\sigma_x \otimes \sigma_x$ coupling (not $\sigma_z \otimes \sigma_z$) because the environment starts in $\|0\rangle$ (eigenstate of $\sigma_z$), which would produce no transitions under $\sigma_z$ coupling. |
+| `run_version_b(N, dt, omega, g, n_env)` | PaW history **with** environment ($1 + n_{env}$ qubits). Constructs the full history state, conditions on each clock tick, traces out the environment, and computes $\langle\sigma_z\rangle(k)$, $S_{eff}(k)$ (von Neumann entropy), and fidelity vs ideal evolution. Returns `VersionBResult`. |
+| `clock_back_action(N, dt)` | Analytical back-action metric $\Delta E_C(k) = \frac{2\pi}{N\,dt}\left(k - \frac{N-1}{2}\right)$ for the finite Salecker–Wigner clock. Measures how much the finite clock disturbs the system at each tick. |
+
+**Data containers:**
+- `VersionAResult`: `k_values`, `sz_values`, `sz_theory` (analytic reference)
+- `VersionBResult`: adds `s_eff_values` (entropy at each tick), `fidelity_values` (overlap with ideal evolution)
 
 ---
 
@@ -52,15 +70,31 @@ This is the single function that produces all three pillars depending on configu
 - ✅ Pillar 1 (Version A — no environment)
 - ✅ Pillar 2 (Version B — with 4-qubit environment)
 
+**How it works step by step:**
+
+1. **`build_paw_history()`** constructs the global history state:
+$$|\Psi\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} |k\rangle_C \otimes U(t_k)|\psi_0\rangle_{SE}$$
+where $U(t_k) = e^{-iH_{tot}\,k\,dt}$ and the clock register is a standard basis in $\mathbb{C}^N$.
+
+2. **`get_conditioned_observables()`** implements the unified relational time formula in three steps:
+   - **Reshape:** Reinterpret $|\Psi\rangle$ as an $N \times d_{SE}$ matrix (one row per clock tick).
+   - **Project:** Extract row $k$ → unnormalized $|\phi_k\rangle_{SE}$ with $p(k) = \langle\phi_k|\phi_k\rangle$.
+   - **Normalize & Trace:** Form $\rho_{SE}(k) = |\phi_k\rangle\langle\phi_k|/p(k)$, then $\rho_S(k) = \mathrm{Tr}_E[\rho_{SE}(k)]$.
+   - From $\rho_S(k)$: compute $\langle\sigma_z\rangle(k) = \mathrm{Tr}[\sigma_z\,\rho_S(k)]$ and $S_{eff}(k) = -\mathrm{Tr}[\rho_S(k)\ln\rho_S(k)]$.
+
+3. **Pillar 1 check:** With $n_{env} = 0$, there is nothing to trace → $\rho_S(k)$ is pure → $\langle\sigma_z\rangle(k)$ must exactly reproduce $\cos(\omega\,k\,dt)$. Deviation at machine precision ($\sim 10^{-16}$).
+
+4. **Pillar 2 check:** With $n_{env} = 4$, the partial trace generates a mixed $\rho_S(k)$ → entropy grows monotonically toward $\ln 2$, and $\langle\sigma_z\rangle$ shows irreversible damping.
+
 | Output | Description |
 |--------|-------------|
-| `output/validation_pillar1.png` | ⟨σ\_z⟩(k) vs analytic cos(ωkdt) — exact match |
-| `output/validation_unified.png` | Three-panel: damped dynamics, entropy growth, A vs B comparison |
+| `output/validation_pillar1.png` | $\langle\sigma_z\rangle(k)$ vs analytic $\cos(\omega k\,dt)$ — exact match confirms Pillar 1 |
+| `output/validation_unified.png` | Three-panel: damped dynamics, entropy growth $S_{eff} \to \ln 2$, A vs B comparison |
 
 **Key results printed:**
 ```
-Max deviation from analytic: 4.44e-16
-Final S_eff = 0.6928  (ln 2 = 0.6931)
+Max deviation from analytic: 4.44e-16   ← machine precision (Pillar 1 ✓)
+Final S_eff = 0.6928  (ln 2 = 0.6931)   ← approaches maximum entropy (Pillar 2 ✓)
 ```
 
 ![validation_pillar1.png](../output/validation_pillar1.png)
@@ -71,11 +105,13 @@ Final S_eff = 0.6928  (ln 2 = 0.6931)
 
 ### `run_all.py` — Full Pipeline
 
-**What it does:** Runs both versions, sweeps environment sizes (n\_env ∈ {2, 4, 6, 8}), computes all diagnostic metrics, and exports CSV data tables.
+**What it does:** Orchestrates the complete numerical validation. Runs Version A (no environment), then sweeps Version B across multiple environment sizes ($n_{env} \in \{2, 4, 6, 8\}$), computes all diagnostic metrics (entropy, fidelity, clock back-action), generates publication-quality figures, and exports CSV data tables.
+
+**Why sweep $n_{env}$?** The thermodynamic arrow should strengthen as the environment grows — more degrees of freedom to entangle with means faster and more robust decoherence. The sweep confirms this: $S_{eff}^{final}$ increases monotonically from 0.37 ($n_{env}=2$) toward $\ln 2 \approx 0.693$ ($n_{env}=8$).
 
 **Pillars demonstrated:**
-- ✅ Pillar 1 (Version A)
-- ✅ Pillar 2 (Version B, multi-environment sweep)
+- ✅ Pillar 1 (Version A: analytic match at machine precision)
+- ✅ Pillar 2 (Version B: entropy growth and fidelity decay across environment sizes)
 
 | Output | Description |
 |--------|-------------|
@@ -111,7 +147,11 @@ Final S_eff = 0.6928  (ln 2 = 0.6931)
 
 ### `generate_pillar3_plot.py` — Two-Clock Comparison
 
-**What it does:** Builds two history states from the same global configuration but with different clock spacings (dt = 0.20 vs dt = 0.35). Compares the temporal narratives.
+**What it does:** Builds two PaW history states from the *same* global Hamiltonian ($\omega = 1.0$, $g = 0.1$, $n_{env} = 4$) but with different clock spacings: $dt_{C_1} = 0.20$ vs $dt_{C_2} = 0.35$. Both use $N = 30$ levels.
+
+**The physics:** In the PaW framework, the "clock" is a quantum subsystem whose eigenstates define the time labels. Different clocks — even observing the same universe — slice the global state differently. This means the extracted $\rho_S(k)$ differs between observers, producing different values of $\langle\sigma_z\rangle(k)$ and $S_{eff}(k)$ at the same tick index $k$. This is not a measurement error: it reflects the genuinely relational nature of time.
+
+**What to look for:** The ⟨σ_z⟩ curves for the two clocks have different frequencies and different damping profiles. $C_2$ (larger $dt$) samples later physical times, so it sees more entanglement and higher entropy at the same tick number.
 
 **Pillar demonstrated:**
 - ✅ Pillar 3 (Observer-dependent time)
@@ -142,7 +182,19 @@ No figure output — console only. Use `validate_formula.py` and `generate_pilla
 
 ### `generate_god_observer_plots.py` — Omniscient Observer
 
-**What it does:** Tests the formula at its boundary: what happens when the observer has progressively more access to the environment?
+**What it does:** Tests the unified relational time formula at its conceptual boundary: what happens when the observer has *more* access to the environment, up to and including complete access?
+
+**The physics:** The arrow of time in this framework arises from the partial trace $\mathrm{Tr}_E$, which discards correlations between system and environment. An omniscient observer who could track all environment degrees of freedom would have $\rho_S(k) = |\psi(k)\rangle\langle\psi(k)|$ (pure), and hence $S_{eff} = 0$ forever — no arrow.
+
+**Three levels of omniscience tested:**
+
+| Level | What the observer sees | Result |
+|-------|----------------------|--------|
+| **0** (Limited) | Traces out all $n_{env}$ qubits | $S_{eff}$ grows → $\ln 2$ (normal arrow) |
+| **1** (Progressive) | Traces out a fraction $f$ of environment qubits | $S_{eff}^{final}$ decreases smoothly as $f \to 0$ |
+| **2** (God) | Observes the full $|\Psi\rangle$ without any partial trace | $S_{eff} = 0$ always, $\langle\sigma_z\rangle$ frozen at $\langle\psi_0|\sigma_z|\psi_0\rangle$ |
+
+Level 2 is the strongest test: the formula predicts that a truly omniscient observer lives in a timeless, unchanging universe. The numerical output confirms $S_{eff} = 0.000$ and constant $\langle\sigma_z\rangle = 1.000$ across all $k$.
 
 **See:** [GOD_OBSERVER.md](GOD_OBSERVER.md) for the full analysis.
 
@@ -158,7 +210,14 @@ No figure output — console only. Use `validate_formula.py` and `generate_pilla
 
 ### `generate_geometry_plots.py` — Geometric Interpretation
 
-**What it does:** Computes Bloch vector trajectories for Version A and B, then generates two figures showing the geometric structure underlying the framework: the timeless global state, the relational bundle, and the Bloch trajectory spiraling inward.
+**What it does:** Computes Bloch vector trajectories for Versions A and B, then generates figures showing the geometric structure underlying the framework.
+
+**The physics:** Any single-qubit state $\rho_S$ can be represented as a point in the Bloch ball: $\rho = \frac{1}{2}(I + \vec{r}\cdot\vec{\sigma})$ with $|\vec{r}| \leq 1$. A pure state sits on the surface ($|\vec{r}| = 1$), while a mixed state lies in the interior ($|\vec{r}| < 1$). The geometric interpretation connects:
+
+- **Version A** (no environment): $\rho_S(k)$ is pure at every tick → the Bloch vector traces a circle on the sphere surface. This is reversible, unitary dynamics.
+- **Version B** (with environment): $\rho_S(k)$ becomes mixed via entanglement → the Bloch vector spirals inward toward the center ($\vec{r} = 0$, the maximally mixed state $I/2$). This inward spiral *is* the arrow of time, geometrically.
+
+The duality is exact: $|\vec{r}|^2 + 2S_{eff}/\ln 2 = $ constant on a qubit (purity and entropy are complementary). As entropy grows, the Bloch radius shrinks — irreversibility has a geometric signature.
 
 **Validates:** Geometric interpretation — purity decay ↔ entropy growth duality.
 
@@ -182,7 +241,15 @@ S_eff:     0.000 → 0.693        (→ ln 2)
 
 ### `generate_gravity_robustness.py` — Gravity Robustness Tests
 
-**What it does:** Three computational tests probing whether the unified relational time formula is robust against perturbations that mimic aspects of quantum gravity: (1) clock backreaction, (2) fuzzy subsystem boundaries, (3) Gaussian-smeared clock projection.
+**What it does:** Three computational tests probing whether the unified relational time formula survives perturbations inspired by quantum gravity scenarios, where the clean separations assumed in the toy model (ideal clock, sharp boundaries, perfect projection) break down.
+
+**Why these tests matter:** The toy model assumes an ideal Salecker–Wigner clock, perfectly defined subsystem boundaries, and exact clock-tick projections. In a quantum-gravitational regime, none of these hold. These tests systematically relax each assumption and check whether the arrow of time persists.
+
+**Test 1 — Clock backreaction ($\varepsilon$):** Adds a term $\varepsilon \cdot (k/N) \cdot \sigma_z^{(S)} \otimes I_E$ to the Hamiltonian, modeling cumulative energy exchange between clock and system. At $\varepsilon = 1.0$, this is the same magnitude as $H_S$ itself. Result: the arrow degrades (monotonicity drops to 0.586) but does *not* vanish. 
+
+**Test 2 — Fuzzy subsystem boundaries ($\theta$):** Applies a partial SWAP rotation $R(\theta)$ between the system and one environment qubit before evolving, blurring the system–environment boundary. At $\theta = \pi/2$ (full SWAP — the system becomes an environment qubit!), the arrow still survives with strength 0.882 and perfect monotonicity. The boundary is a convention, not a physical prerequisite.
+
+**Test 3 — Gaussian-smeared clock projection ($\sigma$):** Replaces the sharp $|k\rangle\langle k|$ projector with a Gaussian superposition $\sum_j e^{-(j-k)^2/2\sigma^2}|j\rangle\langle j|$, modeling imprecise time measurement. Even at $\sigma = 4.0$ (very fuzzy — projection spreads over ~8 ticks), the arrow is essentially unaffected (strength 0.997, monotonicity 1.000). The arrow does not depend on precise clock readings.
 
 **Validates:** Structural robustness — the arrow of time is not an artifact of idealised assumptions.
 
@@ -207,7 +274,15 @@ Test 3 (clock blur σ=4.0):    arrow = 0.997, mono = 1.000  — essentially immu
 
 ### `generate_structural_robustness.py` — Structural Robustness Tests
 
-**What it does:** Three computational tests addressing the remaining computable theoretical risks: Poincaré recurrences, initial state sensitivity, and partition arbitrariness.
+**What it does:** Three computational tests addressing the remaining theoretical risks that could invalidate the framework — not perturbations (covered by gravity robustness), but fundamental structural questions about whether the arrow is generic or fine-tuned.
+
+**Test A — Poincaré recurrences ($N = 300$, $n_{env} \in \{1, \ldots, 7\}$):** Any finite-dimensional quantum system must eventually return close to its initial state (Poincaré recurrence). Does the arrow of time survive for physically relevant timescales? Two coupling regimes are tested:
+- *Symmetric coupling* (all $g_{ij}$ equal): exact recurrence at $t \approx 31$ for all $n_{env}$, but the recurrence time grows with environment size.
+- *Random coupling* ($g_{ij}$ drawn from uniform distribution): for $n_{env} \geq 3$, no recurrence is observed within the simulation window, and the entropy minimum rises to 0.35 — the arrow becomes effectively permanent.
+
+**Test B — Initial state sensitivity (100 Haar-random states):** Is the arrow a special property of $|\psi_0\rangle = |0\rangle$, or generic? The test generates 100 Haar-random product states and 100 Haar-random entangled states, runs each through the full PaW pipeline, and computes the arrow strength (defined as $\Delta S_{eff} = S_{eff}^{final} - S_{eff}^{initial}$). Result: 81% of product states and 100% of entangled states show a clear arrow. The arrow is generic, not fine-tuned.
+
+**Test C — Partition independence (5-qubit all-to-all, 10 partitions):** Does the arrow depend on *which* qubit we call "the system"? In a 5-qubit chain with all-to-all coupling, the test designates each of the 10 possible single-qubit partitions as "the system" and computes the arrow. Two coupling regimes: symmetric and asymmetric ($g_{ij}$ proportional to $|i-j|$). Result: every single partition shows an arrow, with minimum strength 0.882. The S/E labeling is arbitrary — the arrow is a property of the entanglement structure, not the label.
 
 **Validates:** The arrow of time is exponentially long-lived, generic over initial conditions, and independent of the S/E labeling.
 
@@ -306,7 +381,11 @@ Jupyter notebook for interactive exploration. Contains the same computations as 
 
 ### `IBMquantum/run_ibm_validation.py` — IBM Quantum Hardware Validation
 
-**What it does:** Runs the Pillar 2 scenario (1 system + 2 environment qubits) on real IBM Quantum hardware via Qiskit Runtime. Compares hardware results against QuTiP exact evolution and a local Trotter simulator.
+**What it does:** Translates the PaW calculation from QuTiP's exact matrix exponentiation into a gate-based quantum circuit and runs it on real IBM Quantum hardware. This is the bridge between numerical simulation and experimental physics: it confirms that the unified relational time formula produces correct predictions for a *physical* quantum system, not just a mathematical model.
+
+**How the circuit works:** The system–environment Hamiltonian $H_{tot}$ is Trotterized into a sequence of single- and two-qubit gates. For $H_{SE} = g\,\sigma_x^{(S)} \otimes \sigma_x^{(E_j)}$, the interaction is decomposed via Cartan decomposition into $R_{XX}$ gates. Each Trotter step applies: (1) system rotation $R_X(\omega\,dt)$, (2) coupling gates $R_{XX}(2g\,dt)$ for each environment qubit. This is repeated $k$ times for clock tick $k$, and the final state is measured in the $Z$-basis.
+
+**Why it's non-trivial:** The Trotter error is analytically zero for this specific Hamiltonian structure (all terms commute pairwise within each layer). This means any deviation between hardware and exact simulation is purely due to hardware noise (decoherence, gate errors, readout errors), not algorithmic error.
 
 **Pillar demonstrated:**
 - ✅ Pillar 2 (experimental validation on physical QPU)
@@ -329,7 +408,7 @@ Jupyter notebook for interactive exploration. Contains the same computations as 
 
 ### `IBMquantum/run_ibm_enhanced.py` — Enhanced IBM Quantum Validation
 
-**What it does:** Extended hardware validation with noise characterisation, Pillar 1 on QPU, and Pillar 2 with error bars from multiple independent runs. Addresses three reviewer suggestions: (1) comparative graph with error bars, (2) quantified noise (T₁/T₂/gate errors), (3) per-gate noise baseline.
+**What it does:** Addresses three key concerns a reviewer might raise about the basic hardware validation: (1) are the results reproducible? (2) how noisy is the device? (3) does Pillar 1 also work on hardware? Runs multiple independent hardware executions and reports mean ± standard deviation, queries the backend for calibration data (T₁, T₂, gate error rates), and executes a single-qubit circuit (no environment) to validate Pillar 1.
 
 **Pillars demonstrated:**
 - ✅ Pillar 1 (pure Schrödinger dynamics on real hardware, 1 qubit)
@@ -364,7 +443,9 @@ Noise:    T1 = 148 μs, T2 = 162 μs, 2Q error = 0.25%, readout = 4.49%
 
 ### `IBMquantum/run_ibm_pillar3.py` — Pillar 3: Observer-Dependent Time
 
-**What it does:** Runs two Trotter circuits with different time steps (dt = 0.20 and dt = 0.35) on the same 3-qubit Hamiltonian. The two clocks produce different ⟨σ_z⟩ dynamics and different entropy trajectories from the same global state — confirming that time is observer-dependent.
+**What it does:** The definitive experimental test for Pillar 3. Runs two Trotter circuits with different time steps ($dt_{C_1} = 0.20$ and $dt_{C_2} = 0.35$) on the same 3-qubit Hamiltonian. The circuits share identical gate structure but differ in rotation angles — modeling two clocks that "tick" at different rates.
+
+**What it demonstrates:** On the same physical device, with the same Hamiltonian, two observers using different clocks extract different histories: different $\langle\sigma_z\rangle(k)$ curves and different entropy trajectories. The hardware noise attenuates the signal compared to the simulator (hardware max divergence 0.69 vs simulator 0.80) but does *not* erase the observer-dependence. The two clocks produce detectably different temporal descriptions of the same universe.
 
 **Pillar demonstrated:**
 - ✅ Pillar 3 (observer-dependent time on simulator or real QPU)
@@ -398,10 +479,17 @@ Hardware:   Max |⟨σ_z⟩_C - ⟨σ_z⟩_C'| = 0.6879,  Max |S_C - S_C'| = 0.1
 |-----------|--------|-------|------|
 | Clock levels | N | 30 | Resolution of the discrete clock |
 | Time step | dt | 0.2 | Clock tick spacing |
-| System frequency | ω | 1.0 | H\_S = (ω/2)σ\_x |
-| Coupling strength | g | 0.1 | H\_SE = g Σ σ\_x ⊗ σ\_x |
+| System frequency | ω | 1.0 | $H_S = (\omega/2)\sigma_x$ |
+| Coupling strength | g | 0.1 | $H_{SE} = g \sum_j \sigma_x^{(S)} \otimes \sigma_x^{(E_j)}$ |
 | Environment qubits | n\_env | 2, 4, 6, 8 | Number of environment spins |
-| Initial state | \|ψ₀⟩ | \|0⟩ | Eigenstate of σ\_z |
+| Initial state | $\|\psi_0\rangle$ | $\|0\rangle$ | Eigenstate of $\sigma_z$ |
+
+**Why these values?**
+
+- **$N = 30$:** Large enough to resolve several oscillation periods ($\omega\,dt\,N = 6.0$ radians ≈ 1 full cycle), small enough for exact numerical diagonalization up to $n_{env} = 8$ ($2^9 = 512$ dimensional Hilbert space).
+- **$dt = 0.2$:** Chosen so that $\omega\,dt = 0.2 \ll 1$, ensuring the Trotter decomposition used in IBM circuits is accurate. Also keeps total evolution time $T = N\,dt = 6.0$ within a physically interesting regime.
+- **$g = 0.1$:** Weak coupling ($g/\omega = 0.1$) ensures the system–environment interaction is a perturbation. This is physically natural (most open quantum systems are weakly coupled to their baths) and makes the transition from Pillar 1 (pure, $g = 0$) to Pillar 2 (mixed, $g > 0$) clearly interpretable.
+- **$|\psi_0\rangle = |0\rangle$:** Eigenstate of $\sigma_z$, which is the observable we track. This means $\langle\sigma_z\rangle(0) = 1$, giving maximum dynamic range for observing damping.
 
 ---
 
@@ -409,11 +497,13 @@ Hardware:   Max |⟨σ_z⟩_C - ⟨σ_z⟩_C'| = 0.6879,  Max |S_C - S_C'| = 0.1
 
 ### `extensions/access_asymmetry/generate_access_asymmetry.py` — Observational Asymmetry
 
-**What it does:** Demonstrates that the partial trace Tr_E generates a fundamental observational asymmetry between subsystems with different effective access to the environment.
+**What it does:** Explores a consequence of the unified relational time formula that is not discussed in the main paper: when two subsystems have different coupling strengths to a shared environment, the partial trace creates a *structural* asymmetry in what each can observe about the other.
 
-**Not connected to the main paper.** This is an independent extension exploring consequences of the unified formula in a multi-subsystem scenario.
+**Not connected to the main paper.** This is an independent extension asking: "If the arrow of time arises from the partial trace, what else does the partial trace control?"
 
-**Setup:** Two subsystems Q_A (strongly coupled to E) and Q_B (controllable coupling to E) sharing a 3-qubit environment. Sweeps the B↔E coupling from 0 to g_AE.
+**Setup:** Two subsystems $Q_A$ (strongly coupled to $E$, fixed $g_{AE}$) and $Q_B$ (variable coupling $g_{BE} \in [0, g_{AE}]$) sharing a 3-qubit environment. For each value of $g_{BE}$, the script constructs the full PaW history state, traces out different subsets, and computes how much each subsystem can learn about the other.
+
+**Key finding:** $A$'s ability to detect $B$ is invariant under changes in $g_{BE}$ (always $\sim 0.0095$), because $A$'s reduced state is dominated by its own strong coupling to $E$. Meanwhile, $B$ can fully observe $A$'s decohered dynamics. The asymmetry is structural — it arises from the mathematical structure of the partial trace, not from any measurement limitation.
 
 **Key result:** A's detection signal for B is invariant under changes in g_BE (always ~0.0095), while B can fully observe A's decohered dynamics. The asymmetry is structural, not technological.
 
