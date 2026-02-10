@@ -1,6 +1,12 @@
 # The Observer as a Local Breakdown of Atemporality
 
-Numerical demonstrator for the unified relational formula:
+## What Is This?
+
+In quantum gravity, there is a deep puzzle known as the **problem of time**: the fundamental equations of the universe (the Wheeler–DeWitt equation) describe a *timeless* state — yet we clearly experience time flowing, clocks ticking, and entropy growing. How does time emerge from a theory that has none?
+
+In 1983, Don Page and William Wootters proposed an elegant answer: time is not fundamental but **relational**. A subsystem of the universe acts as a "clock," and the temporal evolution of everything else is recovered by asking: *"what does the system look like when the clock reads t?"* This is the **Page–Wootters (PaW) mechanism**.
+
+This repository takes that idea and extends it. We show that a single mathematical expression — the **unified relational formula** — is enough to produce not just quantum dynamics, but also the **thermodynamic arrow of time** (why entropy grows) and **observer-dependent time** (why different observers can disagree about temporal descriptions). Three pillars of the problem of time, from one formula:
 
 ```
                     Tr_E [ ⟨t|_C  |Ψ⟩⟨Ψ|  |t⟩_C ]
@@ -8,7 +14,9 @@ Numerical demonstrator for the unified relational formula:
                                 p(t)
 ```
 
-Three pillars of the problem of time from one expression:
+The key insight is that the **observer** is not a passive spectator — it is a *local anomaly* in the global atemporality. By choosing a clock ($C$) and tracing over inaccessible degrees of freedom ($\mathrm{Tr}_E$), the observer *creates* the temporal experience. Remove the observer's limitations, and time dissolves back into the timeless whole.
+
+### Three Pillars from One Formula
 
 | Operation | What it produces | Pillar |
 |-----------|-----------------|--------|
@@ -16,9 +24,22 @@ Three pillars of the problem of time from one expression:
 | Tr\_E (partial trace) | Entropy growth, irreversibility | Thermodynamic arrow |
 | C is local (not global) | Observer-dependent time | Relational time |
 
+### What's in This Repository
+
+Everything here is **numerically verifiable**. The repository contains:
+
+- A **toy model** (1 qubit + up to 8 environment qubits) that demonstrates all three pillars
+- **Robustness tests** showing the results survive gravitational corrections, different initial states, and Poincaré recurrences
+- **IBM Quantum hardware validation** — the formula was tested on a real quantum processor (ibm\_torino), confirming the theoretical predictions with error bars
+- A **boundary analysis** (the "omniscient observer") exploring what happens when you give the observer complete access — time disappears, as predicted
+- **Geometric interpretations** showing how the arrow of time traces a path on the Bloch sphere
+- An **independent extension** studying observational asymmetry between systems with different access structures
+
+The mathematics draws on work by Page & Wootters (1983), Giovannetti, Lloyd & Maccone (2015), and Höhn, Smith & Lock (2021), among others. The synthesis — the three pillars from one formula, the observer as anomaly, and the numerical demonstrations — is original.
+
 > Gabriel Giani Moreno (2026)
 
-Implemented with [QuTiP](https://qutip.org/).
+Implemented with [QuTiP](https://qutip.org/). Hardware validation on [IBM Quantum](https://quantum.ibm.com/).
 
 **Repository:** [https://github.com/gabgiani/paw-toymodel](https://github.com/gabgiani/paw-toymodel)
 
