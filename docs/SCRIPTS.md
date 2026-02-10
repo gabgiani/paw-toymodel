@@ -381,12 +381,14 @@ Noise:    T1 = 148 μs, T2 = 162 μs, 2Q error = 0.25%, readout = 4.49%
 | `IBMquantum/output/ibm_pillar3_validation.png` | Four-panel plot: ⟨σ\_z⟩ and S\_eff for each clock |
 | `IBMquantum/output/table_ibm_pillar3.csv` | Full Bloch vector and entropy data for both clocks |
 
-**Key result (simulator):**
+**Key results:**
 ```
-Max |⟨σ_z⟩_C - ⟨σ_z⟩_C'| = 0.8011
-Max |S_C - S_C'|            = 0.2509
-✓ Temporal descriptions DIFFER — Pillar 3 confirmed
+Simulator:  Max |⟨σ_z⟩_C - ⟨σ_z⟩_C'| = 0.8011,  Max |S_C - S_C'| = 0.2509
+Hardware:   Max |⟨σ_z⟩_C - ⟨σ_z⟩_C'| = 0.6879,  Max |S_C - S_C'| = 0.1386
+✓ Temporal descriptions DIFFER — Pillar 3 confirmed on ibm_torino
 ```
+
+![ibm_pillar3_validation.png](../IBMquantum/output/ibm_pillar3_validation.png)
 
 ---
 

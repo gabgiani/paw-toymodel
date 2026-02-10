@@ -338,7 +338,7 @@ S\_eff(k) curves when each of the 5 qubits (1 system + 4 environment) is individ
 
 ## Experimental Validation on IBM Quantum Hardware
 
-All results above rely on numerical simulation (QuTiP). As a final test, we executed both Pillar 1 (pure dynamics) and Pillar 2 (entropy growth) on a **real quantum processor** — IBM's `ibm_torino` (133 superconducting qubits) — via the Qiskit Runtime service.
+All results above rely on numerical simulation (QuTiP). As a final test, we executed all three pillars on a **real quantum processor** — IBM's `ibm_torino` (133 superconducting qubits) — via the Qiskit Runtime service.
 
 ### Backend Noise Characterisation
 
@@ -385,18 +385,33 @@ The thermodynamic arrow of time is clearly observed on real hardware:
 - The arrow strength S\_final − S\_initial = 0.583
 - Dominant noise sources: readout error (4.49%) and two-qubit gate error (median 0.25%), with coherence times (T₁ ≈ 148 μs, T₂ ≈ 162 μs) far exceeding circuit duration
 
+### Results — Pillar 3 (Observer-Dependent Time)
+
+Two clocks with different time steps (dt = 0.20 and dt = 0.35) were applied to the same 3-qubit Hamiltonian on ibm\_torino. Each clock defines a different Trotter step size, producing 21 circuits per clock (42 total).
+
+| Metric | Simulator | Hardware (ibm\_torino) |
+|--------|-----------|------------------------|
+| Max \|⟨σ\_z⟩\_C − ⟨σ\_z⟩\_C'\| | 0.8011 | 0.6879 |
+| Max \|S\_C − S\_C'\| | 0.2509 | 0.1386 |
+| Clock C: ΔS\_eff | 0.5702 | 0.5874 |
+| Clock C': ΔS\_eff | 0.6927 | 0.6888 |
+
+The hardware signal is weaker than the simulator (noise smooths both curves), but the two temporal descriptions clearly differ — confirming that time is observer-dependent even on a real quantum processor.
+
 | Script | Output |
 |--------|--------|
 | `IBMquantum/run_ibm_validation.py` | `IBMquantum/output/ibm_quantum_validation.png` |
 | `IBMquantum/run_ibm_enhanced.py` | `IBMquantum/output/ibm_quantum_enhanced.png` |
 | `IBMquantum/run_ibm_enhanced.py` | `IBMquantum/output/table_ibm_enhanced.csv` |
 | `IBMquantum/run_ibm_enhanced.py` | `IBMquantum/output/backend_noise_properties.json` |
+| `IBMquantum/run_ibm_pillar3.py` | `IBMquantum/output/ibm_pillar3_validation.png` |
+| `IBMquantum/run_ibm_pillar3.py` | `IBMquantum/output/table_ibm_pillar3.csv` |
 
 ![IBM Quantum hardware validation — enhanced with error bars](../IBMquantum/output/ibm_quantum_enhanced.png)
 
-The figure shows exact theory (dashed) vs hardware mean ± 1σ (shaded band) for both ⟨σ\_z⟩ and S\_eff, with a noise annotation box summarising the backend calibration.
+![IBM Quantum Pillar 3 — two clocks on hardware](../IBMquantum/output/ibm_pillar3_validation.png)
 
-This constitutes the first experimental confirmation on physical quantum hardware that the unified relational time formula's informational arrow survives real-world noise, with quantified error bars and device-level noise characterisation.
+This constitutes the first experimental confirmation on physical quantum hardware that all three pillars of the unified relational time formula survive real-world noise: dynamics emerge from projection, entropy grows from partial trace, and different clocks yield different temporal descriptions.
 
 ---
 

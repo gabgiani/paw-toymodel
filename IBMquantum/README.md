@@ -70,7 +70,8 @@ Or both in one run:
 ## Expected Results
 
 - **Simulator:** Trotter circuits reproduce QuTiP exact evolution with error < 0.001
-- **Hardware:** S\_eff grows from 0 → 0.3–0.5 with hardware noise creating additional decoherence (which actually **strengthens** the arrow — the formula is robust)
+- **Hardware (Pillar 2):** S\_eff grows from 0 → 0.583 ± 0.005 (102.2% of exact). Hardware noise adds decoherence, which **strengthens** the arrow
+- **Hardware (Pillar 3):** Two clocks differ by 0.69 in ⟨σ\_z⟩ and 0.14 in S\_eff — observer-dependence confirmed on ibm\_torino
 
 ## API Key
 
