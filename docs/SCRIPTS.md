@@ -182,7 +182,7 @@ S_eff:     0.000 → 0.693        (→ ln 2)
 
 ### `generate_gravity_robustness.py` — Gravity Robustness Tests
 
-**What it does:** Three computational tests probing whether the unified relational formula is robust against perturbations that mimic aspects of quantum gravity: (1) clock backreaction, (2) fuzzy subsystem boundaries, (3) Gaussian-smeared clock projection.
+**What it does:** Three computational tests probing whether the unified relational time formula is robust against perturbations that mimic aspects of quantum gravity: (1) clock backreaction, (2) fuzzy subsystem boundaries, (3) Gaussian-smeared clock projection.
 
 **Validates:** Structural robustness — the arrow of time is not an artifact of idealised assumptions.
 

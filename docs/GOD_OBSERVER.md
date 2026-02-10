@@ -2,7 +2,7 @@
 
 ## The Question
 
-If the unified relational formula produces time, dynamics, and irreversibility because the observer **lacks access** to environmental degrees of freedom, what happens when that limitation is removed?
+If the unified relational time formula produces time, dynamics, and irreversibility because the observer **lacks access** to environmental degrees of freedom, what happens when that limitation is removed?
 
 What if the observer is, operationally, omniscient?
 

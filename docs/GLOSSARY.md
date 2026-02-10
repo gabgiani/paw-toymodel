@@ -169,7 +169,7 @@ The 1983 proposal: if the universe is frozen, we can recover time by defining a 
 
 $$\rho_S(t) = \frac{ \text{Tr}_E\big[\langle t|_C \,|\Psi\rangle\langle\Psi|\, |t\rangle_C \big]}{p(t)}$$
 
-This is the **unified relational formula** that underpins the entire repository.
+This is the **unified relational time formula** that underpins the entire repository.
 
 ### History State — |Ψ⟩
 
@@ -199,7 +199,7 @@ The modern theoretical framework (Höhn, Smith, Lock, 2021) that treats the cloc
 
 ## 4. Vocabulary of This Project ("the Three Pillars")
 
-### The Unified Relational Formula
+### The Unified Relational Time Formula
 
 The central equation:
 

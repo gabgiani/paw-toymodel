@@ -4,7 +4,7 @@ Structural Robustness Tests
 ============================
 
 Three computational tests addressing remaining theoretical risks
-to the unified relational formula:
+to the unified relational time formula:
 
   ρ_S(t) = Tr_E[⟨t|_C |Ψ⟩⟨Ψ| |t⟩_C] / p(t)
 
@@ -883,7 +883,7 @@ if __name__ == '__main__':
 
     print(f"\n{'=' * 60}")
     print("COMBINED VERDICT:")
-    print("  The unified relational formula produces a thermodynamic")
+    print("  The unified relational time formula produces a thermodynamic")
     print("  arrow that is:")
     print("  ✓ Exponentially long-lived (Test A)")
     print("  ✓ Generic over initial states (Test B)")

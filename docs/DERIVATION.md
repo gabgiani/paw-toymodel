@@ -1,8 +1,8 @@
-# Step-by-Step Derivation of the Unified Relational Formula
+# Step-by-Step Derivation of the Unified Relational Time Formula
 
 ## Companion Note
 
-This document develops the unified relational formula from first principles, explaining each step, each symbol, and each operation. No prior familiarity with the Page–Wootters mechanism is assumed. The derivation follows the logical order of construction: from the problem, through the ingredients, to the formula and its consequences.
+This document develops the unified relational time formula from first principles, explaining each step, each symbol, and each operation. No prior familiarity with the Page–Wootters mechanism is assumed. The derivation follows the logical order of construction: from the problem, through the ingredients, to the formula and its consequences.
 
 All numerical values are reproducible using the toy model in this repository.
 
@@ -24,7 +24,7 @@ This is the **Wheeler–DeWitt equation** (or its finite-dimensional analog). It
 
 **The problem of time:** If nothing evolves, where does the time we experience come from? Where does the Schrödinger equation come from? Where does irreversibility come from?
 
-The unified relational formula answers all three questions with a single expression.
+The unified relational time formula answers all three questions with a single expression.
 
 ---
 

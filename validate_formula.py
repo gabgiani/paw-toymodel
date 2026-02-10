@@ -1,5 +1,5 @@
 """
-Validation script for the unified relational formula
+Validation script for the unified relational time formula
 (extending the Page–Wootters mechanism):
   ρ_S(t) = Tr_E[⟨t|_C |Ψ⟩⟨Ψ| |t⟩_C] / p(t)
 

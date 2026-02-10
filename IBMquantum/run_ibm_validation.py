@@ -1,5 +1,5 @@
 """
-IBM Quantum Hardware Validation of the Unified Relational Formula
+IBM Quantum Hardware Validation of the Unified Relational Time Formula
 =================================================================
 
 Validates Pillar 2 (thermodynamic arrow) on real quantum hardware.
@@ -362,10 +362,10 @@ def plot_results(exact, sim=None, hw=None, hw_backend=None):
 
     # Title
     if hw is not None:
-        title = (f'Unified Relational Formula — IBM Quantum Validation '
+        title = (f'Unified Relational Time Formula — IBM Quantum Validation '
                  f'({hw_backend})')
     else:
-        title = 'Unified Relational Formula — Trotterized vs Exact'
+        title = 'Unified Relational Time Formula — Trotterized vs Exact'
     fig.suptitle(title, fontsize=14, fontweight='bold')
 
     plt.tight_layout(rect=[0, 0, 1, 0.93])
@@ -455,7 +455,7 @@ def print_summary(exact, sim=None, hw=None, hw_backend=None):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='IBM Quantum validation of the unified relational formula')
+        description='IBM Quantum validation of the unified relational time formula')
     parser.add_argument(
         '--mode', choices=['simulator', 'hardware', 'both'],
         default='simulator',
@@ -469,7 +469,7 @@ def main():
 
     print("=" * 60)
     print("IBM Quantum Validation")
-    print("Unified Relational Formula — Pillar 2")
+    print("Unified Relational Time Formula — Pillar 2")
     print("=" * 60)
     print(f"  Parameters: omega={OMEGA}, g={G}, dt={DT}")
     print(f"  Qubits: {N_QUBITS} (1 system + {N_ENV} environment)")
@@ -521,7 +521,7 @@ def main():
             print(f"  The thermodynamic arrow of time has been observed")
             print(f"  on IBM Quantum hardware ({hw_backend}).")
             print(f"  S_eff grew by {S_grow:.4f} — confirming Pillar 2")
-            print(f"  of the unified relational formula.")
+            print(f"  of the unified relational time formula.")
         else:
             print(f"  S_eff growth = {S_grow:.4f} (weak)")
             print(f"  Hardware noise may dominate at this circuit depth.")

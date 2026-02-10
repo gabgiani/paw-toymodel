@@ -1,6 +1,6 @@
 # Observational Asymmetry Between Systems with Different Access Structures
 
-**An extension of the unified relational formula**
+**An extension of the unified relational time formula**
 
 > Gabriel Giani Moreno (2026)
 >
@@ -12,7 +12,7 @@
 
 ## 1. Motivation
 
-The unified relational formula
+The unified relational time formula
 
 $$
 \rho_S(t) = \frac{\mathrm{Tr}_E\!\left[\langle t|_C\,|\Psi\rangle\!\langle\Psi|\,|t\rangle_C\right]}{p(t)}

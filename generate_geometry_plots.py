@@ -1,5 +1,5 @@
 """
-Geometric interpretation of the unified relational formula.
+Geometric interpretation of the unified relational time formula.
 
 Produces:
   output/geometric_interpretation.png  — 3-panel conceptual figure

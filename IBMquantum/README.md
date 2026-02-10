@@ -1,6 +1,6 @@
 # IBM Quantum Hardware Validation
 
-Validates the unified relational formula on real quantum hardware via IBM Quantum.
+Validates the unified relational time formula on real quantum hardware via IBM Quantum.
 
 ## What it does
 

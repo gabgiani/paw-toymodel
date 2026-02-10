@@ -3,7 +3,7 @@
 Gravity Robustness Tests
 ========================
 
-Three computational tests probing whether the unified relational formula
+Three computational tests probing whether the unified relational time formula
   ρ_S(t) = Tr_E[⟨t|_C |Ψ⟩⟨Ψ| |t⟩_C] / p(t)
 is robust against perturbations that mimic aspects of quantum gravity.
 

@@ -6,7 +6,7 @@ In quantum gravity, there is a deep puzzle known as the **problem of time**: the
 
 In 1983, Don Page and William Wootters proposed an elegant answer: time is not fundamental but **relational**. A subsystem of the universe acts as a "clock," and the temporal evolution of everything else is recovered by asking: *"what does the system look like when the clock reads t?"* This is the **Page–Wootters (PaW) mechanism**.
 
-This repository takes that idea and extends it. We show that a single mathematical expression — the **unified relational formula** — is enough to produce not just quantum dynamics, but also the **thermodynamic arrow of time** (why entropy grows) and **observer-dependent time** (why different observers can disagree about temporal descriptions). Three pillars of the problem of time, from one formula:
+This repository takes that idea and extends it. We show that a single mathematical expression — the **unified relational time formula** — is enough to produce not just quantum dynamics, but also the **thermodynamic arrow of time** (why entropy grows) and **observer-dependent time** (why different observers can disagree about temporal descriptions). Three pillars of the problem of time, from one formula:
 
 $$\rho_S(t) = \frac{\mathrm{Tr}_E\!\big[\langle t|_C\;|\Psi\rangle\langle\Psi|\;|t\rangle_C\big]}{p(t)}$$
 
@@ -45,7 +45,7 @@ Implemented with [QuTiP](https://qutip.org/). Hardware validation on [IBM Quantu
 
 | Document | Description |
 |----------|-------------|
-| **[Theory](docs/THEORY.md)** | The unified relational formula, three pillars, and the observer as anomaly |
+| **[Theory](docs/THEORY.md)** | The unified relational time formula, three pillars, and the observer as anomaly |
 | **[Scripts & Outputs](docs/SCRIPTS.md)** | Complete guide to every script, figure, and CSV |
 | **[The Omniscient Observer](docs/GOD_OBSERVER.md)** | Boundary analysis: what happens when the observer has complete access |
 | **[Geometric Structure](docs/GEOMETRY.md)** | Bloch trajectory, relational bundle, and the arrow as geometry |

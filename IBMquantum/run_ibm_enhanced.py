@@ -459,7 +459,7 @@ def plot_enhanced(exact, hw_mean, hw_std, noise_props, backend_name,
                            edgecolor='gray', alpha=0.9),
                  family='monospace')
 
-    fig.suptitle('Unified Relational Formula — IBM Quantum Hardware Validation',
+    fig.suptitle('Unified Relational Time Formula — IBM Quantum Hardware Validation',
                  fontsize=15, fontweight='bold')
     plt.tight_layout(rect=[0, 0.06, 1, 0.93])
 
@@ -515,7 +515,7 @@ def main():
 
     print("=" * 60)
     print("IBM Quantum Enhanced Validation")
-    print("Unified Relational Formula — Pillars 1 & 2")
+    print("Unified Relational Time Formula — Pillars 1 & 2")
     print("=" * 60)
 
     # Always connect

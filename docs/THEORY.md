@@ -1,4 +1,4 @@
-# The Unified Relational Formula — Theory
+# The Unified Relational Time Formula — Theory
 
 ## The Central Claim
 
@@ -305,7 +305,7 @@ We test all 5 single-qubit partitions (each qubit as "system", tracing out the o
 
 ### Combined Verdict
 
-The unified relational formula produces a thermodynamic arrow that is:
+The unified relational time formula produces a thermodynamic arrow that is:
 - **Exponentially long-lived:** recurrence depth grows with spectral complexity (Test A)
 - **Generic:** appears for >80% of random product states and 100% of random entangled states (Test B)
 - **Partition-independent:** every qubit shows an arrow regardless of labeling (Test C)
@@ -396,7 +396,7 @@ The thermodynamic arrow of time is clearly observed on real hardware:
 
 The figure shows exact theory (dashed) vs hardware mean ± 1σ (shaded band) for both ⟨σ\_z⟩ and S\_eff, with a noise annotation box summarising the backend calibration.
 
-This constitutes the first experimental confirmation on physical quantum hardware that the unified relational formula's informational arrow survives real-world noise, with quantified error bars and device-level noise characterisation.
+This constitutes the first experimental confirmation on physical quantum hardware that the unified relational time formula's informational arrow survives real-world noise, with quantified error bars and device-level noise characterisation.
 
 ---
 

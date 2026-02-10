@@ -1,8 +1,8 @@
-# Geometric Structure of the Unified Relational Formula
+# Geometric Structure of the Unified Relational Time Formula
 
 ## Companion Note
 
-This companion note identifies the geometric objects underlying the unified relational formula and validates them numerically using the toy model. The notation and parameters are consistent with the main paper.
+This companion note identifies the geometric objects underlying the unified relational time formula and validates them numerically using the toy model. The notation and parameters are consistent with the main paper.
 
 ---
 
