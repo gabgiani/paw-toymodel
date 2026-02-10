@@ -1,377 +1,377 @@
-# Glosario y Guía de Lectura
+# Glossary and Reading Guide
 
-**Para el lector curioso que no viene de la física cuántica.**
+**For the curious reader who does not come from quantum physics.**
 
-Este documento explica, en lenguaje accesible, todos los términos técnicos, símbolos y conceptos que aparecen en el repositorio. Está pensado como un diccionario de consulta: no hace falta leerlo de corrido, pero conviene tenerlo a mano mientras se recorre la documentación.
-
----
-
-## Tabla de contenidos
-
-1. [La pregunta de fondo](#1-la-pregunta-de-fondo)
-2. [Conceptos fundamentales de mecánica cuántica](#2-conceptos-fundamentales-de-mecánica-cuántica)
-3. [El mecanismo Page–Wootters y el problema del tiempo](#3-el-mecanismo-pagewootters-y-el-problema-del-tiempo)
-4. [Vocabulario de este proyecto ("los tres pilares")](#4-vocabulario-de-este-proyecto-los-tres-pilares)
-5. [Diccionario de símbolos matemáticos](#5-diccionario-de-símbolos-matemáticos)
-6. [Términos de laboratorio y computación cuántica](#6-términos-de-laboratorio-y-computación-cuántica)
-7. [Acrónimos](#7-acrónimos)
-8. [Referencias de entrada](#8-referencias-de-entrada)
+This document explains, in accessible language, all the technical terms, symbols, and concepts that appear in the repository. It is designed as a reference dictionary: you do not need to read it cover to cover, but it is worth keeping at hand while browsing the documentation.
 
 ---
 
-## 1. La pregunta de fondo
+## Table of Contents
 
-### ¿De qué trata todo esto?
-
-La física tiene un problema serio: sus dos mejores teorías —la mecánica cuántica (que describe lo muy pequeño) y la relatividad general (que describe la gravedad y lo muy grande)— dicen cosas contradictorias sobre el tiempo.
-
-- **Mecánica cuántica**: el tiempo es un parámetro externo, un reloj ideal que "está ahí" afuera del sistema, que la teoria no explica pero necesita.
-- **Relatividad general**: el tiempo no es absoluto, depende del observador, de la gravedad y del movimiento. No hay un reloj universal.
-
-Cuando intentamos combinarlas en una teoría de **gravedad cuántica**, aparece la **ecuación de Wheeler–DeWitt**, que describe el universo entero y dice algo perturbador: *el estado del universo no cambia*. Es estático, atemporal. Entonces, ¿de dónde sale el tiempo que experimentamos?
-
-### La respuesta que exploramos
-
-En 1983, Don Page y William Wootters propusieron una idea elegante: el tiempo no es una propiedad del universo, sino algo que *emerge* cuando un subsistema (nosotros) mira a otro subsistema (un reloj). El universo como un todo no evoluciona, pero las correlaciones internas entre sus partes *parecen* evolución temporal para un observador limitado.
-
-Este repositorio toma esa idea, la formula de manera precisa con una sola ecuación, y demuestra numéricamente que de ella emergen tres cosas:
-
-1. **La dinámica cuántica** (las cosas cambian con el tiempo)
-2. **La flecha termodinámica del tiempo** (el desorden crece)
-3. **Un tiempo que depende del observador** (quién mira determina qué tiempo ve)
+1. [The Big Question](#1-the-big-question)
+2. [Fundamental Concepts of Quantum Mechanics](#2-fundamental-concepts-of-quantum-mechanics)
+3. [The Page–Wootters Mechanism and the Problem of Time](#3-the-pagewootters-mechanism-and-the-problem-of-time)
+4. [Vocabulary of This Project ("the Three Pillars")](#4-vocabulary-of-this-project-the-three-pillars)
+5. [Mathematical Symbols Dictionary](#5-mathematical-symbols-dictionary)
+6. [Laboratory and Quantum Computing Terms](#6-laboratory-and-quantum-computing-terms)
+7. [Acronyms](#7-acronyms)
+8. [Entry-Level References](#8-entry-level-references)
 
 ---
 
-## 2. Conceptos fundamentales de mecánica cuántica
+## 1. The Big Question
 
-Estos son los ladrillos con los que se construye todo lo demás. Si alguno de estos términos aparece en la documentación y no lo recuerda, vuelva aquí.
+### What is all of this about?
 
-### Estado cuántico
+Physics has a serious problem: its two best theories — quantum mechanics (which describes the very small) and general relativity (which describes gravity and the very large) — say contradictory things about time.
 
-La descripción completa de un sistema cuántico en un instante dado. Es el equivalente cuántico de decir "la pelota está en la posición X con velocidad Y". Pero con una diferencia crucial: un sistema cuántico puede estar en *superposición* de varios estados a la vez.
+- **Quantum mechanics**: time is an external parameter, an ideal clock that "sits out there" outside the system, which the theory does not explain but needs.
+- **General relativity**: time is not absolute; it depends on the observer, on gravity, and on motion. There is no universal clock.
+
+When we try to combine them into a theory of **quantum gravity**, the **Wheeler–DeWitt equation** appears, which describes the entire universe and says something disturbing: *the state of the universe does not change*. It is static, timeless. So where does the time we experience come from?
+
+### The answer we explore
+
+In 1983, Don Page and William Wootters proposed an elegant idea: time is not a property of the universe, but something that *emerges* when one subsystem (us) looks at another subsystem (a clock). The universe as a whole does not evolve, but the internal correlations between its parts *look like* temporal evolution to a limited observer.
+
+This repository takes that idea, formulates it precisely with a single equation, and demonstrates numerically that three things emerge from it:
+
+1. **Quantum dynamics** (things change with time)
+2. **The thermodynamic arrow of time** (disorder grows)
+3. **Observer-dependent time** (who looks determines what time they see)
+
+---
+
+## 2. Fundamental Concepts of Quantum Mechanics
+
+These are the building blocks on which everything else is constructed. If any of these terms appears in the documentation and you do not remember it, come back here.
+
+### Quantum State
+
+The complete description of a quantum system at a given instant. It is the quantum equivalent of saying "the ball is at position X with velocity Y." But with a crucial difference: a quantum system can be in a *superposition* of several states at once.
 
 ### Qubit
 
-La unidad mínima de información cuántica. Así como un bit clásico es 0 o 1, un qubit puede ser |0⟩, |1⟩, o cualquier combinación (*superposición*) de ambos. En este proyecto, el "sistema" que estudiamos es un qubit.
+The minimal unit of quantum information. Just as a classical bit is 0 or 1, a qubit can be |0⟩, |1⟩, or any combination (*superposition*) of both. In this project, the "system" we study is a qubit.
 
-### Superposición
+### Superposition
 
-Un estado cuántico que es combinación de varios estados base. Un qubit en superposición no está "ni en 0 ni en 1": está genuinamente en ambos a la vez, hasta que se lo mide.
+A quantum state that is a combination of several basis states. A qubit in superposition is not "neither 0 nor 1": it is genuinely in both at the same time, until it is measured.
 
-### Entrelazamiento (entanglement)
+### Entanglement
 
-Correlación cuántica entre dos o más sistemas que no tiene análogo clásico. Si dos qubits están entrelazados, medir uno afecta instantáneamente el estado del otro, sin importar la distancia. En nuestro modelo, el entrelazamiento entre el sistema y su entorno es lo que genera la flecha del tiempo.
+A quantum correlation between two or more systems that has no classical analogue. If two qubits are entangled, measuring one instantaneously affects the state of the other, regardless of the distance. In our model, the entanglement between the system and its environment is what generates the arrow of time.
 
-### Operador / Observable
+### Operator / Observable
 
-Un objeto matemático que representa una cantidad medible (posición, energía, spin). Los operadores de **Pauli** (σ_x, σ_y, σ_z) son los observables básicos de un qubit — miden el spin en las tres direcciones del espacio.
+A mathematical object that represents a measurable quantity (position, energy, spin). The **Pauli** operators (σ_x, σ_y, σ_z) are the basic observables of a qubit — they measure spin in the three spatial directions.
 
-### Valor esperado — ⟨σ_z⟩
+### Expectation Value — ⟨σ_z⟩
 
-El promedio estadístico que obtendríamos si midiéramos σ_z muchas veces sobre copias idénticas del sistema. Si ⟨σ_z⟩ = +1, el qubit está definitivamente en |0⟩; si vale −1, está en |1⟩; si vale 0, está en superposición simétrica.
+The statistical average we would obtain if we measured σ_z many times on identical copies of the system. If ⟨σ_z⟩ = +1, the qubit is definitely in |0⟩; if it equals −1, it is in |1⟩; if it equals 0, it is in symmetric superposition.
 
-### Hamiltoniano (H)
+### Hamiltonian (H)
 
-El operador que codifica la energía total de un sistema y dicta cómo evoluciona en el tiempo. Es la "receta de movimiento" cuántica. En nuestro modelo hay varios:
+The operator that encodes the total energy of a system and dictates how it evolves in time. It is the quantum "recipe for motion." In our model there are several:
 
-| Hamiltoniano | Qué describe |
+| Hamiltonian | What it describes |
 |---|---|
-| H_S | La energía libre del sistema (un qubit rotando) |
-| H_SE | La interacción sistema–entorno |
-| H_tot | La suma de ambos |
+| H_S | The free energy of the system (a qubit rotating) |
+| H_SE | The system–environment interaction |
+| H_tot | The sum of both |
 
-### Evolución unitaria — U(t) = exp(−iHt)
+### Unitary Evolution — U(t) = exp(−iHt)
 
-La regla de cómo cambia un estado cuántico cerrado con el tiempo. "Unitaria" significa que es reversible y conserva la probabilidad total. Es el equivalente cuántico de las ecuaciones de Newton.
+The rule for how a closed quantum state changes over time. "Unitary" means it is reversible and conserves total probability. It is the quantum equivalent of Newton's equations.
 
-### Ecuación de Schrödinger
+### Schrödinger Equation
 
-La ecuación fundamental: i∂_t|ψ⟩ = H|ψ⟩. Dice que el cambio temporal de un estado es proporcional a su energía. Toda la mecánica cuántica estándar se deriva de aquí.
+The fundamental equation: i∂_t|ψ⟩ = H|ψ⟩. It says that the temporal change of a state is proportional to its energy. All of standard quantum mechanics is derived from here.
 
-### Estado puro vs. estado mixto
+### Pure State vs. Mixed State
 
-- **Estado puro** (|ψ⟩): conocemos todo lo que se puede saber del sistema. Máxima información.
-- **Estado mixto** (ρ): tenemos incertidumbre, o bien porque el sistema está entrelazado con algo que no controlamos. Menos información.
+- **Pure state** (|ψ⟩): we know everything that can be known about the system. Maximum information.
+- **Mixed state** (ρ): we have uncertainty, either because the system is entangled with something we do not control. Less information.
 
-### Matriz de densidad (ρ)
+### Density Matrix (ρ)
 
-La representación matemática general de un estado cuántico, que sirve tanto para estados puros como mixtos. Es una matriz cuadrada que contiene toda la información estadística del sistema:
+The general mathematical representation of a quantum state, valid for both pure and mixed states. It is a square matrix containing all the statistical information about the system:
 
-- Los elementos **diagonales** son probabilidades (cuánta chance de encontrar cada estado).
-- Los elementos **fuera de la diagonal** ("coherencias") codifican la superposición.
+- The **diagonal** elements are probabilities (the chance of finding each state).
+- The **off-diagonal** elements ("coherences") encode superposition.
 
-### Traza parcial (Tr_E)
+### Partial Trace (Tr_E)
 
-La operación clave de este proyecto. Si tenemos un sistema compuesto (sistema + entorno) y solo podemos acceder al sistema, la traza parcial *descarta* la información del entorno y nos da la descripción del sistema solo.
+The key operation of this project. If we have a composite system (system + environment) and can only access the system, the partial trace *discards* the environment's information and gives us the description of the system alone.
 
-**Analogía**: imagine que tiene una imagen estereoscópica (3D) compuesta por dos capas. La traza parcial es como taparse un ojo: pierde la profundidad (información del entorno) pero sigue viendo una imagen (el sistema reducido). Esa pérdida de profundidad es precisamente lo que genera la flecha del tiempo.
+**Analogy**: imagine you have a stereoscopic (3D) image composed of two layers. The partial trace is like covering one eye: you lose the depth (environment information) but still see an image (the reduced system). That loss of depth is precisely what generates the arrow of time.
 
-### Decoherencia
+### Decoherence
 
-El proceso por el cual un estado cuántico pierde sus propiedades "cuánticas" (superposición, coherencia) al interactuar con un entorno. Es lo que hace que el mundo macroscópico parezca clásico. En nuestro modelo, la decoherencia es un subproducto de la traza parcial aplicada al entorno.
+The process by which a quantum state loses its "quantum" properties (superposition, coherence) upon interacting with an environment. It is what makes the macroscopic world appear classical. In our model, decoherence is a byproduct of the partial trace applied over the environment.
 
-### Entropía de Von Neumann — S = −Tr[ρ ln ρ]
+### Von Neumann Entropy — S = −Tr[ρ ln ρ]
 
-La medida cuántica del desorden o la ignorancia. Para un qubit:
-- S = 0 → estado puro, conocimiento completo.
-- S = ln 2 ≈ 0.693 → estado maximalmente mixto, ignorancia total.
+The quantum measure of disorder or ignorance. For a qubit:
+- S = 0 → pure state, complete knowledge.
+- S = ln 2 ≈ 0.693 → maximally mixed state, total ignorance.
 
-El crecimiento de esta entropía *es* la flecha termodinámica del tiempo.
+The growth of this entropy *is* the thermodynamic arrow of time.
 
-### Fidelidad (F)
+### Fidelity (F)
 
-Un número entre 0 y 1 que mide cuán "parecidos" son dos estados cuánticos. F = 1 significa idénticos; F = 0 significa completamente distintos. En este proyecto, comparamos el estado del sistema obtenido por nuestra fórmula con el obtenido por la ecuación de Schrödinger estándar.
+A number between 0 and 1 that measures how "similar" two quantum states are. F = 1 means identical; F = 0 means completely different. In this project, we compare the system state obtained by our formula with the one obtained by the standard Schrödinger equation.
 
-### Pureza — Tr[ρ²]
+### Purity — Tr[ρ²]
 
-Un número entre 0 y 1 que indica cuán "puro" es un estado:
-- Tr[ρ²] = 1 → estado puro.
-- Tr[ρ²] = 1/d → maximalmente mixto (d = dimensión).
+A number between 0 and 1 indicating how "pure" a state is:
+- Tr[ρ²] = 1 → pure state.
+- Tr[ρ²] = 1/d → maximally mixed (d = dimension).
 
-Su decaimiento es la otra cara de la moneda del crecimiento de entropía.
+Its decay is the flip side of entropy growth.
 
-### Esfera de Bloch
+### Bloch Sphere
 
-Una esfera unitaria que representa geométricamente todos los estados posibles de un qubit:
-- **Superficie**: estados puros (Tr[ρ²] = 1).
-- **Interior (bola)**: estados mixtos.
-- **Centro**: estado maximalmente mixto.
+A unit sphere that geometrically represents all possible states of a qubit:
+- **Surface**: pure states (Tr[ρ²] = 1).
+- **Interior (ball)**: mixed states.
+- **Center**: maximally mixed state.
 
-El estado se parametriza con un **vector de Bloch** r⃗ = (⟨σ_x⟩, ⟨σ_y⟩, ⟨σ_z⟩). La longitud |r⃗| es el radio de Bloch (equivale a la pureza). Un sistema que se decoherece traza una **espiral hacia adentro** de la esfera: eso *es* la flecha del tiempo, geométricamente.
+The state is parameterized by a **Bloch vector** r⃗ = (⟨σ_x⟩, ⟨σ_y⟩, ⟨σ_z⟩). The length |r⃗| is the Bloch radius (equivalent to purity). A system undergoing decoherence traces an **inward spiral** on the sphere: that *is* the arrow of time, geometrically.
 
-### Espacio de Hilbert (H)
+### Hilbert Space (H)
 
-El espacio matemático (vectorial, complejo, con producto interno) donde viven los estados cuánticos. En nuestro modelo, el espacio total es el producto tensorial de tres subespacios:
+The mathematical space (vector, complex, with inner product) where quantum states live. In our model, the total space is the tensor product of three subspaces:
 
 $$\mathcal{H} = \mathcal{H}_C \otimes \mathcal{H}_S \otimes \mathcal{H}_E$$
 
-que corresponden al reloj (C), el sistema (S) y el entorno (E).
+corresponding to the clock (C), the system (S), and the environment (E).
 
-### Producto tensorial (⊗)
+### Tensor Product (⊗)
 
-La operación matemática que combina dos espacios de Hilbert en uno mayor. Si el reloj tiene N estados y el sistema tiene 2 (un qubit), el espacio conjunto tiene 2N estados. Es la forma cuántica de decir "sistema A *y* sistema B simultáneamente."
+The mathematical operation that combines two Hilbert spaces into a larger one. If the clock has N states and the system has 2 (one qubit), the joint space has 2N states. It is the quantum way of saying "system A *and* system B simultaneously."
 
 ---
 
-## 3. El mecanismo Page–Wootters y el problema del tiempo
+## 3. The Page–Wootters Mechanism and the Problem of Time
 
-### Problema del tiempo
+### Problem of Time
 
-El conflicto entre mecánica cuántica (que necesita un tiempo externo absoluto) y relatividad general (que dice que ese tiempo no existe). Es uno de los problemas abiertos más importantes de la física teórica.
+The conflict between quantum mechanics (which needs an external absolute time) and general relativity (which says such time does not exist). It is one of the most important open problems in theoretical physics.
 
-### Ecuación de Wheeler–DeWitt — Ĉ|Ψ⟩ = 0
+### Wheeler–DeWitt Equation — Ĉ|Ψ⟩ = 0
 
-La ecuación de la gravedad cuántica canónica. El operador Ĉ (constraint, restricción) es esencialmente el hamiltoniano total del universo. Que sea cero significa que el estado global |Ψ⟩ **no evoluciona**. El universo, visto desde afuera, está congelado.
+The equation of canonical quantum gravity. The operator Ĉ (constraint) is essentially the total Hamiltonian of the universe. That it equals zero means the global state |Ψ⟩ **does not evolve**. The universe, seen from outside, is frozen.
 
-### Mecanismo Page–Wootters (PaW)
+### Page–Wootters Mechanism (PaW)
 
-La propuesta de 1983: si el universo está congelado, podemos recuperar el tiempo definiendo un subsistema como "reloj" y preguntando "¿cómo se ve el resto del universo cuando el reloj marca las 3?". Matemáticamente:
+The 1983 proposal: if the universe is frozen, we can recover time by defining a subsystem as a "clock" and asking "what does the rest of the universe look like when the clock reads 3?" Mathematically:
 
 $$\rho_S(t) = \frac{ \text{Tr}_E\big[\langle t|_C \,|\Psi\rangle\langle\Psi|\, |t\rangle_C \big]}{p(t)}$$
 
-Esta es la **fórmula relacional unificada** que vertebra todo el repositorio.
+This is the **unified relational formula** that underpins the entire repository.
 
-### Estado historia (history state) — |Ψ⟩
+### History State — |Ψ⟩
 
-El estado global del universo en el marco PaW. Codifica *toda* la historia temporal de una vez: todas las configuraciones del sistema a todos los tiempos del reloj, entrelazadas coherentemente. Se construye como:
+The global state of the universe in the PaW framework. It encodes the *entire* temporal history at once: all configurations of the system at all clock times, coherently entangled. It is constructed as:
 
 $$|\Psi\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} |k\rangle_C \otimes U(t_k)|\psi_0\rangle_{SE}$$
 
-Cada término es "a la hora k del reloj, el sistema+entorno están en el estado que corresponde tras evolucionar un tiempo t_k".
+Each term reads "at clock hour k, the system+environment are in the state corresponding to having evolved for a time t_k."
 
-### Proyección del reloj — ⟨k|_C
+### Clock Projection — ⟨k|_C
 
-La operación de "preguntar qué hora es". Al proyectar |Ψ⟩ sobre el estado de reloj |k⟩, extraemos el estado del sistema+entorno correlacionado con esa lectura del reloj. Es una especie de **actualización bayesiana**: dado que el reloj marca k, ¿qué sabemos del resto?
+The operation of "asking what time it is." By projecting |Ψ⟩ onto the clock state |k⟩, we extract the system+environment state correlated with that clock reading. It is a kind of **Bayesian update**: given that the clock reads k, what do we know about the rest?
 
-### p(k) — Probabilidad de lectura del reloj
+### p(k) — Clock Reading Probability
 
-La probabilidad de que, al medir el reloj, obtengamos la lectura k. En un reloj ideal con N niveles equiespaciados, p(k) = 1/N para todo k.
+The probability that, upon measuring the clock, we obtain reading k. For an ideal clock with N equally spaced levels, p(k) = 1/N for all k.
 
-### Covarianza general
+### General Covariance
 
-El principio de la relatividad general que dice que las leyes de la física no dependen del sistema de coordenadas. En gravedad cuántica, lleva a Ĉ|Ψ⟩ = 0 como condición de consistencia.
+The principle from general relativity stating that the laws of physics do not depend on the coordinate system. In quantum gravity, it leads to Ĉ|Ψ⟩ = 0 as a consistency condition.
 
-### Marcos de referencia cuántico-temporales (temporal QRF)
+### Temporal Quantum Reference Frames (temporal QRF)
 
-El marco teórico moderno (Höhn, Smith, Lock, 2021) que trata al reloj como un sistema cuántico genuino con su propia dinámica, incertidumbre y retroacción. Nuestro Pilar 3 implementa esto.
+The modern theoretical framework (Höhn, Smith, Lock, 2021) that treats the clock as a genuine quantum system with its own dynamics, uncertainty, and backreaction. Our Pillar 3 implements this.
 
 ---
 
-## 4. Vocabulario de este proyecto ("los tres pilares")
+## 4. Vocabulary of This Project ("the Three Pillars")
 
-### La fórmula relacional unificada
+### The Unified Relational Formula
 
-La ecuación central:
+The central equation:
 
 $$\rho_S(t) = \frac{\text{Tr}_E[\langle t|_C\,|\Psi\rangle\langle\Psi|\,|t\rangle_C]}{p(t)}$$
 
-que combina tres operaciones: proyección del reloj → traza parcial → normalización. Todo lo que sigue sale de aquí.
+which combines three operations: clock projection → partial trace → normalization. Everything that follows comes from here.
 
-### Los tres pilares
+### The Three Pillars
 
-El resultado principal del proyecto: la fórmula anterior, por sí sola, produce tres fenómenos:
+The main result of the project: the formula above, by itself, produces three phenomena:
 
-| Pilar | Qué emerge | Operación responsable |
+| Pillar | What emerges | Responsible operation |
 |---|---|---|
-| **Pilar 1 — Dinámica** | La ecuación de Schrödinger | La proyección ⟨t\|_C sobre el reloj |
-| **Pilar 2 — Flecha del tiempo** | La entropía crece, el tiempo tiene dirección | La traza parcial Tr_E sobre el entorno |
-| **Pilar 3 — Tiempo del observador** | El tiempo depende de quién mira | El reloj es un sistema cuántico imperfecto |
+| **Pillar 1 — Dynamics** | The Schrödinger equation | The projection ⟨t\|_C onto the clock |
+| **Pillar 2 — Arrow of Time** | Entropy grows, time acquires direction | The partial trace Tr_E over the environment |
+| **Pillar 3 — Observer Time** | Time depends on who is looking | The clock is an imperfect quantum system |
 
-### Versión A / Versión B
+### Version A / Version B
 
-Dos configuraciones del modelo:
-- **Versión A** (n_env = 0): sistema solo, sin entorno. La dinámica emerge perfecta (Pilar 1), pero no hay flecha del tiempo (la entropía se queda en cero).
-- **Versión B** (n_env ≥ 1): sistema + entorno. Aparece la flecha (Pilar 2), con costo de una pequeña desviación en la dinámica.
+Two model configurations:
+- **Version A** (n_env = 0): system alone, no environment. Dynamics emerge perfectly (Pillar 1), but there is no arrow of time (entropy stays at zero).
+- **Version B** (n_env ≥ 1): system + environment. The arrow appears (Pillar 2), at the cost of a small deviation in the dynamics.
 
-### Retroacción del reloj (clock back-action)
+### Clock Back-Action
 
-El efecto que la dinámica del sistema+entorno tiene sobre el reloj. En un reloj ideal, es cero. En un reloj cuántico real, el reloj se perturba ligeramente. Nuestro Pilar 3 cuantifica esto con la métrica ΔE_C(k).
+The effect that the system+environment dynamics have on the clock. For an ideal clock, it is zero. For a real quantum clock, the clock is slightly perturbed. Our Pillar 3 quantifies this with the metric ΔE_C(k).
 
-### El observador como anomalía
+### The Observer as Anomaly
 
-La tesis filosófica central: el observador no es un espectador pasivo "fuera" del universo, sino un subsistema *dentro* del universo cuyas limitaciones de acceso (no puede ver todo) son precisamente lo que crea la experiencia temporal. El tiempo no es una propiedad del universo; es una propiedad de la ignorancia.
+The central philosophical thesis: the observer is not a passive spectator "outside" the universe, but a subsystem *within* the universe whose access limitations (it cannot see everything) are precisely what creates temporal experience. Time is not a property of the universe; it is a property of ignorance.
 
-### Observador omnisciente / "observador dios"
+### Omniscient Observer / "God Observer"
 
-Un experimento mental: ¿qué pasa si un observador hipotético tiene acceso a *todos* los grados de libertad? No necesita hacer traza parcial, así que no pierde información, y por lo tanto no experimenta flecha del tiempo — ve un universo congelado. Este escenario se analiza en tres niveles:
+A thought experiment: what happens if a hypothetical observer has access to *all* degrees of freedom? It does not need to perform a partial trace, so it loses no information, and therefore experiences no arrow of time — it sees a frozen universe. This scenario is analyzed at three levels:
 
-| Nivel | Qué puede hacer | Qué experimenta |
+| Level | What it can do | What it experiences |
 |---|---|---|
-| **Nivel 1** | Tiene reloj pero ve todo el entorno | Dinámica sin flecha (ρ puro, S = 0) |
-| **Nivel 2** | Ni siquiera usa un reloj | Ve la matrix de densidad global (congelada) |
-| **Nivel 3** | Acceso al estado puro \|Ψ⟩ | Atemporalidad absoluta |
+| **Level 1** | Has a clock but sees the entire environment | Dynamics without an arrow (ρ pure, S = 0) |
+| **Level 2** | Does not even use a clock | Sees the global density matrix (frozen) |
+| **Level 3** | Access to the pure state \|Ψ⟩ | Absolute atemporality |
 
-### Estructura de acceso
+### Access Structure
 
-Cuáles grados de libertad puede y cuáles no puede observar un subsistema. Es lo que determina la traza parcial concreta que aplica, y por lo tanto qué flecha del tiempo ve. Dos observadores con diferente estructura de acceso viven, literalmente, en tiempos distintos.
+Which degrees of freedom a subsystem can and cannot observe. This determines the specific partial trace it applies, and therefore what arrow of time it sees. Two observers with different access structures live, literally, in different times.
 
-### Ceguera progresiva (progressive blindness)
+### Progressive Blindness
 
-Procedimiento que interpola entre el observador dios y el observador finito: se empieza viendo todo el entorno y se van "apagando" grados de libertad uno a uno. La flecha del tiempo aparece gradualmente a medida que uno pierde acceso.
+A procedure that interpolates between the god observer and the finite observer: one starts seeing the entire environment and then "switches off" degrees of freedom one by one. The arrow of time appears gradually as access is lost.
 
-### Fuerza de la flecha (arrow strength)
+### Arrow Strength
 
-Métrica cuantitativa: S_final / ln 2. Mide cuán completamente se desarrolla la flecha del tiempo. Un valor de 1.0 significa entropía máxima alcanzada; un valor cercano a 0 significa que la flecha apenas apareció.
+Quantitative metric: S_final / ln 2. Measures how completely the arrow of time develops. A value of 1.0 means maximum entropy is reached; a value near 0 means the arrow barely appeared.
 
-### Monotonicidad (monotonicity score)
+### Monotonicity Score
 
-Fracción de pasos temporales en los que la entropía efectivamente crece. Un puntaje de 1.0 significa que la entropía creció en *cada* paso sin excepción.
+The fraction of time steps in which entropy actually grows. A score of 1.0 means entropy increased at *every* step without exception.
 
-### Asimetría observacional (observational asymmetry)
+### Observational Asymmetry
 
-El resultado de la extensión `access_asymmetry`: dos subsistemas que comparten un entorno no se ven simétricamente. Uno puede detectar al otro; el otro no puede detectar al primero. La visibilidad mutua depende de la estructura de acceso de cada uno.
+The result from the `access_asymmetry` extension: two subsystems sharing an environment do not see each other symmetrically. One can detect the other; the other cannot detect the first. Mutual visibility depends on each one's access structure.
 
-### Señal de detección — Δ_det(k)
+### Detection Signal — Δ_det(k)
 
-Cuánto cambia el estado de un subsistema cuando hay otro subsistema acoplado vs. cuando no lo hay. Si Δ_det ≈ 0, el segundo subsistema es indetectable.
+How much a subsystem's state changes when another subsystem is coupled vs. when it is not. If Δ_det ≈ 0, the second subsystem is undetectable.
 
-### Información mutua — I(A:B)
+### Mutual Information — I(A:B)
 
-Medida de todas las correlaciones (clásicas y cuánticas) entre dos subsistemas A y B:
+A measure of all correlations (classical and quantum) between two subsystems A and B:
 
 $$I(A:B) = S(\rho_A) + S(\rho_B) - S(\rho_{AB})$$
 
-Si I = 0, los subsistemas están completamente decorrelacionados.
+If I = 0, the subsystems are completely uncorrelated.
 
 ---
 
-## 5. Diccionario de símbolos matemáticos
+## 5. Mathematical Symbols Dictionary
 
-Para consulta rápida cuando aparecen en ecuaciones o en el código.
+For quick reference when they appear in equations or in the code.
 
-| Símbolo | Se lee como | Significado |
+| Symbol | Read as | Meaning |
 |---|---|---|
-| \|ψ⟩ | "ket psi" | Vector de estado cuántico (notación de Dirac) |
-| ⟨ψ\| | "bra psi" | Vector dual (conjugado transpuesto de \|ψ⟩) |
-| \|Ψ⟩⟨Ψ\| | "proyector sobre Psi" | Matriz de densidad del estado puro \|Ψ⟩ |
-| ρ_S(k) | "ro sub S de k" | Matriz de densidad reducida del sistema a la hora k |
-| Tr_E[...] | "traza parcial sobre E" | Descarta los grados de libertad del entorno |
-| ⟨k\|_C | "bra k del reloj" | Proyección sobre la lectura k del reloj |
-| σ_x, σ_y, σ_z | "sigma x, y, z" | Matrices de Pauli — observables del qubit |
-| ⟨σ_z⟩(k) | "valor esperado de sigma z en k" | Promedio de la medición de spin-z a la hora k |
-| H | "hache" o "hamiltoniano" | Operador de energía del sistema |
-| U(t) | "u de t" | Operador de evolución temporal |
-| S(ρ) | "entropía de ro" | Entropía de Von Neumann |
-| F(k) | "fidelidad en k" | Overlap entre el estado PaW y el de Schrödinger |
-| ⊗ | "tensor" | Producto tensorial de espacios o estados |
-| Ĉ | "ce sombrero" o "constraint" | Operador de restricción (energia total = 0) |
-| N | "ene" | Número de lecturas del reloj (pasos temporales) |
-| n_env | "ene sub env" | Número de qubits del entorno |
-| ω | "omega" | Frecuencia del qubit (velocidad de rotación) |
-| g | "ge" | Constante de acoplamiento sistema–entorno |
-| dt, Δt | "delta t" | Paso temporal (espaciado entre lecturas del reloj) |
-| \|0⟩, \|1⟩ | "ket cero, ket uno" | Estados base del qubit (spin arriba / spin abajo) |
-| I, I/2 | "identidad" / "identidad sobre dos" | Operador identidad / estado maximalmente mixto |
-| ln 2 ≈ 0.693 | "logaritmo natural de 2" | Entropía máxima de un qubit |
-| r⃗ | "vector r" | Vector de Bloch (posición del estado en la esfera) |
-| \|r⃗\| | "módulo de r" | Radio de Bloch (= pureza geométrica) |
+| \|ψ⟩ | "ket psi" | Quantum state vector (Dirac notation) |
+| ⟨ψ\| | "bra psi" | Dual vector (conjugate transpose of \|ψ⟩) |
+| \|Ψ⟩⟨Ψ\| | "projector onto Psi" | Density matrix of the pure state \|Ψ⟩ |
+| ρ_S(k) | "rho sub S of k" | Reduced density matrix of the system at clock hour k |
+| Tr_E[...] | "partial trace over E" | Discards the environment's degrees of freedom |
+| ⟨k\|_C | "bra k of the clock" | Projection onto clock reading k |
+| σ_x, σ_y, σ_z | "sigma x, y, z" | Pauli matrices — qubit observables |
+| ⟨σ_z⟩(k) | "expectation value of sigma z at k" | Average of the spin-z measurement at clock hour k |
+| H | "H" or "Hamiltonian" | Energy operator of the system |
+| U(t) | "U of t" | Time evolution operator |
+| S(ρ) | "entropy of rho" | Von Neumann entropy |
+| F(k) | "fidelity at k" | Overlap between the PaW state and the Schrödinger state |
+| ⊗ | "tensor" | Tensor product of spaces or states |
+| Ĉ | "C hat" or "constraint" | Constraint operator (total energy = 0) |
+| N | "N" | Number of clock readings (time steps) |
+| n_env | "n sub env" | Number of environment qubits |
+| ω | "omega" | Qubit frequency (rotation speed) |
+| g | "g" | System–environment coupling constant |
+| dt, Δt | "delta t" | Time step (spacing between clock readings) |
+| \|0⟩, \|1⟩ | "ket zero, ket one" | Qubit basis states (spin up / spin down) |
+| I, I/2 | "identity" / "identity over two" | Identity operator / maximally mixed state |
+| ln 2 ≈ 0.693 | "natural logarithm of 2" | Maximum entropy of a qubit |
+| r⃗ | "vector r" | Bloch vector (state position on the sphere) |
+| \|r⃗\| | "magnitude of r" | Bloch radius (= geometric purity) |
 
 ---
 
-## 6. Términos de laboratorio y computación cuántica
+## 6. Laboratory and Quantum Computing Terms
 
-Estos aparecen en las secciones sobre la validación en hardware IBM Quantum.
+These appear in the sections about validation on IBM Quantum hardware.
 
-| Término | Significado |
+| Term | Meaning |
 |---|---|
-| **QPU** | Unidad de Procesamiento Cuántico — el chip de hardware cuántico real |
-| **IBM Quantum / ibm_torino** | Plataforma de computación cuántica en la nube de IBM; `ibm_torino` es el procesador específico usado |
-| **Qubits superconductores** | Tipo de qubit físico basado en circuitos superconductores enfriados a −273°C |
-| **Compuerta cuántica (gate)** | Operación elemental sobre uno o dos qubits (equivalente a una puerta lógica clásica) |
-| **SX gate** | Compuerta √X: media rotación alrededor del eje X |
-| **CZ gate** | Compuerta Controlled-Z: compuerta de dos qubits |
-| **RXX gate** | Rotación de dos qubits alrededor de X⊗X |
-| **Shots** | Repeticiones de un experimento cuántico para acumular estadística |
-| **Error de lectura (readout error)** | Probabilidad de leer 0 cuando el qubit estaba en 1 (o viceversa) |
-| **Error de compuerta (gate error)** | Imprecisión al aplicar una operación cuántica |
-| **T₁, T₂** | Tiempos de coherencia del qubit: T₁ = relajación (pérdida de energía), T₂ = defasaje (pérdida de fase) |
-| **Tomografía parcial** | Reconstrucción del estado cuántico a partir de estadística de mediciones |
-| **Barras de error** | Incertidumbre estadística en los resultados (típicamente ±1 desviación estándar) |
-| **Descomposición de Trotter** | Técnica para aproximar la evolución bajo un hamiltoniano complejo como secuencia de operaciones simples |
+| **QPU** | Quantum Processing Unit — the actual quantum hardware chip |
+| **IBM Quantum / ibm_torino** | IBM's cloud quantum computing platform; `ibm_torino` is the specific processor used |
+| **Superconducting qubits** | A type of physical qubit based on superconducting circuits cooled to −273°C |
+| **Quantum gate** | An elementary operation on one or two qubits (equivalent to a classical logic gate) |
+| **SX gate** | The √X gate: half rotation around the X axis |
+| **CZ gate** | Controlled-Z gate: a two-qubit gate |
+| **RXX gate** | Two-qubit rotation around X⊗X |
+| **Shots** | Repetitions of a quantum experiment to accumulate statistics |
+| **Readout error** | Probability of reading 0 when the qubit was in 1 (or vice versa) |
+| **Gate error** | Imprecision when applying a quantum operation |
+| **T₁, T₂** | Qubit coherence times: T₁ = relaxation (energy loss), T₂ = dephasing (phase loss) |
+| **Partial tomography** | Reconstruction of a quantum state from measurement statistics |
+| **Error bars** | Statistical uncertainty in the results (typically ±1 standard deviation) |
+| **Trotter decomposition** | Technique to approximate evolution under a complex Hamiltonian as a sequence of simple operations |
 
 ---
 
-## 7. Acrónimos
+## 7. Acronyms
 
-| Sigla | Significado |
+| Acronym | Meaning |
 |---|---|
-| **PaW** | Page–Wootters (mecanismo de) |
-| **QRF** | Marco de Referencia Cuántico (Quantum Reference Frame) |
-| **CPTP** | Completamente Positivo, Preserva la Traza — tipo de operación cuántica permitida |
-| **POVM** | Medida con Operador de Valor Positivo — medición cuántica generalizada |
-| **QuTiP** | Quantum Toolbox in Python — librería de simulación cuántica usada en este proyecto |
-| **QPU** | Unidad de Procesamiento Cuántico |
-| **IBM** | International Business Machines (aquí: IBM Quantum) |
+| **PaW** | Page–Wootters (mechanism) |
+| **QRF** | Quantum Reference Frame |
+| **CPTP** | Completely Positive, Trace-Preserving — a type of allowed quantum operation |
+| **POVM** | Positive Operator-Valued Measure — a generalized quantum measurement |
+| **QuTiP** | Quantum Toolbox in Python — the quantum simulation library used in this project |
+| **QPU** | Quantum Processing Unit |
+| **IBM** | International Business Machines (here: IBM Quantum) |
 
 ---
 
-## 8. Referencias de entrada
+## 8. Entry-Level References
 
-Para quien quiera profundizar, estas son las fuentes primarias organizadas por nivel de accesibilidad.
+For those who want to go deeper, these are the primary sources organized by accessibility level.
 
-### Nivel divulgativo (sin ecuaciones)
+### Popular Level (no equations)
 
-- **Sean Carroll**, *Something Deeply Hidden* (2019): excelente introducción a la mecánica cuántica y los fundamentos, incluyendo el problema de la medición.
-- **Carlo Rovelli**, *The Order of Time* (2018): la naturaleza del tiempo desde la perspectiva de la gravedad cuántica, escrito para público general.
-- **Lee Smolin**, *Time Reborn* (2013): argumentos sobre por qué el tiempo debería ser fundamental, perspectiva contraria pero muy clara.
+- **Sean Carroll**, *Something Deeply Hidden* (2019): excellent introduction to quantum mechanics and foundations, including the measurement problem.
+- **Carlo Rovelli**, *The Order of Time* (2018): the nature of time from the perspective of quantum gravity, written for a general audience.
+- **Lee Smolin**, *Time Reborn* (2013): arguments for why time should be fundamental — an opposing perspective, but very clearly presented.
 
-### Nivel intermedio (algunas ecuaciones)
+### Intermediate Level (some equations)
 
-- **Giovannetti, Lloyd & Maccone**, "Quantum time" (Physical Review D, 2015): la formalización moderna del mecanismo PaW con lenguaje de teoría de la información cuántica.
-- **W. H. Zurek**, "Decoherence, einselection, and the quantum origins of the classical" (Reviews of Modern Physics, 2003): referencia estándar sobre decoherencia.
+- **Giovannetti, Lloyd & Maccone**, "Quantum time" (Physical Review D, 2015): the modern formalization of the PaW mechanism using quantum information theory language.
+- **W. H. Zurek**, "Decoherence, einselection, and the quantum origins of the classical" (Reviews of Modern Physics, 2003): the standard reference on decoherence.
 
-### Nivel especializado (paper original y desarrollos)
+### Specialist Level (original paper and developments)
 
-- **Page & Wootters**, "Evolution without evolution" (Physical Review D, 1983): el paper fundacional.
-- **Höhn, Smith & Lock**, "Equivalence of approaches to relational quantum dynamics" (Physical Review D, 2021): la formulación en marcos de referencia cuánticos que usamos para el Pilar 3.
-- **Shaari**, "Entanglement, decoherence and arrow of time" (2014): la conexión entre traza parcial y la flecha termodinámica que fundamenta nuestro Pilar 2.
+- **Page & Wootters**, "Evolution without evolution" (Physical Review D, 1983): the foundational paper.
+- **Höhn, Smith & Lock**, "Equivalence of approaches to relational quantum dynamics" (Physical Review D, 2021): the quantum reference frame formulation we use for Pillar 3.
+- **Shaari**, "Entanglement, decoherence and arrow of time" (2014): the connection between partial trace and the thermodynamic arrow that underpins our Pillar 2.
 
-### Recursos online
+### Online Resources
 
-- [Qiskit Textbook — Quantum States and Qubits](https://learning.quantum.ibm.com/): tutorial interactivo gratuito de IBM sobre computación cuántica.
-- [QuTiP documentation](https://qutip.org/docs/latest/): documentación de la librería de simulación usada en el código.
-- [Stanford Encyclopedia of Philosophy — The Problem of Time in Quantum Gravity](https://plato.stanford.edu/entries/quantum-gravity/): tratamiento filosófico riguroso del problema del tiempo.
+- [Qiskit Textbook — Quantum States and Qubits](https://learning.quantum.ibm.com/): free interactive tutorial from IBM on quantum computing.
+- [QuTiP documentation](https://qutip.org/docs/latest/): documentation for the simulation library used in the code.
+- [Stanford Encyclopedia of Philosophy — The Problem of Time in Quantum Gravity](https://plato.stanford.edu/entries/quantum-gravity/): a rigorous philosophical treatment of the problem of time.
 
 ---
 
-*Este glosario cubre los ~200 términos técnicos, símbolos y conceptos que aparecen en la documentación del repositorio. Ante cualquier término no incluido aquí, abrir un issue en GitHub.*
+*This glossary covers the ~200 technical terms, symbols, and concepts that appear in the repository documentation. For any term not included here, open an issue on GitHub.*
