@@ -7,9 +7,8 @@ Validates the unified relational formula on real quantum hardware via IBM Quantu
 Runs a 3-qubit experiment (1 system + 2 environment) that demonstrates **Pillar 2** — the thermodynamic arrow of time emerging from the partial trace.
 
 The Hamiltonian is Trotterized into quantum circuits:
-```
-U(dt) = Rx(ωdt)₀ · RXX(2gdt)₀₁ · RXX(2gdt)₀₂
-```
+
+$$U(dt) = R_x(\omega\,dt)_0 \cdot R_{XX}(2g\,dt)_{01} \cdot R_{XX}(2g\,dt)_{02}$$
 
 At each step k, partial tomography of the system qubit reconstructs ρ\_S and computes S\_eff(k).
 

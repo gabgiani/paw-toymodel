@@ -6,9 +6,7 @@ Time is not a fundamental property of the universe. It is an emergent feature of
 
 The universe, described by a global state |Ψ⟩, satisfies a stationarity constraint:
 
-```
-Ĉ |Ψ⟩ = 0
-```
+$$\hat{C}\,|\Psi\rangle = 0$$
 
 Nothing evolves. Nothing flows. There is no "before" or "after."
 
@@ -18,11 +16,7 @@ Yet an observer — a physical subsystem that selects a clock and lacks access t
 
 ## The Formula
 
-```
-                    Tr_E [ ⟨t|_C  |Ψ⟩⟨Ψ|  |t⟩_C ]
-    ρ_S(t)   =    ─────────────────────────────────
-                                p(t)
-```
+$$\rho_S(t) = \frac{\mathrm{Tr}_E\!\big[\langle t|_C\;|\Psi\rangle\langle\Psi|\;|t\rangle_C\big]}{p(t)}$$
 
 This is **not** the original Page–Wootters formula. Page and Wootters (1983) introduced the projection ⟨t|\_C — the conditioning on a clock subsystem. That is one ingredient. The full expression above extends the PaW mechanism by incorporating three distinct operations, each from a different lineage in the literature, which jointly produce the three pillars of the problem of time.
 
@@ -38,9 +32,7 @@ The unification — recognizing that all three pillars are already contained in 
 
 Projecting the global state onto successive clock readings ⟨k|\_C extracts a sequence of conditional states. In the good-clock limit, this sequence obeys an effective Schrödinger equation:
 
-```
-i ∂_t |ψ_S(t)⟩ ≈ H_S |ψ_S(t)⟩
-```
+$$i\,\partial_t\,|\psi_S(t)\rangle \approx H_S\,|\psi_S(t)\rangle$$
 
 No external time parameter is needed. The ordering comes entirely from correlations between the clock subsystem C and the system S.
 
@@ -63,9 +55,7 @@ The blue dots are computed from the formula; the dashed line is the analytic cos
 
 When the observer cannot access environmental degrees of freedom E, the partial trace Tr\_E produces a mixed state ρ\_S(t) even though the global |Ψ⟩ is pure. The effective entropy:
 
-```
-S_eff(k) = −Tr[ρ_S(k) ln ρ_S(k)]
-```
+$$S_{\text{eff}}(k) = -\mathrm{Tr}\!\big[\rho_S(k)\,\ln\rho_S(k)\big]$$
 
 grows with the clock reading k. This is an **informational arrow of time**: irreversibility that arises not from non-unitary dynamics, not from special initial conditions, but **solely from the observer's restricted access**.
 
@@ -179,9 +169,7 @@ The fundamental geometric object is a **stationary pure state** |Ψ⟩ satisfyin
 
 Upon an operational tensor factorization H = H\_C ⊗ H\_S ⊗ H\_E, the conditional map
 
-```
-k  ↦  ρ_S(k) = Tr_E [ ⟨k|_C |Ψ⟩⟨Ψ| |k⟩_C ] / p(k)
-```
+$$k \;\mapsto\; \rho_S(k) = \frac{\mathrm{Tr}_E\!\big[\langle k|_C\;|\Psi\rangle\langle\Psi|\;|k\rangle_C\big]}{p(k)}$$
 
 defines a **section** of a trivial quantum bundle over the base space of distinguishable clock readings in C. The observer's projection ⟨k|\_C selects a particular fiber, generating apparent temporal evolution.
 
@@ -218,9 +206,7 @@ The formula operates within non-relativistic quantum mechanics with a fixed tens
 
 In the standard model, the clock C is ideal — it records time without affecting the system. In gravity, the clock's mass-energy would shift the system's energy levels. We model this by adding a k-dependent term:
 
-```
-H_eff(k) = H_SE + ε (k/N) σ_z ⊗ I_E
-```
+$$H_{\text{eff}}(k) = H_{SE} + \varepsilon\,\frac{k}{N}\,\sigma_z \otimes I_E$$
 
 Result: the arrow degrades gradually with ε but persists. Even at ε = 1.0 (10× the S–E coupling g), the arrow strength remains 0.29 — weakened but not destroyed.
 
@@ -228,9 +214,7 @@ Result: the arrow degrades gradually with ε but persists. Even at ε = 1.0 (10�
 
 The "problem of subsystems" in QG: what we call S and E may not have sharp definitions. We apply a partial SWAP between S and E₁ before tracing:
 
-```
-V(θ) = cos(θ) I − i sin(θ) SWAP_{S,E₁}
-```
+$$V(\theta) = \cos\theta\;I - i\sin\theta\;\mathrm{SWAP}_{S,E_1}$$
 
 Result: at θ = π/2 (S and E₁ fully swapped), the arrow **recovers** to strength 0.882 with perfect monotonicity. This demonstrates that the arrow does not depend on which subsystem we label as "system" — it is a structural consequence of the partial trace over a large Hilbert space.
 
@@ -238,9 +222,7 @@ Result: at θ = π/2 (S and E₁ fully swapped), the arrow **recovers** to stren
 
 Gravitational time dilation makes clock readings inherently uncertain. We replace sharp projections |k⟩ with Gaussian-smeared states:
 
-```
-|k̃⟩ = Σ_j c_j |j⟩,   c_j ∝ exp(−(j−k)²/(2σ²))
-```
+$$|\tilde{k}\rangle = \sum_j c_j\,|j\rangle, \quad c_j \propto \exp\!\left(-\frac{(j-k)^2}{2\sigma^2}\right)$$
 
 Result: the arrow is **essentially immune** to clock uncertainty. Even σ = 4.0 (smearing over ±12 clock ticks) yields arrow strength 0.997 with perfect monotonicity.
 

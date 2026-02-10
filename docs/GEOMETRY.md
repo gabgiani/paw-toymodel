@@ -10,9 +10,7 @@ This companion note identifies the geometric objects underlying the unified rela
 
 The fundamental object is a **stationary pure state** |Ψ⟩ satisfying the Wheeler–DeWitt-type constraint:
 
-```
-Ĉ |Ψ⟩ = 0
-```
+$$\hat{C}\,|\Psi\rangle = 0$$
 
 This state lives in the **projective Hilbert space** CP(H), where kets are defined up to global phase. The constraint Ĉ = 0 defines a codimension-1 hypersurface (a submanifold) within this projective space.
 
@@ -34,9 +32,7 @@ The state |Ψ⟩ is a **fixed point** — a timeless, atemporal object from whic
 
 The Hilbert space admits a tensor factorization:
 
-```
-H  =  H_C  ⊗  H_S  ⊗  H_E
-```
+$$\mathcal{H} = \mathcal{H}_C \otimes \mathcal{H}_S \otimes \mathcal{H}_E$$
 
 This is an **operational choice**, not a fundamental decomposition: the observer selects which degrees of freedom serve as clock (C), which as system (S), and which remain inaccessible (E).
 
@@ -44,9 +40,7 @@ This is an **operational choice**, not a fundamental decomposition: the observer
 
 Upon this factorization, the conditional map
 
-```
-k  ↦  ρ_S(k) = Tr_E [ ⟨k|_C |Ψ⟩⟨Ψ| |k⟩_C ] / p(k)
-```
+$$k \;\mapsto\; \rho_S(k) = \frac{\mathrm{Tr}_E\!\big[\langle k|_C\;|\Psi\rangle\langle\Psi|\;|k\rangle_C\big]}{p(k)}$$
 
 defines a **section** of a trivial quantum bundle over the discrete base space of clock readings {|k⟩\_C}:
 
@@ -73,9 +67,7 @@ The observer's projection lives **in the clock subsystem C**, specifically in th
 
 Without this projection, there is no temporal parameter, no curve, no dynamics:
 
-```
-No ⟨k|_C projection  →  no t  →  no temporal narrative
-```
+$$\text{No }\langle k|_C\text{ projection} \;\Rightarrow\; \text{no }t \;\Rightarrow\; \text{no temporal narrative}$$
 
 **Numerical confirmation:** In `get_conditioned_observables`, the projection is explicit: ⟨k|\_C ⊗ I\_SE |Ψ⟩ extracts block k of the state vector. Without this step, there is no parametric family ρ\_S(k) — only the global |Ψ⟩.
 
@@ -87,9 +79,7 @@ No ⟨k|_C projection  →  no t  →  no temporal narrative
 
 For a single qubit system S, the space of density operators D(H\_S) is the **Bloch ball** — a solid sphere of radius 1 in ℝ³, parameterized by the Bloch vector:
 
-```
-ρ_S = (I + r⃗ · σ⃗) / 2    where    |r⃗| ≤ 1
-```
+$$\rho_S = \frac{I + \vec{r}\cdot\vec{\sigma}}{2}, \quad |\vec{r}\,| \le 1$$
 
 - |r⃗| = 1 : pure state (surface of the sphere)
 - |r⃗| = 0 : maximally mixed state I/2 (center)
@@ -113,9 +103,7 @@ The thermodynamic arrow of time is geometrically encoded as the **monotonic disp
 
 The mechanism is the partial trace Tr\_E, which is a **contractive CPTP map**: it systematically pushes states toward the maximally mixed interior. The contraction is monotone for the von Neumann entropy (data processing inequality), guaranteeing:
 
-```
-S_eff(k+1) ≥ S_eff(k)    (in expectation)
-```
+$$S_{\text{eff}}(k+1) \ge S_{\text{eff}}(k) \quad \text{(in expectation)}$$
 
 This is not a coincidence. It is a **geometric necessity** of partial trace over inaccessible degrees of freedom.
 

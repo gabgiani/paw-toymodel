@@ -12,11 +12,7 @@ What if the observer is, operationally, omniscient?
 
 We use the same formula, the same code, the same parameters as the main validation. The only thing that changes is **how much** the observer can see.
 
-```
-                    Tr_E [ ⟨t|_C  |Ψ⟩⟨Ψ|  |t⟩_C ]
-    ρ_S(t)   =    ─────────────────────────────────
-                                p(t)
-```
+$$\rho_S(t) = \frac{\mathrm{Tr}_E\!\big[\langle t|_C\;|\Psi\rangle\langle\Psi|\;|t\rangle_C\big]}{p(t)}$$
 
 If the observer has full access to E, there is nothing to trace out. The Tr\_E becomes trivial. And if the observer has access to the entire state |Ψ⟩, even the projection ⟨t|\_C becomes unnecessary.
 

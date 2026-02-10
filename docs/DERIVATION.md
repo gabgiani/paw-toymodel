@@ -12,17 +12,13 @@ All numerical values are reproducible using the toy model in this repository.
 
 In ordinary quantum mechanics, the Schrödinger equation
 
-```
-i ℏ ∂_t |ψ(t)⟩ = H |ψ(t)⟩
-```
+$$i\hbar\,\partial_t\,|\psi(t)\rangle = H\,|\psi(t)\rangle$$
 
 contains an external time parameter t. This parameter is not an observable — it has no operator, no eigenvalues, no uncertainty relation. It is put in by hand as a classical background.
 
 In a theory of the whole universe (quantum gravity, quantum cosmology), there is no "outside" to provide this parameter. The total Hamiltonian of a closed system satisfies a constraint:
 
-```
-Ĉ |Ψ⟩ = 0
-```
+$$\hat{C}\,|\Psi\rangle = 0$$
 
 This is the **Wheeler–DeWitt equation** (or its finite-dimensional analog). It says: *the total energy of the universe is zero* (a consequence of general covariance). The state |Ψ⟩ does not evolve — it is **frozen**.
 
@@ -36,9 +32,7 @@ The unified relational formula answers all three questions with a single express
 
 We begin with a Hilbert space that admits a tensor factorization into three parts:
 
-```
-H  =  H_C  ⊗  H_S  ⊗  H_E
-```
+$$\mathcal{H} = \mathcal{H}_C \otimes \mathcal{H}_S \otimes \mathcal{H}_E$$
 
 | Subsystem | Symbol | Role | Toy model |
 |-----------|--------|------|-----------|
@@ -52,9 +46,7 @@ This decomposition is an **operational choice** — not a law of nature. Differe
 
 Inside this Hilbert space, there exists a pure state |Ψ⟩ satisfying the constraint:
 
-```
-Ĉ |Ψ⟩ = 0
-```
+$$\hat{C}\,|\Psi\rangle = 0$$
 
 This state encodes all correlations between C, S, and E. It does not evolve. It has no time parameter. It is the timeless, eternal "block" of the universe.
 
@@ -62,9 +54,7 @@ This state encodes all correlations between C, S, and E. It does not evolve. It 
 
 In the toy model, the history state is constructed explicitly as:
 
-```
-|Ψ⟩  =  (1/√N) Σ_k  |k⟩_C  ⊗  U_SE(t_k) |ψ₀⟩_SE
-```
+$$|\Psi\rangle = \frac{1}{\sqrt{N}} \sum_{k} |k\rangle_C \otimes U_{SE}(t_k)\,|\psi_0\rangle_{SE}$$
 
 where:
 - |k⟩\_C is the k-th clock basis state
@@ -90,15 +80,11 @@ for k in range(N):
 
 ### System Hamiltonian
 
-```
-H_S = (ω/2) σ_x
-```
+$$H_S = \frac{\omega}{2}\,\sigma_x$$
 
 This generates rotations around the x-axis of the Bloch sphere. With |ψ₀⟩ = |0⟩ (eigenstate of σ\_z), the expectation value oscillates:
 
-```
-⟨σ_z⟩(t) = cos(ωt)
-```
+$$\langle\sigma_z\rangle(t) = \cos(\omega t)$$
 
 | Parameter | Value |
 |-----------|-------|
@@ -109,9 +95,7 @@ This generates rotations around the x-axis of the Bloch sphere. With |ψ₀⟩ =
 
 ### System–Environment Interaction
 
-```
-H_SE = g Σ_j  σ_x^(S)  ⊗  σ_x^(E_j)
-```
+$$H_{SE} = g \sum_j \sigma_x^{(S)} \otimes \sigma_x^{(E_j)}$$
 
 Each environment qubit j is coupled to the system via a σ\_x ⊗ σ\_x interaction with strength g = 0.1. This coupling:
 - Creates entanglement between S and E
@@ -120,9 +104,7 @@ Each environment qubit j is coupled to the system via a σ\_x ⊗ σ\_x interact
 
 ### Total Hamiltonian
 
-```
-H_tot = H_S + H_SE
-```
+$$H_{\text{tot}} = H_S + H_{SE}$$
 
 This acts on H\_S ⊗ H\_E only — **not** on the clock space H\_C. The clock provides the parametric label; the physics happens in S⊗E.
 
@@ -134,9 +116,7 @@ This acts on H\_S ⊗ H\_E only — **not** on the clock space H\_C. The clock p
 
 Given the global state |Ψ⟩ living in H\_C ⊗ H\_S ⊗ H\_E, the projection ⟨k|\_C extracts the component correlated with clock reading k:
 
-```
-|φ_k⟩_SE  =  ( ⟨k|_C  ⊗  I_SE )  |Ψ⟩
-```
+$$|\phi_k\rangle_{SE} = \big(\langle k|_C \otimes I_{SE}\big)\,|\Psi\rangle$$
 
 This is a **partial inner product**: we fix the clock to reading k and ask "what is the state of everything else?"
 
@@ -146,13 +126,7 @@ The result |φ\_k⟩\_SE is a (unnormalized) state in H\_S ⊗ H\_E. It represen
 
 The sequence k = 0, 1, 2, …, N−1 produces a **family** of conditional states:
 
-```
-k = 0  →  |φ_0⟩_SE
-k = 1  →  |φ_1⟩_SE
-k = 2  →  |φ_2⟩_SE
-  ⋮
-k = 29 →  |φ_29⟩_SE
-```
+$$k = 0 \to |\phi_0\rangle_{SE},\quad k = 1 \to |\phi_1\rangle_{SE},\quad \ldots,\quad k = 29 \to |\phi_{29}\rangle_{SE}$$
 
 This family is the raw material for temporal evolution. **There is no external time parameter** — the ordering comes from the correlations between C and SE inside |Ψ⟩.
 
@@ -160,9 +134,7 @@ This family is the raw material for temporal evolution. **There is no external t
 
 The probability of finding clock reading k is:
 
-```
-p(k) = ⟨φ_k|φ_k⟩ = ⟨Ψ| (|k⟩⟨k|_C ⊗ I_SE) |Ψ⟩
-```
+$$p(k) = \langle\phi_k|\phi_k\rangle = \langle\Psi|\,\big(|k\rangle\langle k|_C \otimes I_{SE}\big)\,|\Psi\rangle$$
 
 In the toy model with the uniform history state, p(k) = 1/N for all k (equidistributed clock).
 
@@ -184,15 +156,11 @@ The vector `phi_k` is the state |φ\_k⟩\_SE expressed as a flat array of dimen
 
 In the case n\_env = 0 (no environment), this projection alone is sufficient to recover Schrödinger dynamics:
 
-```
-|φ_k⟩_S = ⟨k|_C |Ψ⟩ = (1/√N) U_S(t_k) |ψ₀⟩
-```
+$$|\phi_k\rangle_S = \langle k|_C\,|\Psi\rangle = \frac{1}{\sqrt{N}}\,U_S(t_k)\,|\psi_0\rangle$$
 
 The conditional expectation value is:
 
-```
-⟨σ_z⟩(k) = ⟨φ_k|σ_z|φ_k⟩ / p(k) = cos(ω k dt)
-```
+$$\langle\sigma_z\rangle(k) = \frac{\langle\phi_k|\sigma_z|\phi_k\rangle}{p(k)} = \cos(\omega\,k\,dt)$$
 
 **Numerical result:** max deviation from cos(ωkdt) = 4.44 × 10⁻¹⁶ (machine precision).
 
@@ -206,9 +174,7 @@ The conditional expectation value is:
 
 The projected state |φ\_k⟩\_SE is not normalized (its norm squared is p(k), not 1). To obtain the proper conditional state, we form:
 
-```
-ρ_SE(k)  =  |φ_k⟩⟨φ_k|_SE  /  p(k)
-```
+$$\rho_{SE}(k) = \frac{|\phi_k\rangle\langle\phi_k|_{SE}}{p(k)}$$
 
 This is the **conditional density matrix** of the system and environment, given clock reading k. It is pure (rank 1) because |Ψ⟩ is pure and the projection ⟨k|\_C is a projective measurement on C.
 
@@ -233,9 +199,7 @@ rho_SE_k = (psi_SE_k * psi_SE_k.dag()) / p_k
 
 The observer cannot access the environment E. The operation that discards E is the **partial trace**:
 
-```
-ρ_S(k)  =  Tr_E [ ρ_SE(k) ]
-```
+$$\rho_S(k) = \mathrm{Tr}_E\!\big[\rho_{SE}(k)\big]$$
 
 This maps the pure state ρ\_SE(k) (which lives in the 2 × 2^n\_env dimensional space) down to a 2×2 density matrix ρ\_S(k) on the system alone.
 
@@ -243,9 +207,7 @@ This maps the pure state ρ\_SE(k) (which lives in the 2 × 2^n\_env dimensional
 
 The partial trace is not a mathematical convenience — it is the **operational definition of limited access**. When the observer cannot distinguish environment microstates, the coherences between S and E become invisible. What remains is a mixture:
 
-```
-ρ_S(k) = Σ_e  ⟨e|_E  ρ_SE(k)  |e⟩_E
-```
+$$\rho_S(k) = \sum_e \langle e|_E\;\rho_{SE}(k)\;|e\rangle_E$$
 
 where {|e⟩\_E} is any orthonormal basis of H\_E.
 
@@ -254,14 +216,12 @@ where {|e⟩\_E} is any orthonormal basis of H\_E.
 The partial trace converts a pure state into a mixed one. This has three consequences:
 
 **1. Purity loss.** The Bloch radius |r⃗| decreases:
-```
-Tr[ρ_S(k)²] ≤ 1    (equality only if ρ_SE(k) is a product state)
-```
+
+$$\mathrm{Tr}\!\big[\rho_S(k)^2\big] \le 1 \quad \text{(equality only if }\rho_{SE}(k)\text{ is a product state)}$$
 
 **2. Entropy growth.** The von Neumann entropy increases:
-```
-S_eff(k) = −Tr[ρ_S(k) ln ρ_S(k)] ≥ 0    (0 only if no S-E entanglement)
-```
+
+$$S_{\text{eff}}(k) = -\mathrm{Tr}\!\big[\rho_S(k)\ln\rho_S(k)\big] \ge 0 \quad \text{(0 only if no S-E entanglement)}$$
 
 **3. Irreversibility.** The partial trace is a **CPTP (completely positive, trace-preserving) map** that is **contractive** for the relative entropy. By the data processing inequality, information about S that leaked into S⊗E correlations cannot be recovered from S alone.
 
@@ -296,17 +256,11 @@ else:
 
 Combining Steps 1, 2, and 3:
 
-```
-                    Tr_E [ ⟨k|_C  |Ψ⟩⟨Ψ|  |k⟩_C ]
-    ρ_S(k)   =    ─────────────────────────────────
-                                p(k)
-```
+$$\rho_S(k) = \frac{\mathrm{Tr}_E\!\big[\langle k|_C\;|\Psi\rangle\langle\Psi|\;|k\rangle_C\big]}{p(k)}$$
 
 In operator notation:
 
-```
-ρ_S(k) = Tr_E [ (⟨k|_C ⊗ I_SE) |Ψ⟩⟨Ψ| (|k⟩_C ⊗ I_SE) ] / p(k)
-```
+$$\rho_S(k) = \frac{\mathrm{Tr}_E\!\Big[\big(\langle k|_C \otimes I_{SE}\big)\,|\Psi\rangle\langle\Psi|\,\big(|k\rangle_C \otimes I_{SE}\big)\Big]}{p(k)}$$
 
 ### Reading the formula left to right
 
@@ -380,9 +334,7 @@ The same formula produces qualitatively different physics depending on the acces
 
 ### Regime A: Full access, no environment (n\_env = 0)
 
-```
-ρ_S(k) = ⟨k|_C |Ψ⟩⟨Ψ| |k⟩_C  /  p(k)
-```
+$$\rho_S(k) = \frac{\langle k|_C\;|\Psi\rangle\langle\Psi|\;|k\rangle_C}{p(k)}$$
 
 Tr\_E is absent (nothing to trace). Result:
 - ρ\_S(k) is **pure** for all k
@@ -392,9 +344,7 @@ Tr\_E is absent (nothing to trace). Result:
 
 ### Regime B: Partial access (n\_env > 0)
 
-```
-ρ_S(k) = Tr_E [ ⟨k|_C |Ψ⟩⟨Ψ| |k⟩_C ]  /  p(k)
-```
+$$\rho_S(k) = \frac{\mathrm{Tr}_E\!\big[\langle k|_C\;|\Psi\rangle\langle\Psi|\;|k\rangle_C\big]}{p(k)}$$
 
 Tr\_E is non-trivial. Result:
 - ρ\_S(k) becomes **mixed** as k increases
@@ -404,9 +354,7 @@ Tr\_E is non-trivial. Result:
 
 ### Regime C: Omniscient observer (no projection)
 
-```
-ρ_global = |Ψ⟩⟨Ψ|
-```
+$$\rho_{\text{global}} = |\Psi\rangle\langle\Psi|$$
 
 No ⟨k|\_C projection, no Tr\_E. Result:
 - Single state, no temporal parametrization
@@ -446,17 +394,11 @@ This is the core insight: **the arrow of time is the cost of being a finite obse
 
 At k = 0, the unitary is U\_SE(0) = I (identity). The conditional state is:
 
-```
-|φ_0⟩_SE = (1/√N) |ψ₀⟩_SE = (1/√N) |0⟩_S ⊗ |0⟩^⊗n_env
-```
+$$|\phi_0\rangle_{SE} = \frac{1}{\sqrt{N}}\,|\psi_0\rangle_{SE} = \frac{1}{\sqrt{N}}\,|0\rangle_S \otimes |0\rangle^{\otimes n_{\text{env}}}$$
 
 This is a product state — no S-E entanglement. Therefore:
-```
-ρ_S(0) = Tr_E[|φ_0⟩⟨φ_0|_SE] / p(0) = |0⟩⟨0|    (pure)
-S_eff(0) = 0
-⟨σ_z⟩(0) = 1
-|r⃗|(0) = 1
-```
+
+$$\rho_S(0) = \mathrm{Tr}_E\!\big[|\phi_0\rangle\langle\phi_0|_{SE}\big] / p(0) = |0\rangle\langle 0| \quad (\text{pure}), \quad S_{\text{eff}}(0) = 0, \quad \langle\sigma_z\rangle(0) = 1, \quad |\vec{r}\,|(0) = 1$$
 
 No mixture, no arrow, no entropy. The observer starts with full information about S.
 
@@ -464,37 +406,23 @@ No mixture, no arrow, no entropy. The observer starts with full information abou
 
 At k = 10 (t = 2.0), U\_SE has created entanglement between S and E:
 
-```
-U_SE(2.0) |ψ₀⟩_SE = α|↑⟩_S|e₁⟩ + β|↓⟩_S|e₂⟩ + ...  (entangled)
-```
+$$U_{SE}(2.0)\,|\psi_0\rangle_{SE} = \alpha|{\uparrow}\rangle_S|e_1\rangle + \beta|{\downarrow}\rangle_S|e_2\rangle + \cdots \quad (\text{entangled})$$
 
 The partial trace discards the environment labels:
 
-```
-ρ_S(10) = |α|² |↑⟩⟨↑| + |β|² |↓⟩⟨↓| + (off-diag terms decay)
-```
+$$\rho_S(10) = |\alpha|^2\,|{\uparrow}\rangle\langle{\uparrow}| + |\beta|^2\,|{\downarrow}\rangle\langle{\downarrow}| + (\text{off-diag terms decay})$$
 
 Now the off-diagonal terms are suppressed because the environment states |e₁⟩, |e₂⟩, … become nearly orthogonal. Result:
 
-```
-S_eff(10) ≈ 0.405    (partial mixture)
-⟨σ_z⟩(10) ≈ −0.300   (damped oscillation)
-|r⃗|(10) ≈ 0.666      (inside the Bloch sphere)
-```
+$$S_{\text{eff}}(10) \approx 0.405, \quad \langle\sigma_z\rangle(10) \approx -0.300, \quad |\vec{r}\,|(10) \approx 0.666$$
 
 ### The asymptotic limit: k → 29
 
 At late times, S-E entanglement is essentially maximal for a single qubit coupled to 4 environment qubits. The reduced state approaches:
 
-```
-ρ_S(29) ≈ I/2 + ε    (nearly maximally mixed)
-```
+$$\rho_S(29) \approx I/2 + \varepsilon \quad (\text{nearly maximally mixed})$$
 
-```
-S_eff(29) ≈ 0.693 ≈ ln 2   (maximum for a qubit)
-⟨σ_z⟩(29) ≈ 0.023          (nearly zero — no preferred direction)
-|r⃗|(29) ≈ 0.025            (near the Bloch ball center)
-```
+$$S_{\text{eff}}(29) \approx 0.693 \approx \ln 2, \quad \langle\sigma_z\rangle(29) \approx 0.023, \quad |\vec{r}\,|(29) \approx 0.025$$
 
 The observer's description has reached maximum uncertainty. The arrow has fully developed.
 

@@ -8,11 +8,7 @@ In 1983, Don Page and William Wootters proposed an elegant answer: time is not f
 
 This repository takes that idea and extends it. We show that a single mathematical expression — the **unified relational formula** — is enough to produce not just quantum dynamics, but also the **thermodynamic arrow of time** (why entropy grows) and **observer-dependent time** (why different observers can disagree about temporal descriptions). Three pillars of the problem of time, from one formula:
 
-```
-                    Tr_E [ ⟨t|_C  |Ψ⟩⟨Ψ|  |t⟩_C ]
-    ρ_S(t)   =    ─────────────────────────────────
-                                p(t)
-```
+$$\rho_S(t) = \frac{\mathrm{Tr}_E\!\big[\langle t|_C\;|\Psi\rangle\langle\Psi|\;|t\rangle_C\big]}{p(t)}$$
 
 The key insight is that the **observer** is not a passive spectator — it is a *local anomaly* in the global atemporality. By choosing a clock ($C$) and tracing over inaccessible degrees of freedom ($\mathrm{Tr}_E$), the observer *creates* the temporal experience. Remove the observer's limitations, and time dissolves back into the timeless whole.
 
