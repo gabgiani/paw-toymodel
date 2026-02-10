@@ -1,5 +1,8 @@
 # The Observer as a Local Breakdown of Atemporality
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18577871.svg)](https://doi.org/10.5281/zenodo.18577871)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 ## What Is This?
 
 In quantum gravity, there is a deep puzzle known as the **problem of time**: the fundamental equations of the universe (the Wheeler–DeWitt equation) describe a *timeless* state — yet we clearly experience time flowing, clocks ticking, and entropy growing. How does time emerge from a theory that has none?
@@ -74,6 +77,23 @@ The mathematics draws on work by Page & Wootters (1983), Giovannetti, Lloyd & Ma
 Implemented with [QuTiP](https://qutip.org/). Hardware validation on [IBM Quantum](https://quantum.ibm.com/).
 
 **Repository:** [https://github.com/gabgiani/paw-toymodel](https://github.com/gabgiani/paw-toymodel)
+
+### Citation
+
+If you use this code or build on this work, please cite:
+
+```bibtex
+@software{giani_moreno_2026_paw,
+  author       = {Giani Moreno, Gabriel},
+  title        = {The Observer as a Local Breakdown of Atemporality},
+  year         = {2026},
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.18577871},
+  url          = {https://doi.org/10.5281/zenodo.18577871}
+}
+```
+
+GitHub also provides a "Cite this repository" button (powered by [CITATION.cff](CITATION.cff)).
 
 ---
 
@@ -198,3 +218,7 @@ Two observers choose different clocks (dt = 0.20 vs dt = 0.35) applied to the sa
 | g (coupling strength) | 0.1 |
 | n\_env (environment qubits) | 2, 4, 6, 8 |
 | \|ψ₀⟩\_S (initial state) | \|0⟩ |
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

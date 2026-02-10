@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+title: "The Observer as a Local Breakdown of Atemporality"
+message: "If you use this software, please cite it using the metadata from this file."
+type: software
+authors:
+  - given-names: Gabriel
+    family-names: Giani Moreno
+repository-code: "https://github.com/gabgiani/paw-toymodel"
+url: "https://github.com/gabgiani/paw-toymodel"
+doi: "10.5281/zenodo.18577871"
+license: MIT
+version: "1.0.0"
+date-released: "2026-02-10"
+keywords:
+  - quantum-foundations
+  - page-wootters
+  - problem-of-time
+  - arrow-of-time
+  - relational-time
+  - quantum-information
+  - qutip
+  - qiskit
+  - ibm-quantum
+abstract: >-
+  Numerical toy model demonstrating that a single formula — the unified
+  relational time formula — produces quantum dynamics (Pillar 1), the
+  thermodynamic arrow of time (Pillar 2), and observer-dependent temporal
+  descriptions (Pillar 3) from the Page–Wootters mechanism. Validated on
+  IBM Quantum hardware (ibm_torino). Includes robustness tests, boundary
+  analysis (omniscient observer), geometric interpretation, and extensions.
