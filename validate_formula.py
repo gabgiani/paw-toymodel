@@ -10,10 +10,10 @@ Three pillars from one operation:
     choices yield different descriptions, in the spirit of temporal
     quantum reference frames)
 
-Corrected from initial's version:
-  - H_S = (ω/2)σ_x  (not σ_z)
-  - H_SE = g Σ σ_x⊗σ_x  (not σ_z⊗σ_z)
-  - initial state |0⟩  (not |+x⟩)
+Implementation notes:
+  - H_S = (ω/2)σ_x
+  - H_SE = g Σ σ_x⊗σ_x
+  - initial state |0⟩
   - H_tot built on S⊗E space only (not C⊗S⊗E)
 """
 
