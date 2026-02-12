@@ -395,10 +395,6 @@ There is nothing cosmologically special about any particular value of k. The sen
 
 The framework does not invoke consciousness, subjective experience, or any anthropic principle. The temporal structure emerges from three physical operations (projection, partial trace, normalization) applied to a physical state. Whether this corresponds to "experience" is a question for neuroscience and philosophy of mind. The physics does not depend on the answer.
 
-**5. The T-shirt version.**
-
-> *"You are a local anomaly in the global atemporality. The flow of time is what it feels like to be a subsystem that can't see the whole."*
-
 ---
 
 ## Contributing a Question
