@@ -448,3 +448,5 @@ Time does not flow into the observer. The observer generates it by existing as a
 *Geometric companion: [Geometric Structure](GEOMETRY.md) — Bloch trajectory, relational bundle, and the arrow as geometry.*
 
 *Boundary analysis: [The Omniscient Observer](GOD_OBSERVER.md) — what happens when the observer has complete access.*
+
+*Common objections: [FAQ](FAQ.md) — answers to questions from physicists: Occam's Razor, causality vs clock, and more.*

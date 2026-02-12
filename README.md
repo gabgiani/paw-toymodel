@@ -107,6 +107,7 @@ GitHub also provides a "Cite this repository" button (powered by [CITATION.cff](
 | **[Geometric Structure](docs/GEOMETRY.md)** | Bloch trajectory, relational bundle, and the arrow as geometry |
 | **[Step-by-Step Derivation](docs/DERIVATION.md)** | The formula developed from first principles, operation by operation |
 | **[Glossary & Reading Guide](docs/GLOSSARY.md)** | Non-specialist dictionary: every term, symbol, and concept explained in plain language |
+| **[FAQ & Common Objections](docs/FAQ.md)** | Answers to questions from physicists: Occam's Razor, causality vs clock, circularity of Tr_E, and more |
 | **[Gravity Robustness](docs/THEORY.md#gravity-robustness)** | Three tests: backreaction, fuzzy boundaries, clock uncertainty |
 | **[Structural Robustness](docs/THEORY.md#structural-robustness)** | Poincaré recurrences, initial states, partition independence |
 | **[IBM Quantum Validation](docs/THEORY.md#experimental-validation-on-ibm-quantum-hardware)** | All 3 pillars confirmed on ibm_torino (real QPU), error bars, noise characterisation |
