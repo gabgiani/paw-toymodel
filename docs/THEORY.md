@@ -310,6 +310,7 @@ The unified relational time formula produces a thermodynamic arrow that is:
 - **Generic:** appears for >80% of random product states and 100% of random entangled states (Test B)
 - **Partition-independent:** every qubit shows an arrow regardless of labeling (Test C)
 - **Gravity-robust:** survives backreaction, fuzzy boundaries, and clock uncertainty (previous section)
+- **Minimally specified:** every stated condition is individually necessary — violating any one produces measurable failure (Condition Necessity Tests below)
 
 | Script | Output |
 |--------|--------|
@@ -333,6 +334,31 @@ Scatter plot of arrow strength (S\_final / ln 2) for each trial. Product states 
 ![Partition independence — all qubit partitions](../output/robustness_partition.png)
 
 S\_eff(k) curves when each of the 5 qubits (1 system + 4 environment) is individually designated as "the system" and the rest are traced out. Under symmetric H, all 5 curves overlap perfectly. Under asymmetric H, the designated system qubit shows the strongest arrow, but all qubits exhibit entropy growth — confirming the arrow is a property of the partial trace, not the labeling.
+
+### Condition Necessity Tests (Contrapositiva)
+
+The robustness tests above show that the formula **works** under perturbation. But are the conditions stated in the [FAQ](FAQ.md) genuinely **necessary**? To answer this, we run five tests that deliberately **violate** each condition and confirm that the expected pillar degrades or disappears. This is the contrapositiva: if violating the condition breaks the result, then the condition is necessary.
+
+Each test modifies exactly one assumption while keeping all others intact:
+
+| Test | Condition violated | FAQ reference | What breaks | Observed result |
+|------|-------------------|---------------|-------------|-----------------|
+| V1 — High initial entropy | S\_eff(0) ≈ 0 (low initial entropy) | [FAQ 3, cond. i](FAQ.md#3-doesnt-the-partial-trace-just-assume-irreversibility) | Arrow absent | S\_eff = ln 2 = 0.693 at all k (starts at maximum, cannot grow) |
+| V2 — Unstable partition | Stable S–E partition | [FAQ 3, cond. ii](FAQ.md#3-doesnt-the-partial-trace-just-assume-irreversibility) | Arrow erratic | S\_eff jumps discontinuously every 5 ticks (partition reshuffles) |
+| V3 — Zero interaction | H\_SE creates entanglement | [FAQ 3, cond. iii](FAQ.md#3-doesnt-the-partial-trace-just-assume-irreversibility) | Arrow absent | S\_eff = 0.000 at all k (no entanglement forms) |
+| V4 — Non-orthogonal clock | ⟨j\|k⟩\_C ≈ δ\_{jk} (orthogonal clock) | [FAQ 14, cond. i](FAQ.md#14-what-conditions-must-the-clock-satisfy) | Dynamics blur | S\_eff starts at 0.395 instead of 0 (temporal resolution lost) |
+| V5 — Wrapping clock | Monotonic clock progression | [FAQ 14, cond. ii](FAQ.md#14-what-conditions-must-the-clock-satisfy) | Dynamics non-monotonic | S\_eff resets to 0 every 10 ticks (clock wraps around) |
+
+**Interpretation:** Every condition is genuinely necessary. The formula is not over-specified — removing any single condition produces a measurable, qualitative failure in the corresponding pillar.
+
+| Script | Output |
+|--------|--------|
+| `generate_condition_violations.py` | `output/condition_violations.png` |
+| `generate_condition_violations.py` | `output/table_condition_violations.csv` |
+
+![Condition necessity tests — 5 violations vs baseline](../output/condition_violations.png)
+
+S\_eff(k) for 30 clock ticks under each violation (colored) compared to the baseline (black dashed). V1 (high initial entropy) is flat at ln 2. V2 (unstable partition) shows discontinuous jumps every 5 ticks. V3 (zero interaction) is flat at 0. V4 (non-orthogonal clock) has an elevated starting point. V5 (wrapping clock) resets periodically. The baseline shows the expected monotonic growth from 0 to ln 2 — confirming that all five conditions are individually necessary.
 
 ---
 
