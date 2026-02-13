@@ -19,6 +19,9 @@ This document addresses questions and objections raised by physicists and resear
 11. [How is this different from decoherent histories?](#11-how-is-this-different-from-decoherent-histories)
 12. [What selects the tensor factorization?](#12-what-selects-the-tensor-factorization)
 13. [If time doesn't flow, why does it feel like it does?](#13-if-time-doesnt-flow-why-does-it-feel-like-it-does)
+14. [What conditions must the clock satisfy?](#14-what-conditions-must-the-clock-satisfy)
+15. [Is this really relativity?](#15-is-this-really-relativity)
+16. [What exactly is "access"?](#16-what-exactly-is-access)
 
 ---
 
@@ -113,7 +116,7 @@ No spacetime manifold, no causal structure, no light cones. The clock emerges fr
 
 **Objection:** *"By tracing out the environment, you're just throwing away information. Of course entropy increases. Isn't this circular?"*
 
-**Short answer:** No. The partial trace is not a physical process that destroys information — it is the mathematical expression of the observer's limited access. The global state remains pure (S = 0) at all times. The "irreversibility" is perspective-dependent, and it disappears when the limitation is removed.
+**Short answer:** No. The partial trace is not a physical process that destroys information — it is the mathematical expression of the observer's limited access. The global state remains pure (S = 0) at all times. The "irreversibility" is perspective-dependent, and it disappears when the limitation is removed. The arrow is not inevitable — it is a **typicality result** under limited access and generic dynamics.
 
 **Detailed reasoning:**
 
@@ -121,9 +124,18 @@ No spacetime manifold, no causal structure, no light cones. The clock emerges fr
 
 2. **Remove the limitation, remove the arrow.** When n\_env = 0 (the observer has access to everything), the partial trace is trivial, S\_eff = 0 at all k, and the system oscillates reversibly forever. The arrow is not built into the formalism — it **emerges** from the access structure.
 
-3. **The arrow is not postulated — it is derived.** We do not add a low-entropy initial condition or a non-unitary term. The global constraint Ĉ|Ψ⟩ = 0 is time-symmetric. The arrow appears because Tr\_E is a contractive CPTP map: once system–environment correlations form, the restricted observer's description becomes irreversibly mixed.
+3. **The arrow is not postulated — it is derived (as a typicality result).** We do not add a low-entropy initial condition or a non-unitary term. The global constraint Ĉ|Ψ⟩ = 0 is time-symmetric. The arrow appears because Tr\_E is a contractive CPTP map: once system–environment correlations form, the restricted observer's description becomes irreversibly mixed. This is **typical** under the following conditions:
+   - The initial state has low effective entropy (S\_eff(0) ≈ 0)
+   - The partition into S and E is stable (does not change with k)
+   - The interaction Hamiltonian H\_SE creates entanglement that spreads generically
+   - The environment is large (dim(H\_E) ≫ dim(H\_S))
+   - The Hamiltonian spectrum is non-degenerate (no fine-tuned recurrences)
 
-4. **The progressive blindness test makes this explicit.** By interpolating between full access (0 qubits traced) and maximum blindness (4 qubits traced), the arrow strength increases monotonically with ignorance:
+   When these conditions fail — for example, the symmetric coupling model with exact degeneracies produces full Poincaré recurrences — the arrow weakens or disappears. This is consistent, not contradictory: the arrow is not a fundamental law but a structural consequence of limited access in generic quantum systems.
+
+4. **The entropy is precisely defined.** The entropy throughout this work is the **von Neumann entropy of the reduced state**: S\_eff(k) = −Tr[ρ\_S(k) ln ρ\_S(k)]. This coincides with the entanglement entropy between S and E when the conditioned state ρ\_SE(k) is pure (which it is, by construction). It is not a coarse-grained entropy over macrostates, nor a Boltzmann counting entropy.
+
+5. **The progressive blindness test makes this explicit.** By interpolating between full access (0 qubits traced) and maximum blindness (4 qubits traced), the arrow strength increases monotonically with ignorance:
 
 | Qubits traced | Final S\_eff |
 |---------------|-------------|
@@ -244,9 +256,24 @@ The dynamics cos(ωkdt) degrade first under perturbation, as expected — perfec
 | Observer-dependent time | Not addressed | Pillar 3: different clocks → different narratives |
 | Dynamics | Assumed (Schrödinger + interaction) | Derived (Pillar 1: projection recovers Schrödinger) |
 
-The key distinction: standard decoherence *uses* time to explain classicality. This framework *produces* time (and decoherence as a by-product) from a deeper, atemporal level. The unification — recovering dynamics, the arrow, and observer-dependence from a single expression applied to a single timeless state — is the original contribution.
+The key distinction: standard decoherence *uses* time to explain classicality. This framework *produces* time (and decoherence as a by-product) from a deeper, atemporal level.
+
+### The precise novelty claim
+
+The contribution is a **synthesis**, not a claim that any individual piece is new. What is new:
+
+1. **Integration into a single expression.** The three mechanisms (projection, partial trace, clock locality) are unified in one formula applied to one state. No prior work demonstrates their simultaneous emergence from a single |Ψ⟩.
+
+2. **Access as the common pivot.** The governing parameter across all three pillars is the observer's **access structure** — the same operational quantity (which degrees of freedom the observer can measure) simultaneously determines:
+   - Whether dynamics appear (Pillar 1: access to clock → projection ⟨k|\_C)
+   - Whether irreversibility appears (Pillar 2: lack of access to E → Tr\_E)
+   - Whose temporal description is obtained (Pillar 3: which C is chosen)
+
+3. **Quantitative boundary analysis.** The progressive blindness test, the God Observer levels, and the partition independence results provide a systematic, computational map of how temporal experience degrades as access increases — from full temporality to frozen atemporality.
 
 Put differently: Zurek answers "why does the world look classical?" We answer "why does the world look *temporal*?" Decoherence is part of our answer, but it is not the question.
+
+This is a synthesis contribution in the tradition of recognizing that known pieces belong together — not a claim of having discovered any single piece.
 
 ---
 
@@ -363,11 +390,26 @@ The [partition independence test](THEORY.md#test-c--partition-independence) demo
 
 The arrow is a structural property of the partial trace and the Hilbert space dimensionality, not of the labeling convention.
 
-**3. The framework is honest about this limitation.**
+**3. Operational criteria for a "good clock" subsystem.**
+
+While the framework does not require a unique factorization, not all choices of C produce equally useful temporal descriptions. A "good clock" satisfies:
+
+- **Approximate orthogonality:** ⟨j|k⟩\_C ≈ δ\_{jk} — distinct clock readings are distinguishable.
+- **Monotonicity:** the clock labels an ordered sequence without self-interference.
+- **Weak backreaction:** the clock does not significantly perturb the system it parameterizes.
+- **Correlation fidelity:** the conditional states ρ\_S(k) approximate Schrödinger evolution (high fidelity F(k) ≈ 1 at early times).
+
+Different clocks satisfying these criteria produce different but **compatible** temporal descriptions — they agree on the asymptotic entropy, on the existence of an arrow, and on observable quantities within overlapping validity ranges. The [gravity robustness tests](THEORY.md#gravity-robustness) quantify how the temporal description degrades as these criteria are progressively violated.
+
+**4. Inter-clock consistency.**
+
+Two observers using different clocks C₁, C₂ extract different dynamical narratives. The framework predicts — and the [Pillar 3 test confirms](THEORY.md#pillar-3-observer-dependent-time--from-the-locality-of-c) — that these narratives differ in their intermediate values but converge in their structural properties: both show an arrow, both reach the same asymptotic entropy (ln 2), both exhibit decoherence. This is the operational analog of gauge invariance: the physical content (arrow, decoherence, asymptotic state) is clock-independent; the parameterization is not.
+
+**5. The framework is honest about this limitation.**
 
 We do not claim to solve the problem of subsystems. We claim that *given* an operational factorization (which every physical experiment implicitly defines), the three pillars follow. The question "what selects the factorization?" is important, but it is shared by every interpretation of quantum mechanics that mentions subsystems — including standard decoherence theory (which also requires a system–environment split).
 
-**See:** [Structural Robustness — Partition Independence](THEORY.md#test-c--partition-independence).
+**See:** [Structural Robustness — Partition Independence](THEORY.md#test-c--partition-independence), [Scope and Precise Claims](THEORY.md#scope-and-precise-claims).
 
 ---
 
@@ -394,6 +436,148 @@ There is nothing cosmologically special about any particular value of k. The sen
 **4. Consciousness is not required — physics is sufficient.**
 
 The framework does not invoke consciousness, subjective experience, or any anthropic principle. The temporal structure emerges from three physical operations (projection, partial trace, normalization) applied to a physical state. Whether this corresponds to "experience" is a question for neuroscience and philosophy of mind. The physics does not depend on the answer.
+
+---
+
+## 14. What conditions must the clock satisfy?
+
+**Objection:** *"You say the clock projection recovers Schrödinger dynamics, but this is just Page–Wootters. What conditions does the clock have to satisfy for this to work? Where is the effective Hamiltonian H_S and under what hypotheses does it emerge? What happens when the clock is finite and non-ideal?"*
+
+**Short answer:** The recovery of effective Schrödinger dynamics requires three conditions on the clock: approximate orthogonality, quasi-classical monotonicity, and weak backreaction. These are stated explicitly and their violation is tested numerically.
+
+**Detailed reasoning:**
+
+### The three conditions for a "good clock"
+
+**1. Approximate orthogonality.** The clock states {|k⟩\_C} must satisfy ⟨j|k⟩\_C ≈ δ\_{jk}. If clock states overlap, the conditioning ⟨k|\_C mixes components from different "times," blurring the temporal resolution. In the toy model, the clock states are exactly orthogonal (computational basis of an N-dimensional space).
+
+**2. Quasi-classical evolution.** The clock must tick monotonically — the states |k⟩\_C must label an ordered, non-self-interfering sequence. This is the requirement that the clock behaves approximately classically: it advances rather than oscillating or recohering. In the Hilbert space formulation, this corresponds to the clock Hamiltonian H\_C having uniformly spaced eigenvalues.
+
+**3. Weak backreaction.** The constraint Ĉ|Ψ⟩ = 0 must admit an approximate decomposition Ĉ ≈ H\_C ⊗ I\_{SE} + I\_C ⊗ H\_{SE}, so that the clock records time without significantly perturbing the system. When this fails, the clock's mass-energy shifts the system's energy levels.
+
+### The effective Hamiltonian H\_S
+
+In the separable limit, the conditioned state obeys:
+
+$$i\,\partial_k\,|\psi_S(k)\rangle \approx H_S\,dt\,|\psi_S(k)\rangle$$
+
+where H\_S is the system-sector component of H\_{SE} in the clock-diagonal approximation. In the toy model, H\_S = (ω/2)σ\_x exactly, because the clock is non-interacting by construction.
+
+For non-ideal clocks (interacting, finite, noisy), H\_S acquires k-dependent corrections. The toy model tests this explicitly:
+
+### What happens when the clock is non-ideal
+
+| Condition violated | What we tested | Result |
+|-------------------|---------------|--------|
+| Backreaction (ε ≠ 0) | k-dependent energy shift, ε up to 1.0 | Dynamics degrade (dephasing); arrow survives at 0.290 |
+| Clock uncertainty (σ > 0) | Gaussian smearing of |⟨k|\_C, σ up to 4.0 | Arrow survives at 0.997; dynamics barely affected |
+| Finite clock | N = 30 ticks | All results reported within this range; no extrapolation |
+
+The hierarchy is informative: **dynamics (Pillar 1) degrade first** under clock non-ideality, while **the arrow (Pillar 2) is structurally robust**. This is physically sensible: perfect Schrödinger evolution requires an ideal Hamiltonian, but irreversibility is a consequence of Hilbert space dimensionality and is insensitive to the clock's precision.
+
+### Relation to standard PaW
+
+The original Page–Wootters mechanism (1983) introduces the clock projection but does not specify the conditions under which it produces a well-defined H\_S, nor does it incorporate the partial trace (Pillar 2) or clock locality (Pillar 3). The present work:
+
+1. States the good-clock conditions explicitly.
+2. Tests their violation numerically.
+3. Extends PaW by incorporating Tr\_E and clock locality into a single expression.
+
+**See:** [Scope — Good Clock Conditions](THEORY.md#pillar-1--precise-conditions-for-the-good-clock-limit), [Gravity Robustness](THEORY.md#gravity-robustness).
+
+---
+
+## 15. Is this really relativity?
+
+**Objection:** *"You call Pillar 3 'observer-dependent time,' which sounds like you're claiming to derive relativity. But you're not deriving Lorentz transformations or the Einstein field equations. Isn't calling this 'relativity' an overclaim?"*
+
+**Short answer:** Yes, calling it "relativity" would be an overclaim, and we do not make that claim. The precise content of Pillar 3 is **observer-dependent temporal parameterization** — the absence of a privileged global clock. This is a necessary condition for consistency with GR, but it is not GR itself.
+
+**Detailed reasoning:**
+
+### What Pillar 3 claims
+
+1. **No privileged global time.** The formula contains no background time parameter t. The temporal description depends on the observer's choice of clock subsystem C.
+2. **Different clocks → different narratives.** Two observers with different C (or different dt) applied to the same |Ψ⟩ extract quantitatively different dynamical descriptions. Neither is wrong.
+3. **No global simultaneity.** Within the operational partition, there is no clock-independent notion of "the same moment."
+
+### What Pillar 3 does NOT claim
+
+1. **Not Lorentz covariance.** We do not derive the Lorentz group, boost transformations, or the invariance of the speed of light.
+2. **Not general covariance.** We do not derive diffeomorphism invariance or the Einstein field equations.
+3. **Not time dilation.** We do not show that moving clocks run slow or that gravitational fields affect clock rates (though the clock-uncertainty test is suggestive).
+
+### The correct language
+
+The relativistic character of Pillar 3 appears only in the **operational** sense:
+
+- "Observer-dependent temporal parameterization"
+- "Absence of a preferred global clock"
+- "No global simultaneity within the operational partition"
+
+The connection to GR is an **analogy**, not a derivation. Both frameworks deny a privileged global time — GR because of diffeomorphism invariance, the PaW framework because C is an observer's operational choice. Establishing a rigorous link would require embedding the PaW mechanism in a gravitational constraint (e.g., the full Wheeler–DeWitt equation with a spacetime metric), which is outside the scope of this toy model.
+
+### The honest position
+
+> Relativistic character appears only in the operational sense: no privileged global clock and locality of temporal reference. We do not derive GR; we show that the PaW mechanism is *compatible* with the absence of global time.
+
+**See:** [Scope — Pillar 3](THEORY.md#pillar-3--observer-dependent-parameterization-not-general-relativity).
+
+---
+
+## 16. What exactly is "access"?
+
+**Objection:** *"Your framework hinges on the observer's 'limited access.' But what does 'access' mean, precisely? Is it an experimental limitation? An epistemological coarse-graining? A physical constraint? If it's not defined rigorously, the whole argument is philosophical, not physical."*
+
+**Short answer:** Access is defined formally as a restriction of the observable algebra. The observer can measure operators of the form A\_S ⊗ I\_E but cannot measure joint S–E correlators. This is implemented mathematically by the partial trace — a CPTP map that is the unique quantum channel compatible with the restricted algebra.
+
+**Detailed reasoning:**
+
+### Formal definition
+
+The observer defines an **accessible observable algebra**:
+
+$$\mathcal{O}_S = \{A_S \otimes I_E \;|\; A_S \in \mathcal{B}(\mathcal{H}_S)\} \subset \mathcal{B}(\mathcal{H}_{SE})$$
+
+The **access map** is the CPTP map:
+
+$$\mathcal{A}: \mathcal{B}(\mathcal{H}_{SE}) \to \mathcal{B}(\mathcal{H}_S), \quad \rho_{SE} \mapsto \mathrm{Tr}_E[\rho_{SE}]$$
+
+Its physical content: the observer can measure any A\_S ∈ 𝒪\_S and obtain ⟨A\_S⟩ = Tr[ρ\_S · A\_S], but cannot access information encoded in S–E correlations.
+
+### What "access" is NOT
+
+| Common interpretation | Why it is incorrect or incomplete |
+|----------------------|----------------------------------|
+| Experimental limitation only | Access can arise from fundamental constraints (causal horizons, superselection rules), not just detector imperfections |
+| Epistemological / subjective | The partial trace is a mathematical operation on the state, not a belief update |
+| Coarse-graining (Gibbs/Boltzmann) | Coarse-graining partitions phase space into macrostates; the access map restricts the observable algebra. These are distinct operations. |
+| Collapse or measurement | No state reduction occurs. The access map is a channel, not a projective measurement. |
+| Consciousness-dependent | The formalism does not invoke consciousness. A thermostat has limited access; so does a black hole horizon. |
+
+### What "access" IS
+
+A **restriction of the set of measurable observables**, arising from any physical mechanism that prevents the observer from controlling or measuring certain degrees of freedom:
+
+- A detector that interacts only with a qubit's spin, not the electromagnetic field it is entangled with.
+- A causal horizon beyond which signals cannot reach.
+- A decoherent sector boundary that makes certain phase relations unobservable.
+- A practical limitation of laboratory equipment (finite number of detectors).
+
+All of these are captured by the same formal object: the partial trace implementing the restriction to 𝒪\_S.
+
+### Why precision matters
+
+The entire framework rests on this concept. The progressive blindness test ([GOD\_OBSERVER.md](GOD_OBSERVER.md#progressive-blindness)) shows that the arrow of time varies continuously with the **size** of the inaccessible sector:
+
+| Qubits traced | Final S\_eff | Physical interpretation |
+|---------------|-------------|------------------------|
+| 0 | 0.000 | Full access → no arrow |
+| 4 | 0.693 | Maximal restriction → full arrow |
+
+If "access" were vague or philosophical, this gradient would be meaningless. Because it is formal (a CPTP map parameterized by the dimension of 𝒳\_E), the gradient is a quantitative, testable prediction.
+
+**See:** [Scope — The Access Map](THEORY.md#the-access-map--formal-definition), [Derivation §6](DERIVATION.md#6-step-3-partial-trace--tr_e).
 
 ---
 

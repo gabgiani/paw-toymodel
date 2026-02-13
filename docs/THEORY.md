@@ -430,6 +430,104 @@ Time does not flow into the observer. The observer generates it by existing as a
 
 ---
 
+## Scope and Precise Claims
+
+This section states explicitly what the framework claims and does not claim, to prevent misreadings and to anchor each pillar in its precise domain of validity.
+
+### What this work is
+
+A **synthesis contribution**: three known mechanisms — clock conditioning (Page & Wootters, 1983), partial trace as origin of mixed-state entropy (Shaari, 2014; cf. Zurek, Joos, Zeh), and temporal quantum reference frames (Höhn, Smith & Lock, 2021) — are unified into a single operational expression applied to a single timeless state |Ψ⟩. The central result is that dynamics (Pillar 1), irreversibility (Pillar 2), and observer-dependence (Pillar 3) emerge simultaneously from this expression, governed by a single parameter: the observer's **access structure**.
+
+### What this work is not
+
+- It is **not** a derivation of general relativity, Lorentz covariance, or spacetime geometry.
+- It is **not** a solution to the full Wheeler–DeWitt equation in quantum gravity.
+- It is **not** a claim that the thermodynamic arrow is a fundamental law — it is a **typicality result** under restricted access.
+
+### Pillar 1 — Precise conditions for the "good clock" limit
+
+The recovery of effective Schrödinger dynamics from the clock projection ⟨k|\_C requires:
+
+1. **Approximate orthogonality:** the clock states {|k⟩\_C} must satisfy ⟨j|k⟩\_C ≈ δ\_{jk}. In the toy model, they are exactly orthogonal by construction.
+2. **Weak clock–system coupling:** the constraint Ĉ|Ψ⟩ = 0 must decompose such that the clock Hamiltonian H\_C and the system–environment Hamiltonian H\_{SE} are approximately separable: Ĉ ≈ H\_C ⊗ I\_{SE} + I\_C ⊗ H\_{SE}.
+3. **Quasi-classical clock evolution:** the clock must tick monotonically — the states |k⟩\_C must label an ordered sequence that does not self-interfere.
+
+When these conditions are relaxed:
+
+- **Finite clock dimension** introduces wrapping effects at k = N (the clock "runs out"). The toy model uses N = 30 ticks; all results are reported within this range.
+- **Clock backreaction** (tested in [Gravity Robustness](#gravity-robustness)) degrades the effective Schrödinger dynamics but preserves the thermodynamic arrow. At ε = 1.0 (10× the coupling), dynamics are distorted but not destroyed.
+- **Clock uncertainty** (Gaussian smearing with σ up to 4.0) barely affects either dynamics or arrow.
+
+The effective Hamiltonian H\_S that governs the conditioned dynamics is the system component of H\_{SE} in the limit where the clock–system interaction is negligible. In the toy model, H\_S = (ω/2)σ\_x is exact because the clock is non-interacting by construction.
+
+### Pillar 2 — The arrow is typical, not inevitable
+
+The thermodynamic arrow — monotonic growth of S\_eff(k) — is **not** a theorem for arbitrary systems. It is a **typicality result** that holds under the following conditions:
+
+1. **Low effective initial entropy:** the initial state has S\_eff(0) ≈ 0 (the system starts approximately pure from the observer's perspective).
+2. **Stable coarse-graining:** the partition into S and E does not change with k.
+3. **Generic entanglement growth:** the system–environment interaction H\_{SE} creates entanglement that spreads across exponentially many degrees of freedom.
+4. **Large environment:** dim(H\_E) ≫ dim(H\_S), so that the partial trace is strongly contractive.
+5. **No fine-tuned spectral symmetries:** the Hamiltonian has a non-degenerate spectrum (or near-non-degenerate), preventing exact Poincaré recurrences on accessible timescales.
+
+Under these conditions, the arrow is robust (tested over 200 random initial states, 5 partition choices, and 3 gravitational perturbations). When conditions fail — e.g., the symmetric coupling model with exact degeneracies — recurrences appear. This is consistent: **the arrow is not a fundamental law but a structural consequence of limited access in generic quantum systems**.
+
+The entropy used throughout is the **von Neumann entropy of the reduced state**: S\_eff(k) = −Tr[ρ\_S(k) ln ρ\_S(k)], which coincides with the entanglement entropy between S and E when the conditioned state ρ\_{SE}(k) is pure.
+
+### Pillar 3 — Observer-dependent parameterization, not general relativity
+
+The claim of Pillar 3 is precisely:
+
+> Different observers choosing different clock subsystems C, C′ extract different temporal parameterizations from the same global state |Ψ⟩. There is no privileged global time.
+
+This is **not** a derivation of Lorentz transformations, general covariance, or the Einstein field equations. The "relativistic character" appears only in the **operational** sense:
+
+- No single clock is preferred.
+- The temporal description depends on the observer's choice of reference.
+- There is no global simultaneity within the operational partition.
+
+We use the term **"observer-dependent time"** rather than "relativity" to avoid overclaiming. The connection to GR is suggestive — both frameworks deny a privileged global time — but demonstrating that the PaW mechanism in a curved-spacetime constraint reproduces general-relativistic time dilation would require a gravitational Hamiltonian, which is outside the scope of this toy model.
+
+### The access map — formal definition
+
+The concept of "access" that governs all three pillars is formalized as follows.
+
+The observer defines an **accessible observable algebra** $\mathcal{O}_S \subset \mathcal{B}(\mathcal{H})$ consisting of operators of the form $A_S \otimes I_E$ — observables that act nontrivially only on the system S. The **access map** is:
+
+$$\mathcal{A}: \mathcal{B}(\mathcal{H}_{SE}) \to \mathcal{B}(\mathcal{H}_S), \quad \rho_{SE} \mapsto \mathrm{Tr}_E[\rho_{SE}]$$
+
+This is a CPTP (completely positive, trace-preserving) map. Its physical content: the observer can measure any $A_S \in \mathcal{O}_S$ and obtain $\langle A_S \rangle = \mathrm{Tr}[\rho_S \cdot A_S]$, but cannot measure joint S–E correlators.
+
+The access is:
+
+- **Operational**, not ontological: it describes what the observer can measure, not what exists.
+- **Not a coarse-graining in the Gibbs/Boltzmann sense**: it is a restriction of the observable algebra, not a partition of phase space into macrostates.
+- **Not a statement about consciousness**: it is a physical limitation (finite detector, causal horizon, decoherent sector boundary).
+
+### The synthesis — what is new
+
+The individual ingredients are not new:
+
+| Ingredient | Source | What it explains alone |
+|------------|--------|----------------------|
+| Clock conditioning ⟨k\|\_C | Page & Wootters (1983) | Dynamics from a timeless state |
+| Partial trace Tr\_E | Zurek, Joos, Zeh (1980s–90s); Shaari (2014) | Decoherence and entropy growth |
+| Clock locality / QRFs | Höhn, Smith & Lock (2021) | Observer-dependent temporal reference |
+
+What is new is the **unification**: recognizing that all three emerge from a single expression
+
+$$\rho_S(k) = \frac{\mathrm{Tr}_E[\langle k|_C\,|\Psi\rangle\langle\Psi|\,|k\rangle_C]}{p(k)}$$
+
+and that the governing parameter across all three pillars is the **access structure** of the observer. Specifically:
+
+- The access map determines **which** degrees of freedom are traced (→ Pillar 2).
+- The access map determines **which** degree of freedom serves as clock (→ Pillar 1).
+- The locality of the clock choice determines **whose** temporal description is obtained (→ Pillar 3).
+
+No prior work unifies these three aspects into a single operational expression, demonstrates their simultaneous emergence from one |Ψ⟩, or identifies access as the common pivot.
+
+---
+
 ## Attribution
 
 | Component of the formula | Origin |
