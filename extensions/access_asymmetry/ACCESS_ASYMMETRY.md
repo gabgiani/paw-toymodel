@@ -208,6 +208,7 @@ The asymmetry follows from the structure of the partial trace. Consider the
 conditioned state $\rho_{ABE}(k)$ after projecting onto clock reading $k$.
 
 When $B$ observes $A$, it computes:
+
 $$
 \rho_A(k) = \mathrm{Tr}_{B,E}[\rho_{ABE}(k)]
 $$
@@ -217,11 +218,13 @@ extensive entanglement. Tracing over $E$ produces a mixed state $\rho_A$ with
 large entropy — this is directly visible to $B$ as a decaying $\langle\sigma_z\rangle_A$.
 
 When $A$ observes $B$, it computes:
+
 $$
 \rho_B(k) = \mathrm{Tr}_{A,E}[\rho_{ABE}(k)]
 $$
 
 But $A$ does not have direct access to $\rho_B$. What $A$ has is its own reduced state:
+
 $$
 \rho_A(k) = \mathrm{Tr}_{B,E}[\rho_{ABE}(k)]
 $$
@@ -252,6 +255,7 @@ to the direct perturbation $g_{AB}$.
 
 The mutual information $I(A{:}B)$ quantifies total correlations between $A$ and $B$
 after tracing out $E$:
+
 $$
 I(A{:}B) = S(\rho_A) + S(\rho_B) - S(\rho_{AB})
 $$
