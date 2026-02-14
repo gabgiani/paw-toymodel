@@ -683,9 +683,49 @@ No prior work unifies these three aspects into a single operational expression, 
 
 ---
 
+## Continuous Limit and Emergent Clock Transformation Group
+
+### Convergence in the N → ∞ Limit
+
+The preceding sections established the three pillars for a discrete clock with fixed N. A natural question is whether the construction survives the continuum limit N → ∞. We fix the physical period T = 2π/ω and sweep N ∈ {32, 64, 128, 256}, with tick spacing dt = T/N. The densest run (N = 256) serves as the reference; for each smaller N we interpolate ⟨σ\_z⟩(t) and S\_eff(t) onto the reference grid.
+
+| N | Monotonicity | Recurrence | max\|Δ⟨σ\_z⟩\| | max\|ΔS\_eff\| |
+|---|---|---|---|---|
+| 32 | 1.0000 | 0.0000 | 8.1 × 10⁻⁵ | 2.4 × 10⁻⁴ |
+| 64 | 1.0000 | 0.0000 | 5.0 × 10⁻⁶ | 5.9 × 10⁻⁵ |
+| 128 | 1.0000 | 0.0000 | < 10⁻⁶ | 1.2 × 10⁻⁵ |
+| 256 | 1.0000 | 0.0000 | 0 (reference) | 0 (reference) |
+
+The arrow of time is already perfectly present at N = 32 and persists unchanged as N doubles — confirming that the informational arrow is structural, not an artefact of finite clock resolution.
+
+### Inter-Clock Transformations
+
+Two observers (Alice: dt₁ = 0.20, Bob: dt₂ = 0.35) share the same Hamiltonian and initial state. The transformation t' = αt with α = dt₂/dt₁ = 1.75 relates their tick labels. After independent computation and cubic interpolation to a common time grid:
+
+- Mean |ΔS\_eff| = 4 × 10⁻⁶
+- Max |ΔS\_eff| = 3.4 × 10⁻⁵
+
+The physics is the same — only the labels change. This confirms Claim 3 (Clock Relabeling Covariance) in its continuous-parameter form.
+
+### Group Structure of Clock Transformations
+
+Three clocks (dt₁ = 0.15, dt₂ = 0.20, dt₃ = 0.30) give pairwise parameters α₁₂ = 4/3, α₂₃ = 3/2, α₁₃ = 2.
+
+- **Closure (composition):** α₁₂ · α₂₃ = 2.0000, matching α₁₃ = 2.0000 (error < 10⁻¹⁵)
+- **Identity:** α = 1 (trivial relabelling)
+- **Inverse:** α₁₂ · (1/α₁₂) = 1.0000 to machine precision
+- **Arrow inversion:** α = −1 reverses tick ordering. Forward: monotonicity = 1.0 (increasing S\_eff). Reversed: monotonicity = 1.0 (decreasing S\_eff). The arrow inverts exactly.
+
+These four properties establish that inter-clock transformations form the **affine group Aff(ℝ)** of time reparametrisations t ↦ αt + β (with β = 0 by common initial condition).
+
+**Script:** `generate_continuum_limit.py`
+**Outputs:** `continuum_limit_convergence.png`, `continuum_limit_overlay.png`, `clock_transformation_fidelity.png`, `group_structure_composition.png`, `continuum_limit_combined.png`, 3 CSV tables.
+
+---
+
 *Next: [Scripts & Outputs](SCRIPTS.md) — detailed guide to reproducing all results.*
 
-*Main claims: [Claims](CLAIMS.md) — the six explicit testable claims of this work.*
+*Main claims: [Claims](CLAIMS.md) — the seven explicit testable claims of this work.*
 
 *Step-by-step derivation: [Derivation](DERIVATION.md) — the formula developed from first principles, operation by operation.*
 

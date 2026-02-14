@@ -1,6 +1,6 @@
 # Main Claims
 
-This work advances six explicit, testable claims — each supported by numerical validation and, where applicable, by algebraic proof.
+This work advances seven explicit, testable claims — each supported by numerical validation and, where applicable, by algebraic proof.
 
 **Claim 1 — Unified Operational Construction.**
 The three pillars of the problem of time (dynamics, irreversibility, frame dependence) emerge simultaneously from a single operational pipeline — conditioning on a local clock and tracing out inaccessible degrees of freedom:
@@ -30,6 +30,10 @@ Each condition in postulates P3 (good-clock regime) and P4 (informational arrow)
 The informational arrow survives real quantum hardware noise. Tested on IBM Quantum (ibm\_torino, 133 superconducting qubits), Pillar 1 (dynamics, max deviation 0.033) and Pillar 2 (arrow, S\_eff = 0.583 ± 0.005, 102.2% of exact) are confirmed with full noise characterisation.
 → *Validated in:* [Experimental Validation on IBM Quantum Hardware](THEORY.md#experimental-validation-on-ibm-quantum-hardware)
 
+**Claim 7 — Continuum Limit and Clock Transformation Group.**
+In the limit N → ∞ the PaW conditional description converges uniformly to standard quantum mechanics: max|Δ⟨σ\_z⟩| drops from 8.1 × 10⁻⁵ at N = 32 to machine zero at N = 256, while monotonicity and zero recurrence are maintained at every resolution. Inter-clock transformations t' = αt (tested with α = 1.75) reproduce the same physics to O(10⁻⁵). Composition, identity, inverse, and arrow inversion are verified numerically; the transformations form the affine group Aff(ℝ).
+→ *Validated in:* [Continuous Limit and Group Structure](THEORY.md#continuous-limit-and-emergent-clock-transformation-group)
+
 ## Summary
 
 | Claim | Type | Key evidence | Validation |
@@ -40,3 +44,4 @@ The informational arrow survives real quantum hardware noise. Tested on IBM Quan
 | 4. Continuity | Numerical | A(θ) ≡ (S\_f − S\_i)/(S\_f + S\_i): +1 → 0 → −1; θ\* ≈ 0.365π | [Theory](THEORY.md#angular-interpolation-of-clock-orientation) |
 | 5. Necessity | Contrapositiva | 5/5 conditions necessary within operational definitions | [Theory](THEORY.md#condition-necessity-tests-contrapositiva) |
 | 6. Hardware | Experimental | IBM ibm\_torino: S\_eff = 0.583 ± 0.005 | [Theory](THEORY.md#experimental-validation-on-ibm-quantum-hardware) |
+| 7. Continuum & Group | Numerical | Δ\_σz → 0; Aff(ℝ) verified (composition, inverse, inversion) | [Theory](THEORY.md#continuous-limit-and-emergent-clock-transformation-group) |

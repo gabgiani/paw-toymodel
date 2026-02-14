@@ -335,6 +335,14 @@ print("=" * 60)
 
 subprocess.run([sys.executable, "generate_angular_interpolation.py"], check=True)
 
+# ══════════════════════════════════════════════════════════════════
+
+print("\n" + "=" * 60)
+print("CONTINUUM LIMIT — N→∞ convergence, clock transformations & group structure")
+print("=" * 60)
+
+subprocess.run([sys.executable, "generate_continuum_limit.py"], check=True)
+
 print("\n" + "=" * 60)
 print("✓  All simulations complete.")
 print(f"   Figures and tables in: {OUTPUT_DIR}/")

@@ -630,4 +630,41 @@ python generate_access_asymmetry.py
 
 ---
 
+### `generate_continuum_limit.py` — Continuous Limit, Clock Transformations, and Group Structure
+
+**Purpose:** Validates the continuum limit (N → ∞), explicit inter-clock transformations, and the emergent group structure of clock reparametrisations.
+
+**Three parts:**
+
+1. **Continuum limit sweep:** N ∈ {32, 64, 128, 256} with fixed period T = 2π/ω. Convergence measured via interpolation against the N = 256 reference. The arrow of time (monotonic S\_eff growth, zero recurrence) is present at every resolution.
+
+2. **Inter-clock transformations:** Two clocks (dt₁ = 0.20, dt₂ = 0.35) with α = 1.75. Independent PaW computation and cubic interpolation confirm physics agreement to O(10⁻⁵).
+
+3. **Group structure:** Three clocks test closure (composition), identity, inverse, and arrow inversion. The transformations form the affine group Aff(ℝ).
+
+| Output | Description |
+|--------|-------------|
+| `output/continuum_limit_convergence.png` | Convergence metrics vs N |
+| `output/continuum_limit_overlay.png` | S\_eff(t) overlay for all N |
+| `output/clock_transformation_fidelity.png` | Alice vs Bob comparison |
+| `output/group_structure_composition.png` | Three-clock composition test |
+| `output/continuum_limit_combined.png` | Six-panel combined figure |
+| `output/table_continuum_limit.csv` | Convergence data |
+| `output/table_clock_transformations.csv` | Transformation comparison |
+| `output/table_group_structure.csv` | Group axiom verification |
+
+**Key results:**
+```
+Conv_σz: 0.000081 → 0.000005 → 0.000000 → 0 (clear N→∞ convergence)
+Mean |ΔS_eff| = 0.000004,  Max |ΔS_eff| = 0.000034
+Composition error = 0.00e+00 (exact), Inverse = 1.0000
+Arrow inversion: forward mono=1.0, reversed mono=1.0
+```
+
+```bash
+python generate_continuum_limit.py
+```
+
+---
+
 *Back to: [Theory](THEORY.md) | [Derivation](DERIVATION.md) | [Geometric Structure](GEOMETRY.md) | [The Omniscient Observer](GOD_OBSERVER.md)*

@@ -1,0 +1,5 @@
+Property,Computed,Expected,Error
+Composition α₁₂·α₂₃,2.000000,2.000000,0.00e+00
+Inverse α₁₂·(1/α₁₂),1.0000000000,1.0000000000,0.00e+00
+Forward monotonicity,1.0000,1.0000,—
+Reversed monotonicity (decreasing),1.0000,1.0000,—
