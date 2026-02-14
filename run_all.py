@@ -304,6 +304,27 @@ with open(path, 'w', newline='') as f:
         w.writerow(row)
 print(f"  → {path}")
 
+# ══════════════════════════════════════════════════════════════════
+#  CLOCK REVERSAL VALIDATION (Gap 1)
+# ══════════════════════════════════════════════════════════════════
+
+print("\n" + "=" * 60)
+print("CLOCK REVERSAL — Validation across all three pillars")
+print("=" * 60)
+
+import subprocess, sys
+subprocess.run([sys.executable, "generate_clock_reversal.py"], check=True)
+
+# ══════════════════════════════════════════════════════════════════
+#  CLOCK ORIENTATION COVARIANCE THEOREM (Gap 2)
+# ══════════════════════════════════════════════════════════════════
+
+print("\n" + "=" * 60)
+print("COVARIANCE THEOREM — Permutation invariance & T-symmetry distinction")
+print("=" * 60)
+
+subprocess.run([sys.executable, "generate_covariance_theorem.py"], check=True)
+
 print("\n" + "=" * 60)
 print("✓  All simulations complete.")
 print(f"   Figures and tables in: {OUTPUT_DIR}/")

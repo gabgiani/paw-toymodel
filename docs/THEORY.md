@@ -362,6 +362,75 @@ S\_eff(k) for 30 clock ticks under each violation (colored) compared to the base
 
 ---
 
+## Clock Orientation Covariance
+
+The robustness tests above show that the informational arrow survives perturbations. We now demonstrate a deeper algebraic symmetry: the Unified Formula is **covariant** under arbitrary relabelling of the clock basis.
+
+### Clock Orientation Covariance Theorem
+
+Let π ∈ S_N be any permutation of the clock labels {0, 1, ..., N−1}. Define the permuted conditioning map:
+
+> ρ_S^π(j) = Tr_E[ ⟨π(j)|_C |Ψ⟩⟨Ψ| |π(j)⟩_C ] / p(π(j))
+
+**Theorem.** For a history state |Ψ⟩ satisfying Ĉ|Ψ⟩ = 0:
+
+> **ρ_S^π(j) = ρ_S(π(j))** for all π ∈ S_N, for all j ∈ {0, ..., N−1}
+
+Permuting the clock labels and then conditioning on slot j yields the same reduced state as conditioning directly on slot π(j).
+
+**Proof.** The history state decomposes into N blocks |ψ_k⟩_SE. Relabelling the clock basis by π reindexes these blocks: slot j of the permuted state contains |ψ_{π(j)}⟩_SE. Since the Unified Formula — projection, normalization, partial trace — acts only on the block found at the conditioned slot, the output at slot j under relabelling π equals the output at the original slot π(j). No assumption about Ĥ or its symmetries is used; this is a purely algebraic identity on the conditioning structure. ∎
+
+**Key properties:**
+- **Algebraic** (not dynamical): holds for any Hamiltonian
+- **Unitary** (not anti-unitary): permutations are basis relabellings, not complex conjugation
+- **Relational** (not external): describes how conditioning results transform under internal relabelling
+
+**Numerical verification:** Six distinct permutations tested (identity, reversal, two random shuffles, even-first reorder, cyclic shift). All produce error = 0 to machine precision.
+
+| Script | Output |
+|--------|--------|
+| `generate_covariance_theorem.py` | `output/covariance_theorem_permutations.png` |
+| `generate_covariance_theorem.py` | `output/covariance_theorem_vs_Tsymmetry.png` |
+| `generate_covariance_theorem.py` | `output/covariance_theorem_combined.png` |
+| `generate_covariance_theorem.py` | `output/table_covariance_theorem.csv` |
+
+![Covariance theorem — permutation invariance](../output/covariance_theorem_combined.png)
+
+### Clock Reversal Validation
+
+The most physically important special case is the **reversal** permutation π_R(k) = N−1−k, which runs the clock backward. The Covariance Theorem predicts that reversal should:
+
+1. **Pillar 1:** reproduce the reversed Schrödinger dynamics exactly
+2. **Pillar 2:** invert the entropy arrow exactly (S_eff^R(k) = S_eff(N−1−k))
+3. **Pillar 3:** preserve locality — the reversed observer sees the same self-contained physics in its own frame
+
+All three predictions confirmed with error = 0 to machine precision.
+
+| Script | Output |
+|--------|--------|
+| `generate_clock_reversal.py` | `output/clock_reversal_pillar1.png` |
+| `generate_clock_reversal.py` | `output/clock_reversal_pillar2.png` |
+| `generate_clock_reversal.py` | `output/clock_reversal_pillar3.png` |
+| `generate_clock_reversal.py` | `output/clock_reversal_combined.png` |
+| `generate_clock_reversal.py` | `output/table_clock_reversal.csv` |
+
+![Clock reversal across all three pillars](../output/clock_reversal_combined.png)
+
+### Clock Reversal ≠ Time Reversal (Smoking Gun)
+
+A critical distinction: clock reversal (k ↦ N−1−k) and T-symmetry (ψ → ψ*, t → −t) are **always** distinct operations in the PaW framework, even when the Hamiltonian is T-symmetric.
+
+**Algebraic reason:** Clock reversal produces states at times (N−1−j)dt, while T-reversal produces states at −jdt. Since (N−1−j)dt ≠ −jdt for any finite N, they are algebraically distinct.
+
+| Hamiltonian | Clock reversal ↔ T-reversal distance (Δ) | Arrow inverted by clock reversal? | Arrow inverted by T-reversal? |
+|-------------|-------------------------------------------|-----------------------------------|-------------------------------|
+| T-symmetric (g_y = 0) | 0.98 | ✅ Yes (exactly) | ✅ Yes (by symmetry) |
+| T-breaking (g_y = 0.08) | 0.93 | ✅ Yes (exactly) | ❌ No |
+
+**Interpretation:** The arrow of time is an informational structure arising from the conditioning map, not from the dynamical symmetries of Ĥ. Clock reversal always inverts the arrow (algebraic identity); T-reversal need not (depends on Hamiltonian symmetry). This confirms the framework's central thesis.
+
+---
+
 ## Experimental Validation on IBM Quantum Hardware
 
 All results above rely on numerical simulation (QuTiP). As a final test, we executed all three pillars on a **real quantum processor** — IBM's `ibm_torino` (133 superconducting qubits) — via the Qiskit Runtime service.

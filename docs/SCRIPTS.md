@@ -25,6 +25,8 @@ python generate_god_observer_plots.py # Boundary analysis (omniscient observer)
 python generate_geometry_plots.py     # Geometric interpretation (Bloch trajectory)
 python generate_gravity_robustness.py # Gravity robustness (3 tests)
 python generate_structural_robustness.py # Structural robustness (3 tests)
+python generate_clock_reversal.py     # Clock reversal across 3 pillars
+python generate_covariance_theorem.py # Covariance theorem + T-symmetry distinction
 
 # Extension: Observational asymmetry (independent analysis)
 python extensions/access_asymmetry/generate_access_asymmetry.py
@@ -470,6 +472,69 @@ Hardware:   Max |⟨σ_z⟩_C - ⟨σ_z⟩_C'| = 0.6879,  Max |S_C - S_C'| = 0.1
 ```
 
 ![ibm_pillar3_validation.png](../IBMquantum/output/ibm_pillar3_validation.png)
+
+---
+
+### `generate_clock_reversal.py` — Clock Reversal Validation
+
+**What it does:** Validates that running the PaW clock backward (relabelling k ↦ N−1−k) reproduces the same physics in reverse, across all three pillars. This is the most physically important special case of the Clock Orientation Covariance Theorem.
+
+**Pillar demonstrated:**
+- ✅ Pillar 1 (reversed Schrödinger dynamics match exactly)
+- ✅ Pillar 2 (entropy arrow inverts exactly: S\_eff^R(k) = S\_eff(N−1−k))
+- ✅ Pillar 3 (locality metrics invariant under reversal)
+
+**How it works:**
+
+1. Builds the PaW history state (N=30, dt=0.2, ω=1.0, g=0.1, n\_env=4)
+2. Conditions on each clock tick → forward dynamics ρ\_S(k)
+3. Reverses clock labels: tick j → block N−1−j
+4. Conditions again → reversed dynamics ρ\_S^R(j)
+5. Compares: ρ\_S^R(j) should equal ρ\_S(N−1−j) exactly (algebraic identity)
+6. Validates all three pillars independently
+
+**Key result:** Error = 0.0e+00 across all three pillars (machine precision).
+
+| Output | Description |
+|--------|-------------|
+| `output/clock_reversal_pillar1.png` | Forward vs reversed ⟨σ\_z⟩ dynamics |
+| `output/clock_reversal_pillar2.png` | Forward vs reversed S\_eff (arrow inversion) |
+| `output/clock_reversal_pillar3.png` | Locality metrics comparison |
+| `output/clock_reversal_combined.png` | Three-panel summary of all pillars |
+| `output/table_clock_reversal.csv` | Numerical data for all comparisons |
+
+![clock_reversal_combined.png](../output/clock_reversal_combined.png)
+
+---
+
+### `generate_covariance_theorem.py` — Clock Orientation Covariance Theorem
+
+**What it does:** Validates the Clock Orientation Covariance Theorem (ρ\_S^π(j) = ρ\_S(π(j)) for any permutation π ∈ S\_N) and demonstrates the smoking-gun distinction between clock reversal and T-symmetry.
+
+**Two-part analysis:**
+
+**Part 1 — Permutation invariance:** Tests 6 distinct permutations (identity, reversal, two random shuffles, even-first reorder, cyclic shift+5). For each, verifies that conditioning on the permuted basis at slot j yields the same reduced state as conditioning on the original basis at slot π(j).
+
+**Part 2 — Clock reversal ≠ T-reversal:** Constructs two Hamiltonians:
+- T-symmetric (g\_y = 0): standard σ\_x ⊗ σ\_x coupling
+- T-breaking (g\_y = 0.08): adds σ\_y ⊗ σ\_y coupling (imaginary in σ\_z basis)
+
+For each, compares clock-reversed reduced states to T-reversed reduced states (complex conjugation). The Hilbert-Schmidt distance Δ between them is always large (0.98 for T-sym, 0.93 for T-breaking), proving they are distinct operations.
+
+**Key findings:**
+- All 6 permutations produce error = 0 to machine precision
+- Clock reversal **always** inverts the entropy arrow exactly
+- T-reversal does **not** invert the arrow for T-breaking Hamiltonians
+- The distinction holds even for T-symmetric Hamiltonians (Δ = 0.98)
+
+| Output | Description |
+|--------|-------------|
+| `output/covariance_theorem_permutations.png` | 6 permutation tests with error bars |
+| `output/covariance_theorem_vs_Tsymmetry.png` | Clock reversal vs T-reversal comparison |
+| `output/covariance_theorem_combined.png` | Two-panel summary |
+| `output/table_covariance_theorem.csv` | Numerical data for all tests |
+
+![covariance_theorem_combined.png](../output/covariance_theorem_combined.png)
 
 ---
 
