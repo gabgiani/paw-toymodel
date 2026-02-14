@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../paw-internal-docs"
+		},
+		{
+			"path": "../paw-osf"
+		}
+	],
+	"settings": {}
+}
