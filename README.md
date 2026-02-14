@@ -72,6 +72,16 @@ Everything here is **numerically verifiable**. The repository contains:
 
 The mathematics draws on work by Page & Wootters (1983), Giovannetti, Lloyd & Maccone (2015), and Höhn, Smith & Lock (2021), among others. The synthesis — the three pillars from one formula, the observer as anomaly, and the numerical demonstrations — is original.
 
+### Novelty and Contributions
+
+This work contributes a unified operational account of the problem of time by showing that three facets — relational Schrödinger dynamics, an informational arrow, and clock-frame dependence — can be obtained from a single conditional construction on a globally timeless state. The novelty is not any one ingredient in isolation, but the combination of:
+
+1. **Compact unification:** an explicit derivation of the three facets as outputs of one conditional operation (projection + partial trace + clock locality).
+2. **Experimental validation:** both relational dynamics and the informational arrow are confirmed on superconducting quantum hardware (IBM Quantum, ibm\_torino) within the same Page–Wootters setup.
+3. **Covariance theorem:** exact covariance under arbitrary relabellings of the clock basis, including reversal, which deterministically flips the arrow within the formalism.
+
+Beyond establishing covariance, we analyse consistency across clocks of different resolutions and orientations and provide evidence that the induced inter-clock transformations approach an **affine reparametrisation structure** (Aff(ℝ)) in the large-clock limit — the temporal analogue of coordinate covariance in general relativity. This package delivers a single framework linking dynamics, irreversibility, and clock transformations, while remaining operationally grounded and experimentally testable.
+
 > Gabriel Giani Moreno (2026)
 
 Implemented with [QuTiP](https://qutip.org/). Hardware validation on [IBM Quantum](https://quantum.ibm.com/).
