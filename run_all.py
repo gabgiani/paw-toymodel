@@ -325,6 +325,16 @@ print("=" * 60)
 
 subprocess.run([sys.executable, "generate_covariance_theorem.py"], check=True)
 
+# ══════════════════════════════════════════════════════════════════
+#  ANGULAR INTERPOLATION OF CLOCK ORIENTATION (Gap 3)
+# ══════════════════════════════════════════════════════════════════
+
+print("\n" + "=" * 60)
+print("ANGULAR INTERPOLATION — Continuous clock orientation & temporal interference")
+print("=" * 60)
+
+subprocess.run([sys.executable, "generate_angular_interpolation.py"], check=True)
+
 print("\n" + "=" * 60)
 print("✓  All simulations complete.")
 print(f"   Figures and tables in: {OUTPUT_DIR}/")

@@ -431,6 +431,55 @@ A critical distinction: clock reversal (k ↦ N−1−k) and T-symmetry (ψ → 
 
 ---
 
+### Angular Interpolation of Clock Orientation
+
+The Covariance Theorem (above) and Clock Reversal (its special case) treat the clock basis as a **discrete** choice: either the canonical ordering or a permuted one. But the mapping k ↦ N−1−k is topologically disconnected from the identity. A natural question: **is there a continuous path between forward and reversed temporal orderings?**
+
+We construct such a path by defining a **rotated clock basis** parameterized by θ ∈ [0, π]. For each pair (k, N−1−k), we apply a 2D rotation:
+
+$$|k_\theta\rangle = \cos(\theta/2)|k\rangle + \sin(\theta/2)|N\!-\!1\!-\!k\rangle \quad (k < N/2)$$
+
+$$|(N\!-\!1\!-\!k)_\theta\rangle = -\sin(\theta/2)|k\rangle + \cos(\theta/2)|N\!-\!1\!-\!k\rangle$$
+
+This is a proper rotation in each 2D subspace, so {|k_θ⟩} is an orthonormal basis for all θ (verified: max deviation from δ_{jk} < 3×10⁻¹⁷). The boundaries are exact: θ = 0 gives the identity (canonical basis), θ = π gives the reversal.
+
+**Conditioned state at angle θ:** The observer using the rotated clock at tick k sees:
+
+$$\langle k_\theta|_C|\Psi\rangle \propto \cos(\theta/2)\cdot U_{SE}(k\cdot dt)|\psi_0\rangle + \sin(\theta/2)\cdot U_{SE}((N\!-\!1\!-\!k)\cdot dt)|\psi_0\rangle$$
+
+This is not a classical mixture — it is a **quantum superposition** of two time evolutions. At intermediate θ, the observer experiences **temporal interference**: dynamics that are not reducible to any single time ordering.
+
+**Key results:**
+
+| Property | Value |
+|----------|-------|
+| Arrow strength A(0) | +0.9995 (forward) |
+| Arrow strength A(π) | −0.9995 (reversed) |
+| Critical angle θ* (A = 0) | ≈ 0.365π |
+| Transition | Continuous, smooth |
+| Orthonormality | All θ: max error < 3×10⁻¹⁷ |
+| Boundary exactness | θ=0: error 0; θ=π: error 3.3×10⁻¹⁶ |
+
+**The critical angle θ* ≈ 0.365π (not π/2):** The asymmetry arises because the initial state |ψ₀⟩ = |↑⟩ breaks the forward/reversed symmetry. The forward arrow is "stronger" — it takes less rotation to destroy it than to build the reversed one. This is physically meaningful: the conditions that select a temporal direction leave a **geometric imprint** on the space of clock orientations.
+
+**Distinction from the fuzzy boundary test:** The gravity robustness test (generate\_gravity\_robustness.py, Test 2) rotates the S/E **partition** in H\_S ⊗ H\_E via a partial SWAP. Here, θ rotates the **clock basis** in H\_C — continuously deforming the temporal description while keeping the system–environment factorization fixed. Different θ, different physics.
+
+**Physical interpretation:** The space of clock orientations is a continuous manifold. The arrow of time is not a binary (forward/backward) but a **real-valued observable** A(θ) that ranges over [−1, +1]. At θ = θ*, the observer has no thermodynamic arrow — an atemporal vantage point distinct from the omniscient observer (who lacks a clock altogether). At intermediate θ, temporal interference creates dynamics absent in any fixed ordering — pointing toward observable signatures in clock quantum superposition experiments.
+
+| Script | Output |
+|--------|--------|
+| `generate_angular_interpolation.py` | `output/angular_interpolation_heatmap.png` |
+| `generate_angular_interpolation.py` | `output/angular_interpolation_arrow.png` |
+| `generate_angular_interpolation.py` | `output/angular_interpolation_slices.png` |
+| `generate_angular_interpolation.py` | `output/angular_interpolation_combined.png` |
+| `generate_angular_interpolation.py` | `output/table_angular_interpolation.csv` |
+
+![Angular interpolation — continuous deformation of clock orientation](../output/angular_interpolation_combined.png)
+
+Six-panel summary. Top left: ⟨σ\_z⟩(k, θ) heatmap showing the smooth transition from forward to reversed oscillation. Top center: S\_eff(k, θ) heatmap showing entropy gradient reversal. Top right: arrow strength A(θ) — continuous from +1 to −1 with critical angle θ\* ≈ 0.365π. Bottom panels: entropy slices, ⟨σ\_z⟩ slices at selected angles, and monotonicity measure.
+
+---
+
 ## Experimental Validation on IBM Quantum Hardware
 
 All results above rely on numerical simulation (QuTiP). As a final test, we executed all three pillars on a **real quantum processor** — IBM's `ibm_torino` (133 superconducting qubits) — via the Qiskit Runtime service.

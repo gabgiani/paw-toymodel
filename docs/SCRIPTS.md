@@ -27,6 +27,7 @@ python generate_gravity_robustness.py # Gravity robustness (3 tests)
 python generate_structural_robustness.py # Structural robustness (3 tests)
 python generate_clock_reversal.py     # Clock reversal across 3 pillars
 python generate_covariance_theorem.py # Covariance theorem + T-symmetry distinction
+python generate_angular_interpolation.py # Angular interpolation of clock orientation
 
 # Extension: Observational asymmetry (independent analysis)
 python extensions/access_asymmetry/generate_access_asymmetry.py
@@ -535,6 +536,41 @@ For each, compares clock-reversed reduced states to T-reversed reduced states (c
 | `output/table_covariance_theorem.csv` | Numerical data for all tests |
 
 ![covariance_theorem_combined.png](../output/covariance_theorem_combined.png)
+
+---
+
+### `generate_angular_interpolation.py` — Angular Interpolation of Clock Orientation
+
+**What it does:** Extends the Clock Orientation Covariance Theorem (Gap 2) from discrete permutations to a continuous one-parameter family. Defines a rotated clock basis parameterized by θ ∈ [0, π] that smoothly interpolates between forward (θ=0) and reversed (θ=π) temporal orderings.
+
+**Construction:** For each pair (k, N−1−k), define a 2D rotation:
+- $|k_\theta\rangle = \cos(\theta/2)|k\rangle + \sin(\theta/2)|N\!-\!1\!-\!k\rangle$ (for k < N/2)
+- $|(N\!-\!1\!-\!k)_\theta\rangle = -\sin(\theta/2)|k\rangle + \cos(\theta/2)|N\!-\!1\!-\!k\rangle$
+
+This is a proper rotation, so {$|k_\theta\rangle$} is an orthonormal basis for all θ.
+
+**Conditioned state:** The observer using the rotated clock at tick k sees:
+$$\langle k_\theta|_C|\Psi\rangle \propto \cos(\theta/2)\cdot U_{SE}(k\cdot dt)|\psi_0\rangle + \sin(\theta/2)\cdot U_{SE}((N\!-\!1\!-\!k)\cdot dt)|\psi_0\rangle$$
+— a quantum superposition of two time evolutions: **temporal interference**.
+
+**Key findings:**
+- Arrow strength A(θ) = [S\_eff(N−1) − S\_eff(0)] / ln 2 varies continuously from +1.000 to −1.000
+- Critical angle θ\* ≈ 0.365π where the arrow vanishes
+- The rotated clock basis remains orthonormal for all θ (max deviation < 3×10⁻¹⁷)
+- Boundary conditions are exact: θ=0 → identity (error 0), θ=π → reversal (error 3.3×10⁻¹⁶)
+- At intermediate θ, temporal interference creates dynamics not reducible to any single time ordering
+
+**Distinction from fuzzy boundary test:** The gravity robustness test (generate\_gravity\_robustness.py) rotates the S/E **partition** in $\mathcal{H}_S \otimes \mathcal{H}_E$. Here, θ rotates the **clock basis** in $\mathcal{H}_C$ — continuously deforming the temporal description while keeping the system–environment split fixed.
+
+| Output | Description |
+|--------|-------------|
+| `output/angular_interpolation_heatmap.png` | ⟨σ\_z⟩ and S\_eff as functions of (k, θ) |
+| `output/angular_interpolation_arrow.png` | Arrow strength and monotonicity vs θ |
+| `output/angular_interpolation_slices.png` | Entropy and ⟨σ\_z⟩ curves at selected angles |
+| `output/angular_interpolation_combined.png` | Six-panel summary |
+| `output/table_angular_interpolation.csv` | Full numerical data (51 θ values × 30 clock ticks) |
+
+![angular_interpolation_combined.png](../output/angular_interpolation_combined.png)
 
 ---
 
