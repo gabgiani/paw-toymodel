@@ -102,6 +102,7 @@ GitHub also provides a "Cite this repository" button (powered by [CITATION.cff](
 | Document | Description |
 |----------|-------------|
 | **[Theory](docs/THEORY.md)** | The unified relational time formula, three pillars, and the observer as anomaly |
+| **[Main Claims](docs/CLAIMS.md)** | The six explicit, testable claims of this work — with key evidence for each |
 | **[Scripts & Outputs](docs/SCRIPTS.md)** | Complete guide to every script, figure, and CSV |
 | **[The Omniscient Observer](docs/GOD_OBSERVER.md)** | Boundary analysis: what happens when the observer has complete access |
 | **[Geometric Structure](docs/GEOMETRY.md)** | Bloch trajectory, relational bundle, and the arrow as geometry |
