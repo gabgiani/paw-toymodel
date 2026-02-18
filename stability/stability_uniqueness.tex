@@ -77,11 +77,10 @@ stability, uniqueness}
 The Page--Wootters mechanism produces conditional dynamics from a globally
 static state $H_{\mathrm{tot}}|\Psi\rangle=0$ via the projection
 \begin{equation}\label{eq:pw-formula}
-  \rho_S(t) \;=\;
+  \rho_S(t) =
   \frac{\Tr_E\!\bigl[\langle t|_C\,\rho_{CSE}\,|t\rangle_C\bigr]}{p(t)},
-  \qquad
-  p(t) = \Tr_{SE}\!\bigl[\langle t|_C\,\rho_{CSE}\,|t\rangle_C\bigr].
 \end{equation}
+with $p(t) = \Tr_{SE}\!\bigl[\langle t|_C\,\rho_{CSE}\,|t\rangle_C\bigr]$.
 This formula presupposes a factorization $\hilb_{SE}\cong\hilb_S\otimes\hilb_E$
 in which the partial trace $\Tr_E$ is performed~\cite{PageWootters1983,Wootters1984}.
 A natural question arises: \emph{is this factorization unique, or could a different
@@ -113,14 +112,17 @@ Given a bipartition $S|E$, define the \emph{local algebras}
 \]
 their traceless parts
 \[
-  \calA_0 := \{A\otimes I : \Tr(A)=0\}, \qquad
+  \calA_0 := \{A\otimes I : \Tr(A)=0\},
+\]
+\[
   \calB_0 := \{I\otimes B : \Tr(B)=0\},
 \]
 and the \emph{local subspace}
 \[
   \calL_0 := \calA_0 \oplus \calB_0
-  \quad\subset\; \End_0(\hilb) := \{X\in\End(\hilb):\Tr(X)=0\}.
+  \;\subset\; \End_0(\hilb),
 \]
+where $\End_0(\hilb) := \{X\in\End(\hilb):\Tr(X)=0\}$.
 \end{definition}
 
 \begin{lemma}[Orthogonality]\label{lem:ortho}
@@ -212,14 +214,14 @@ The local part $H_{\mathrm{loc}}$ generates factored evolution at first order:
 $-i[H_S\otimes I+I\otimes H_E,\;\rho_S\otimes\rho_E]
 = -i[H_S,\rho_S]\otimes\rho_E - i\rho_S\otimes[H_E,\rho_E]$,
 which is exactly absorbed by $\dot\sigma(0)$. Therefore:
-\begin{equation}\label{eq:Delta1}
-  \Delta_1 = -i\Bigl(
+\begin{align}\label{eq:Delta1}
+  \Delta_1 &= -i\Bigl(
     [H_{\mathrm{int}},\sigma]
-    - \Tr_E[H_{\mathrm{int}},\sigma]\otimes\rho_E
-    - \rho_S\otimes\Tr_S[H_{\mathrm{int}},\sigma]
-  \Bigr)
-  =: \calG_\sigma(H_{\mathrm{int}}).
-\end{equation}
+    - \Tr_E[H_{\mathrm{int}},\sigma]\otimes\rho_E \nonumber\\
+    &\quad - \rho_S\otimes\Tr_S[H_{\mathrm{int}},\sigma]
+  \Bigr) \nonumber\\
+  &=: \calG_\sigma(H_{\mathrm{int}}).
+\end{align}
 The map $\calG_\sigma:\calL^\perp\to\End_0(\hilb)$ is linear and depends only
 on $\sigma$.
 
@@ -299,12 +301,12 @@ $\calL_0$ and $\calL_0'$, the distance from $H_{\mathrm{loc}}$ to $\calL'$ satis
   \;\ge\; \sin\theta\,\|H_{\mathrm{loc}}\|_2.
 \]
 By the triangle inequality:
-\[
+\begin{align*}
   \|H_{\mathrm{int}}'\|_2
-  = \mathrm{dist}(H,\calL')
-  \ge \mathrm{dist}(H_{\mathrm{loc}},\calL') - \|H_{\mathrm{int}}\|_2
-  \ge \sin\theta\,\|H_{\mathrm{loc}}\|_2 - \|H_{\mathrm{int}}\|_2.
-\]
+  &= \mathrm{dist}(H,\calL') \\
+  &\ge \mathrm{dist}(H_{\mathrm{loc}},\calL') - \|H_{\mathrm{int}}\|_2 \\
+  &\ge \sin\theta\,\|H_{\mathrm{loc}}\|_2 - \|H_{\mathrm{int}}\|_2.
+\end{align*}
 Imposing $\eta$-stability of $S'|E'$:
 $\|H_{\mathrm{int}}'\|_2\le\eta\|H\|_2$. Therefore:
 \[
@@ -327,11 +329,10 @@ $\|P_{\calL}-P_{\calL'}\|_{2\to 2}=\|P_{\calL_0}-P_{\calL_0'}\|_{2\to 2}$.
 Let $\varepsilon:=\|P_{\calL_0}-P_{\calL_0'}\|_{2\to 2}<1/8$.
 Suppose $d_S\neq d_E$ (so $\dim\calA_0\neq\dim\calB_0$).
 Then:
-\begin{equation}
-  \|P_{\calA_0}-P_{\calA_0'}\|_{2\to 2} \;\le\; 4\varepsilon
-  \qquad\text{and}\qquad
-  \|P_{\calB_0}-P_{\calB_0'}\|_{2\to 2} \;\le\; 4\varepsilon.
-\end{equation}
+\begin{gather}
+  \|P_{\calA_0}-P_{\calA_0'}\|_{2\to 2} \le 4\varepsilon, \nonumber\\
+  \|P_{\calB_0}-P_{\calB_0'}\|_{2\to 2} \le 4\varepsilon.
+\end{gather}
 When $d_S=d_E$, the conclusion holds up to the possibility that
 $\calA_0'\leftrightarrow\calB_0'$ (swap).
 \end{lemma}
@@ -701,12 +702,12 @@ $\rho_S(t)=\Tr_E[\rho_{SE}(t)]$ satisfies:
 
 In the interaction picture with respect to $H_0:=H_S\otimes I+I\otimes H_E$,
 to second order in $H_{\mathrm{int}}$:
-\begin{equation}\label{eq:effective}
-  \dot\rho_S(t) = -i[H_S+\bar H_S,\;\rho_S(t)]
-  - \int_0^t \Tr_E\!\bigl[H_{\mathrm{int}}^I(t),
-    [H_{\mathrm{int}}^I(s),\rho_S(t)\otimes\rho_E]\bigr]\,ds
+\begin{multline}\label{eq:effective}
+  \dot\rho_S(t) = -i[H_S+\bar H_S,\;\rho_S(t)] \\
+  - \int_0^t \!\Tr_E\!\bigl[H_{\mathrm{int}}^I(t),
+    [H_{\mathrm{int}}^I(s),\rho_S(t)\otimes\rho_E]\bigr]ds \\
   + O(\eta^3 t^2),
-\end{equation}
+\end{multline}
 where $\bar H_S:=\Tr_E(H_{\mathrm{int}}\,\rho_E)$ is the mean-field correction and
 $H_{\mathrm{int}}^I(t):=e^{iH_0t}H_{\mathrm{int}}e^{-iH_0t}$.
 \end{theorem}
@@ -758,26 +759,23 @@ All coefficients are $O(\|H_{\mathrm{int}}\|^2)=O(\eta^2\|H_{SE}\|_2^2)$.
 The results assemble into a single logical chain, starting from the
 Page--Wootters formula~\eqref{eq:pw-formula}:
 
-\begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabular}{r@{\;$\Longrightarrow$\;}l@{\qquad}l}
-  PW formula & presupposes $S|E$ & (Section~\ref{sec:setup}) \\
-  Stability of $S|E$ & $I(S:E)(t)\le Kt^2\|H_{\mathrm{int}}\|_2^2$ &
-    (Theorem~\ref{thm:quadratic}) \\
-  $\|H_{\mathrm{int}}\|_2\le\eta\|H\|_2$ & bipartition is $\eta$-stable &
-    (Definition~\ref{def:stability}) \\
-  Two $\eta$-stable bipartitions & $\theta=O(\eta)$ &
-    (Theorem~\ref{thm:angle}) \\
-  $\theta=O(\eta)$ & $\|P_{\calA_0}-P_{\calA_0'}\|=O(\eta)$ &
-    (Lemma~\ref{lem:summand}) \\
-  Close algebras & $U\approx U_S\otimes U_E$ &
-    (Lemma~\ref{lem:conjugation}) \\
-  Uniqueness & $\calF(S|E)$ is variational principle &
-    (Theorem~\ref{thm:variational}) \\
-  Optimal bipartition & almost-unitary $\rho_S(t)$ &
-    (Theorem~\ref{thm:dynamics})
-\end{tabular}
-\end{center}
+\begin{enumerate}[leftmargin=*,label=\arabic*.]
+\item PW formula $\Longrightarrow$ presupposes $S|E$\hfill (Sec.~\ref{sec:setup})
+\item Stability of $S|E$ $\Longrightarrow$
+  $I(S{:}E)(t)\le Kt^2\|H_{\mathrm{int}}\|_2^2$\hfill (Thm.~\ref{thm:quadratic})
+\item $\|H_{\mathrm{int}}\|_2\le\eta\|H\|_2$ $\Longrightarrow$
+  $\eta$-stable\hfill (Def.~\ref{def:stability})
+\item Two $\eta$-stable bipartitions $\Longrightarrow$
+  $\theta=O(\eta)$\hfill (Thm.~\ref{thm:angle})
+\item $\theta=O(\eta)$ $\Longrightarrow$
+  $\|P_{\calA_0}-P_{\calA_0'}\|=O(\eta)$\hfill (Lem.~\ref{lem:summand})
+\item Close algebras $\Longrightarrow$
+  $U\approx U_S\otimes U_E$\hfill (Lem.~\ref{lem:conjugation})
+\item Uniqueness $\Longrightarrow$
+  $\calF(S|E)$ variational principle\hfill (Thm.~\ref{thm:variational})
+\item Optimal bipartition $\Longrightarrow$
+  almost-unitary $\rho_S(t)$\hfill (Thm.~\ref{thm:dynamics})
+\end{enumerate}
 
 \bigskip
 \noindent\textbf{Conclusion.}
@@ -822,29 +820,24 @@ paper~\cite{Giani2026}.
 For reference, we collect the explicit dependencies of the constants
 appearing throughout.
 
-\begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{lll}
-\hline
-\textbf{Constant} & \textbf{Appears in} & \textbf{Depends on} \\
-\hline
-$K,c_\sigma,C_\sigma$ & Quadratic bound (Thm.~\ref{thm:quadratic})
-  & Spectrum of $\rho_S,\rho_E$ \\
-$4$ (as in $4\varepsilon$) & Lemma~\ref{lem:summand}
-  & None (universal) \\
-$C_1\le 5$ & Orthonormalization (Lem.~\ref{lem:conjugation}, Step 2)
-  & For $\delta<1/4$ \\
-$C_2,C_3$ & Almost-multiplicativity (Step 3)
-  & $d_S$ (structure constants of $\mathfrak{su}(d_S)$) \\
-$C_5,\ldots,C_8$ & Idempotent/isometry correction (Step 4)
-  & $d_S$ \\
-$\lambda_\star=d_S$ & Casimir gap (Step 6)
-  & $d_S$ (representation theory) \\
-$C(d_S,d_E)$ & Final constant (Lem.~\ref{lem:conjugation})
-  & Polynomial in $d_S$; independent of $d_E$ \\
-\hline
-\end{tabular}
-\end{center}
+\begin{itemize}[leftmargin=*]
+\item $K,c_\sigma,C_\sigma$ --- Quadratic bound (Thm.~\ref{thm:quadratic}):
+  depends on spectrum of $\rho_S,\rho_E$.
+\item $4$ (as in $4\varepsilon$) --- Lemma~\ref{lem:summand}:
+  none (universal).
+\item $C_1\le 5$ --- Orthonormalization
+  (Lem.~\ref{lem:conjugation}, Step~2):
+  for $\delta<1/4$.
+\item $C_2,C_3$ --- Almost-multiplicativity (Step~3):
+  $d_S$ (structure constants of $\mathfrak{su}(d_S)$).
+\item $C_5,\ldots,C_8$ --- Idempotent/isometry correction
+  (Step~4): $d_S$.
+\item $\lambda_\star=d_S$ --- Casimir gap (Step~6):
+  $d_S$ (representation theory).
+\item $C(d_S,d_E)$ --- Final constant
+  (Lem.~\ref{lem:conjugation}):
+  polynomial in $d_S$; independent of $d_E$.
+\end{itemize}
 
 \bigskip
 Notably, the geometric core of the argument (Theorem~\ref{thm:angle}
