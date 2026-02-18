@@ -50,8 +50,7 @@
 \title{\textbf{Stability and Uniqueness of Tensor Product Structures\\[4pt] under Hamiltonian Dynamics}\\[8pt]
 \large A Mathematical Framework for Dynamically Selected Factorizations\\in the Page--Wootters Formalism}
 
-\author{Gabriel Giani\\[4pt]
-\small Working document --- Development notes}
+\author{Gabriel Giani}
 
 \date{February 2026}
 
@@ -76,8 +75,10 @@ dissipation controlled by the interaction strength.
 All results are stated with explicit hypotheses and constants.
 \end{abstract}
 
-\tableofcontents
-\newpage
+\medskip
+\noindent\textbf{Keywords:} tensor product structure, Page--Wootters formalism,
+Hilbert--Schmidt geometry, quantum factorization, mutual information,
+stability, uniqueness.
 
 %=============================================================================
 \section{Introduction and Motivation}
@@ -92,11 +93,11 @@ static state $H_{\mathrm{tot}}|\Psi\rangle=0$ via the projection
   p(t) = \Tr_{SE}\!\bigl[\langle t|_C\,\rho_{CSE}\,|t\rangle_C\bigr].
 \end{equation}
 This formula presupposes a factorization $\hilb_{SE}\cong\hilb_S\otimes\hilb_E$
-in which the partial trace $\Tr_E$ is performed.
+in which the partial trace $\Tr_E$ is performed~\cite{PageWootters1983,Wootters1984}.
 A natural question arises: \emph{is this factorization unique, or could a different
 choice of subsystems lead to different physical predictions?}
 
-In this document we give a mathematical answer, working entirely within
+We provide a rigorous mathematical answer, working entirely within
 finite-dimensional quantum mechanics and Hilbert--Schmidt (HS) geometry.
 No philosophical assumptions about observers or measurement are invoked.
 
@@ -205,7 +206,7 @@ Since $\rho(0)$ is a product state, $I(S:E)|_{t=0}=0$ and $\Delta(0)=0$.
 \medskip\noindent
 \textbf{Step 2: Quadratic expansion of relative entropy.}
 For $\sigma$ invertible and $\|\Delta\|$ small, the standard expansion
-(Hiai--Petz) gives
+(Hiai--Petz~\cite{HiaiPetz1991}) gives
 \[
   D(\sigma+\Delta\|\sigma)
   = \tfrac{1}{2}\langle\Delta,\Omega_\sigma^{-1}(\Delta)\rangle + O(\|\Delta\|^3).
@@ -378,7 +379,7 @@ eigenvalues near~0 form a cluster of multiplicity~$n$.
 \medskip\noindent
 \textbf{Step 3: Davis--Kahan bound.}
 Let $Q:=\mathbf{1}_{[1/2,1]}(T|_{\calL_0'})$ be the spectral projector
-of rank~$m$. By the Davis--Kahan $\sin\Theta$ theorem:
+of rank~$m$. By the Davis--Kahan $\sin\Theta$ theorem~\cite{DavisKahan1970}:
 \begin{equation}
   \|Q-P_{\calA_0}\|_{2\to 2}
   \;\le\; \frac{\|T-P_{\calA_0}\|_{2\to 2}}{\mathrm{gap}/2}
@@ -534,7 +535,7 @@ Since $\calA\cong M_{d_S}$ is simple, $\Psi$ is injective
 (its kernel is a bilateral ideal, hence $\{0\}$ or $\calA$; injectivity follows
 from $\|\Psi-\Phi\|$ small and $\Phi$ being injective).
 Both $\calA$ and $\Psi(\calA)$ are copies of $M_{d_S}$ inside $M_d(\CC)$
-with $d=d_Sd_E$. By the Skolem--Noether theorem (for central simple algebras
+with $d=d_Sd_E$. By the Skolem--Noether theorem~\cite{SkolemNoether} (for central simple algebras
 in finite dimension), there exists $W\in U(d)$ such that
 \begin{equation}
   \Psi(X) = WXW^\dagger \quad\forall\, X\in\calA.
@@ -630,7 +631,7 @@ Three types of degeneracy can occur:
 \item \textbf{Block structure (superselection):} if $H$ decomposes as
   $H=\bigoplus_\alpha H^{(\alpha)}$ on $\hilb=\bigoplus_\alpha\hilb^{(\alpha)}$,
   stable factorizations may exist independently within each sector
-  (``virtual subsystems'' in the sense of Zanardi--Knill).
+  (``virtual subsystems'' in the sense of Zanardi--Knill~\cite{ZanardiLidarLloyd2004}).
 \item \textbf{Symmetries:} continuous symmetries of $H$ may allow families
   of equivalent factorizations related by the symmetry group.
 \end{enumerate}
@@ -799,8 +800,7 @@ effective subsystem dynamics.
 This factorization is essentially unique (up to local unitaries,
 swap when $d_S=d_E$, and block decompositions from symmetries).
 
-\bigskip
-\noindent\textbf{Open directions.}
+\subsection*{Open directions}
 \begin{itemize}[nosep]
 \item Extension to non-ideal clocks ($H_{C\text{-}SE}\neq 0$):
   how clock quality interacts with factorization stability.
@@ -808,7 +808,7 @@ swap when $d_S=d_E$, and block decompositions from symmetries).
   ($\bigotimes_i\hilb_i$): spatial locality emergence.
 \item Explicit computation of $\calF$ for physically motivated models
   (spin chains, lattice systems).
-\item Connection to decoherence theory and einselection (Zurek):
+\item Connection to decoherence theory and einselection~\cite{Zurek2003}:
   the pointer basis as the ``$S$-internal'' basis selected by the
   optimal factorization.
 \item Numerical and quantum-circuit validation: the quadratic scaling
@@ -819,6 +819,10 @@ swap when $d_S=d_E$, and block decompositions from symmetries).
   Extension to real quantum hardware and larger system sizes
   is a natural next step.
 \end{itemize}
+
+The results presented here form the mathematical backbone of the
+Page--Wootters--Assemblage framework developed in the companion
+paper~\cite{Giani2026}.
 
 %=============================================================================
 \section{Table of Constants}
@@ -858,5 +862,52 @@ and the factor $4\varepsilon$ in Lemma~\ref{lem:summand}) is
 \emph{dimension-independent}, while the algebraic correction
 (Lemma~\ref{lem:conjugation}) introduces polynomial dependence on $d_S$
 through the structure of $\mathfrak{su}(d_S)$.
+
+\begin{thebibliography}{99}
+
+\bibitem{PageWootters1983}
+D.~N.~Page and W.~K.~Wootters,
+``Evolution without evolution: Dynamics described by stationary observables,''
+\emph{Phys.\ Rev.\ D} \textbf{27}, 2885 (1983).
+
+\bibitem{Wootters1984}
+W.~K.~Wootters,
+``Time replaced by quantum correlations,''
+\emph{Int.\ J.\ Theor.\ Phys.} \textbf{23}, 701 (1984).
+
+\bibitem{HiaiPetz1991}
+F.~Hiai and D.~Petz,
+``The proper formula for relative entropy and its asymptotics
+in quantum probability,''
+\emph{Commun.\ Math.\ Phys.} \textbf{143}, 99 (1991).
+
+\bibitem{DavisKahan1970}
+C.~Davis and W.~M.~Kahan,
+``The rotation of eigenvectors by a perturbation.~III,''
+\emph{SIAM J.\ Numer.\ Anal.} \textbf{7}, 1 (1970).
+
+\bibitem{SkolemNoether}
+R.~S.~Pierce,
+\emph{Associative Algebras},
+Grad.\ Texts in Math.\ Vol.~88 (Springer, New York, 1982),
+Chap.~12 (Skolem--Noether theorem).
+
+\bibitem{ZanardiLidarLloyd2004}
+P.~Zanardi, D.~A.~Lidar, and S.~Lloyd,
+``Quantum tensor product structures are observable induced,''
+\emph{Phys.\ Rev.\ Lett.} \textbf{92}, 060402 (2004).
+
+\bibitem{Zurek2003}
+W.~H.~Zurek,
+``Decoherence, einselection, and the quantum origins of the classical,''
+\emph{Rev.\ Mod.\ Phys.} \textbf{75}, 715 (2003).
+
+\bibitem{Giani2026}
+G.~Giani,
+``The Page--Wootters--Assemblage framework: Observer-free quantum
+mechanics from relational structure,''
+(2026), companion paper.
+
+\end{thebibliography}
 
 \end{document}
