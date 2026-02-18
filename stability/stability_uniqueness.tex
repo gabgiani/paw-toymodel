@@ -1,21 +1,11 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[pra,twocolumn,amsmath,amssymb,longbibliography]{revtex4-2}
 
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage{geometry}
-\usepackage{hyperref}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{mathtools}
 \usepackage{enumitem}
 \usepackage{xcolor}
-
-\geometry{margin=2.5cm}
-
-\hypersetup{
-  colorlinks=true,
-  linkcolor=blue!70!black,
-  citecolor=blue!70!black,
-  urlcolor=blue!70!black
-}
+\usepackage{hyperref}
 
 % Theorem environments
 \theoremstyle{plain}
@@ -47,15 +37,14 @@
 \newcommand{\calK}{\mathcal{K}}
 \newcommand{\calL}{\mathcal{L}}
 
-\title{\textbf{Stability and Uniqueness of Tensor Product Structures\\[4pt] under Hamiltonian Dynamics}\\[8pt]
-\large A Mathematical Framework for Dynamically Selected Factorizations\\in the Page--Wootters Formalism}
-
-\author{Gabriel Giani}
-
-\date{February 2026}
-
 \begin{document}
-\maketitle
+
+\title{Stability and Uniqueness of Tensor Product Structures\\ under Hamiltonian Dynamics:\\
+A Mathematical Framework for Dynamically Selected Factorizations\\
+in the Page--Wootters Formalism}
+
+\author{Gabriel Giani Moreno}
+\affiliation{Independent researcher}
 
 \begin{abstract}
 We develop a self-contained mathematical framework establishing that
@@ -75,10 +64,11 @@ dissipation controlled by the interaction strength.
 All results are stated with explicit hypotheses and constants.
 \end{abstract}
 
-\medskip
-\noindent\textbf{Keywords:} tensor product structure, Page--Wootters formalism,
+\keywords{tensor product structure, Page--Wootters formalism,
 Hilbert--Schmidt geometry, quantum factorization, mutual information,
-stability, uniqueness.
+stability, uniqueness}
+
+\maketitle
 
 %=============================================================================
 \section{Introduction and Motivation}
