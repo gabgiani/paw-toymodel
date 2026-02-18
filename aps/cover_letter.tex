@@ -1,0 +1,68 @@
+\documentclass[12pt]{letter}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+
+\signature{Gabriel Giani Moreno\\Independent Researcher}
+\address{}
+\date{\today}
+
+\begin{document}
+
+\begin{letter}{Editors\\Physical Review A\\American Physical Society}
+
+\opening{Dear Editors,}
+
+Please find attached our manuscript entitled:
+
+\bigskip
+\begin{center}
+\textit{``The Observer as a Local Breakdown of Atemporality:\\
+Relational Time and an Informational Arrow from Quantum Clocks.''}
+\end{center}
+\bigskip
+
+In this work, we present a unified operational framework addressing the problem of time by showing that three traditionally distinct aspects---(i)~relational Schr\"odinger dynamics, (ii)~the thermodynamic arrow of time, and (iii)~observer-dependent temporal parameterization---emerge from a single conditional construction applied to a globally stationary (atemporal) state.
+
+The central object of the paper is the conditional reduced state
+%
+\begin{equation*}
+\rho_S(t)=\frac{\mathrm{Tr}_E\!\left[\langle t|_C\,|\Psi\rangle\langle\Psi|\,|t\rangle_C\right]}{p(t)},
+\end{equation*}
+%
+which we demonstrate generates all three pillars from one operational pipeline:
+\begin{itemize}
+\item projection onto a physical clock subsystem,
+\item partial trace over inaccessible degrees of freedom,
+\item locality of the clock as a subsystem rather than an external parameter.
+\end{itemize}
+
+The manuscript makes the following concrete contributions:
+
+\begin{enumerate}
+\item \textbf{Unified operational synthesis.}
+While Page--Wootters conditioning, informational arrows, and temporal quantum reference frames have been studied separately, we show explicitly that they are three readings of the same conditional structure.
+
+\item \textbf{Clock-orientation covariance theorem.}
+We prove exact covariance under arbitrary relabelings of the clock basis, including full reversal, and demonstrate numerically that reversal deterministically inverts the entropy arrow within the same formalism.
+
+\item \textbf{Continuum limit and emergent clock transformation group.}
+We show uniform convergence as clock resolution increases and demonstrate that inter-clock transformations approach an affine time-reparameterization structure in the large-clock limit.
+
+\item \textbf{Robustness analysis.}
+We perform gravitational, structural, and necessity tests, explicitly identifying which postulate violations destroy which pillar.
+
+\item \textbf{Experimental validation on IBM Quantum hardware.}
+Both relational dynamics (Pillar~1) and the informational arrow (Pillar~2) are implemented on superconducting qubits (\texttt{ibm\_torino}), with quantified noise characterization and reproducible agreement with theory.
+\end{enumerate}
+
+The work is theoretical in structure but includes explicit hardware implementation and device-level noise analysis. It is therefore positioned at the intersection of quantum foundations, quantum information, and operational approaches to time in finite systems.
+
+We believe the manuscript is appropriate for \textit{Physical Review~A}, as it addresses fundamental questions in quantum mechanics using finite-dimensional systems, open-system analysis, and experimentally testable constructions.
+
+The manuscript is original, has not been published elsewhere, and is not under consideration by another journal.
+
+\closing{Thank you for your consideration.\\ \\Sincerely,}
+
+\end{letter}
+\end{document}

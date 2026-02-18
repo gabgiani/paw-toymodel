@@ -1,31 +1,28 @@
-\documentclass[12pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\documentclass[pra,twocolumn,amsmath,amssymb,longbibliography]{revtex4-2}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
 \usepackage{physics}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{booktabs}
-\usepackage{enumitem}
 \usepackage{hyperref}
-\usepackage[margin=2.5cm]{geometry}
-\graphicspath{{../paw-toymodel/output/}{../paw-toymodel/IBMquantum/output/}}
+\graphicspath{{aps/figures/}}
 
-\newtheorem{theorem}{Theorem}
+\begin{document}
 
 \title{The Observer as a Local Breakdown of Atemporality:\\
 Relational Time and an Informational Arrow from Quantum Clocks}
 \author{Gabriel Giani Moreno}
-\date{Revised manuscript --- February 2026}
-
-\begin{document}
-\maketitle
+\affiliation{Independent researcher}
 
 \begin{abstract}
 We unify three facets of the problem of time within a single conditional construction on a globally timeless state, making explicit how quantum dynamics, an informational arrow, and frame dependence arise from one operational reduction. In a Page--Wootters setting with a finite-dimensional clock and an environment, we demonstrate (i)~emergent relational Schr\"odinger dynamics and (ii)~an informational arrow quantified by monotonic entropic behaviour of conditional states. We validate both effects on superconducting quantum hardware, confirming agreement with the model under realistic noise and finite-sample constraints. We then establish exact covariance under arbitrary relabellings of the clock basis, including clock reversal, which inverts the arrow deterministically within the formalism. Finally, by analysing consistency between distinct clock resolutions and orientations, we provide evidence that the induced inter-clock transformations approach an affine time-reparametrisation structure in the large-clock limit. Together, these results deliver a single operational framework linking relational dynamics, irreversibility, and clock-frame transformations, with experimental support in the same setup.
 \end{abstract}
 
-\noindent\textbf{Keywords:} relational time; Page--Wootters; quantum clocks; temporal reference frames; decoherence; arrow of time; information; foundations.
+\keywords{relational time, Page--Wootters, quantum clocks, temporal reference frames, decoherence, arrow of time, information, foundations}
+
+\maketitle
 
 \section{Introduction}
 
@@ -123,9 +120,10 @@ Even when the global evolution is stationary/unitary, $S_{\mathrm{eff}}(t)$ can 
 \subsection{Unified Reading: Three Pillars from a Single Conditional State}
 
 The core expression of the framework is the conditional reduced state of the system:
-\begin{equation}
-    \rho_S(t) = \frac{\mathrm{Tr}_E\big[\langle t|_C\,|\Psi\rangle\langle\Psi|\,|t\rangle_C\big]}{p(t)}, \quad p(t) = \mathrm{Tr}_{SE}\big[\langle t|_C\,|\Psi\rangle\langle\Psi|\,|t\rangle_C\big].
-\end{equation}
+\begin{align}
+    \rho_S(t) &= \frac{\mathrm{Tr}_E\big[\langle t|_C\,|\Psi\rangle\langle\Psi|\,|t\rangle_C\big]}{p(t)}, \label{eq:unified}\\
+    p(t) &= \mathrm{Tr}_{SE}\big[\langle t|_C\,|\Psi\rangle\langle\Psi|\,|t\rangle_C\big]. \nonumber
+\end{align}
 
 This single operation unifies three traditionally separate pillars of the problem of time:
 
@@ -140,6 +138,7 @@ This single operation unifies three traditionally separate pillars of the proble
 The convergence is summarized in Table~2:
 
 \begin{center}
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{lll}
 \hline
 \textbf{Ingredient} & \textbf{Produces} & \textbf{Pillar} \\
@@ -149,7 +148,7 @@ $\mathrm{Tr}_E$ (partial trace) & Irreversibility & Thermodynamics \\
 $C$ local (not global) & Observer-dependent time & Frame dependence (operational) \\
 $|\Psi\rangle$ with $\hat{\mathcal{C}}|\Psi\rangle=0$ & Atemporal base & Common ground \\
 \hline
-\end{tabular}
+\end{tabular}}%
 \end{center}
 
 While individual components exist in the literature --- Page and Wootters \cite{PageWootters1983} for conditioning, Shaari \cite{Shaari2026} for the informational arrow via partial trace in a specific two-qubit model, H\"ohn, Smith and Lock \cite{Hoehn2021} for temporal quantum reference frames, Mendes et al.\ \cite{Mendes2025} for quasi-ideal clock corrections --- no prior work explicitly unifies the three pillars as three facets of the same conditional operation on the same timeless object, nor establishes the structural stability and uniqueness of the underlying partition. The present contribution is a \emph{synthesis}: (i)~integration of three mechanisms (projection, partial trace, clock locality) into a single expression applied to one state, (ii)~identification of the observer's access structure as the common governing parameter across all three pillars, (iii)~a quantitative boundary analysis (progressive blindness, God Observer levels, partition independence) mapping how temporal experience degrades as access increases, and (iv)~proof that the tensor product structure encoding the observer partition is stable under small perturbations (quadratic purity-deficit bound) and unique within its interaction-minimal equivalence class. Quantum dynamics, thermodynamic irreversibility, and observer-dependent time are not three separate problems requiring three separate solutions. They are three readings of a single expression, supported by a structurally robust partition.
@@ -171,9 +170,9 @@ Define back-action via the conditional change in clock energy/number operator:
 
 Small $|\Delta E_C(t)|$ indicates weak back-action.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.75\textwidth]{back_action.png}
+\includegraphics[width=\columnwidth]{back_action.png}
 \caption{Clock back-action --- Conditional change in clock energy $\Delta E_C(k)$ as a function of time step, confirming bounded clock perturbation.}
 \label{fig:back_action}
 \end{figure}
@@ -182,9 +181,9 @@ Small $|\Delta E_C(t)|$ indicates weak back-action.
 
 For a target unitary $U_S(t)$, quantify deviation by a distance measure (e.g., trace distance or fidelity) between $\rho_S(t)$ and $U_S(t)\rho_S(0)U_S^\dagger(t)$.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.75\textwidth]{fidelity_comparison.png}
+\includegraphics[width=\columnwidth]{fidelity_comparison.png}
 \caption{Fidelity decay --- $F(k) = \langle\psi_{\mathrm{ideal}}(k)|\rho_S(k)|\psi_{\mathrm{ideal}}(k)\rangle$ for Version~B ($n_{\mathrm{env}}=4$), quantifying the deviation from ideal unitary dynamics as system--environment entanglement builds.}
 \label{fig:fidelity}
 \end{figure}
@@ -246,9 +245,9 @@ Parameters: $N = 30$, $dt = 0.2$, $\omega = 1$, no environment.
     \item The resulting curve is a clean sinusoid for $k = 0, \ldots, 29$.
 \end{itemize}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{version_A_oscillation.png}
+\includegraphics[width=\columnwidth]{version_A_oscillation.png}
 \caption{Version~A --- Conditional $\langle \sigma_z \rangle_k$ vs.\ analytic $\cos(\omega k\, dt)$ for a clock with $N=30$ and $dt=0.2$. Maximum deviation is $\sim 10^{-16}$, confirming machine-precision agreement between PaW conditioning and standard Schr\"odinger evolution.}
 \label{fig:version_a}
 \end{figure}
@@ -266,14 +265,14 @@ Parameters: same clock and system as in Version~A, plus an environment of $n_{\m
     \item As $n_{\mathrm{env}}$ increases, entropy growth becomes more nearly monotonic and recurrences are increasingly suppressed.
 \end{itemize}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{version_B_n4.png}
+\includegraphics[width=\columnwidth]{version_B_n4.png}
 \caption{Version~B ($n_{\mathrm{env}}=4$) --- Top panel: damped conditional $\langle \sigma_z \rangle_k$ oscillations showing effective decoherence. Bottom panel: growth of effective entropy $S_{\mathrm{eff}}(k)$ from $0$ to $\approx \ln 2 \approx 0.693$.}
 \label{fig:version_b}
 \end{figure}
 
-\begin{table}[H]
+\begin{table*}[htbp]
 \centering
 \caption{Multi-environment sweep. Final $S_{\mathrm{eff}}$, maximum $S_{\mathrm{eff}}$, and final fidelity for $n_{\mathrm{env}} \in \{2,4,6,8\}$. $S_{\mathrm{eff}}$ converges to $\ln 2 \approx 0.693$ as the environment grows; fidelity decreases, reflecting stronger effective decoherence.}
 \label{tab:multi_env}
@@ -287,7 +286,7 @@ $n_{\mathrm{env}}$ & $d_E$ & $S_{\mathrm{eff}}^{\mathrm{final}}$ & $S_{\mathrm{e
 8  & 256 & 0.6931 & 0.6931 & 0.0363 & 0.5003 \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
 The convergence $S_{\mathrm{eff}} \to \ln 2$ and the suppression of oscillations as $n_{\mathrm{env}}$ grows corroborate the P4 heuristic on recurrence suppression.
 
@@ -314,14 +313,14 @@ Both clocks condition on the same global state $|\Psi\rangle$ satisfying $\hat{H
     \item $S_{\mathrm{eff}}(k)$ rises toward $\ln 2$ on both clocks but at different rates per tick: clock $C'$ reaches $\approx 0.693$ before clock $C$ does, because each tick of $C'$ spans a larger physical interval.
 \end{itemize}
 
-\begin{figure}[H]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{validation_pillar3_two_clocks.png}
+\includegraphics[width=\textwidth]{validation_pillar3_two_clocks.png}
 \caption{Two-clock comparison (Pillar~3) --- Left: conditional $\langle\sigma_z\rangle_k$ for clock $C$ ($dt = 0.2$) and clock $C'$ ($dt = 0.35$). Right: $S_{\mathrm{eff}}(k)$ for the same two clocks. Same global state $|\Psi\rangle$, same formula, different clock choice $\to$ different emergent temporal description. Parameters: $N = 30$, $\omega = 1.0$, $g = 0.1$, $n_{\mathrm{env}} = 4$.}
 \label{fig:two_clocks}
-\end{figure}
+\end{figure*}
 
-\begin{table}[H]
+\begin{table*}[htbp]
 \centering
 \caption{Two-clock comparison (selected ticks) --- $\langle\sigma_z\rangle(k)$ and $S_{\mathrm{eff}}(k)$ for clocks $C$ ($dt = 0.2$) and $C'$ ($dt = 0.35$). Full 30-tick data exported as \texttt{output/table\_pillar3\_two\_clocks.csv}.}
 \label{tab:two_clocks}
@@ -339,7 +338,7 @@ $k$ & $\langle\sigma_z\rangle_C$ & $S_{\mathrm{eff},C}$ & $\langle\sigma_z\rangl
 29 & 0.0225 & 0.6928 & $-$0.0289 & 0.6924 \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
 \noindent\textbf{Interpretation:} The temporal description --- oscillation frequency, decoherence rate, entropy growth --- depends on the clock choice. This is not a failure of the formalism but its central feature: time is relational, and different clocks yield different but equally valid emergent histories from the same atemporal state. This directly confirms prediction P4 and connects to postulate P3, where different observers (each carrying their own clock) experience genuinely different temporal orderings.
 
@@ -375,12 +374,12 @@ The framework yields concrete, parameter-dependent expectations:
     \item \textbf{Coupling dependence:} stronger $g$ accelerates decoherence and raises $S_{\mathrm{eff}}$ growth rate, but can degrade clock quality via back-action.
 \end{enumerate}
 
-\begin{figure}[H]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{multi_nenv_grid.png}
+\includegraphics[width=\textwidth]{multi_nenv_grid.png}
 \caption{Multi-environment grid --- $\langle \sigma_z \rangle$ (left column) and $S_{\mathrm{eff}}$ (right column) for $n_{\mathrm{env}} \in \{2,4,6,8\}$. Progressive damping of oscillations and saturation of entropy toward $\ln 2$ are visually evident.}
 \label{fig:multi_env}
-\end{figure}
+\end{figure*}
 
 \begin{enumerate}
     \setcounter{enumi}{3}
@@ -388,6 +387,7 @@ The framework yields concrete, parameter-dependent expectations:
 \end{enumerate}
 
 \section{Robustness Tests}
+\label{sec:robustness}
 
 The minimal demonstrator model (Section~6) establishes the three pillars under ideal conditions. A natural concern is whether these results are artefacts of the specific model choices: symmetric couplings, a particular initial state, a fixed system--environment partition, or the absence of gravitational effects. In this section we subject the framework to six stress tests --- three gravitational and three structural --- and report the numerical results. All tests are fully reproducible from the public repository.
 
@@ -398,7 +398,7 @@ Three tests probe the regime in which gravitational back-action, boundary ambigu
 \paragraph{Test G1: Back-reaction.}
 We modify the system--environment coupling to include a back-reaction term $\hat{H}_{\mathrm{back}} = \varepsilon\,\sigma_z^{(S)}\otimes\sigma_z^{(E)}$ that mimics the effect of a gravitational interaction between the system and its environment. The parameter $\varepsilon$ interpolates between no back-reaction ($\varepsilon = 0$) and maximal perturbation ($\varepsilon = 1$).
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Gravitational back-reaction test. Arrow strength $= S_{\mathrm{eff}}^{\mathrm{final}} / \ln 2$. The arrow degrades but survives even at $\varepsilon = 1$.}
 \label{tab:backreaction}
@@ -419,7 +419,7 @@ $\varepsilon$ & $S_{\mathrm{eff}}^{\mathrm{final}}$ & Arrow strength & Monotonic
 \paragraph{Test G2: Fuzzy system--environment boundary.}
 We apply a rotation $R(\theta)$ that mixes system and environment degrees of freedom before the partial trace, simulating the situation where the observer's partition is not perfectly aligned with the physical interaction basis. The angle $\theta$ ranges from $0$ (sharp boundary) to $\pi/2$ (maximally misaligned).
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Fuzzy boundary test. The arrow persists across all mixing angles, including the maximally misaligned case $\theta = \pi/2$ (arrow strength 0.882).}
 \label{tab:fuzzy}
@@ -440,7 +440,7 @@ $\pi/2$ & 0.611 & 0.882 & 1.000 \\
 \paragraph{Test G3: Clock uncertainty (Gaussian blur).}
 We convolve the clock projection with a Gaussian kernel of width $\sigma$ (in units of clock ticks), simulating a noisy or imprecise clock readout. This corresponds to replacing $|k\rangle\langle k|_C$ with a smeared POVM.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Clock uncertainty test. Even with $\sigma = 4.0$ (severe blurring covering $\sim$13\% of the clock range), the arrow strength remains at 0.997 with perfect monotonicity.}
 \label{tab:fuzzy_clock}
@@ -458,19 +458,19 @@ $\sigma$ & $S_{\mathrm{eff}}^{\mathrm{final}}$ & Arrow strength & Monotonicity \
 \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{gravity_robustness_curves.png}
+\includegraphics[width=\textwidth]{gravity_robustness_curves.png}
 \caption{Gravitational robustness --- $S_{\mathrm{eff}}(k)$ curves for each test across all parameter values. Left: back-reaction. Center: fuzzy boundary. Right: clock uncertainty. The arrow survives in all cases, though its strength degrades with increasing back-reaction.}
 \label{fig:gravity_robustness}
-\end{figure}
+\end{figure*}
 
-\begin{figure}[H]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{gravity_robustness_summary.png}
+\includegraphics[width=\textwidth]{gravity_robustness_summary.png}
 \caption{Gravitational robustness summary --- Arrow strength vs.\ perturbation parameter for each test. The clock uncertainty test is the most robust (nearly flat at 1.0), while back-reaction shows graceful degradation.}
 \label{fig:gravity_summary}
-\end{figure}
+\end{figure*}
 
 \noindent\textbf{Conclusion:} The informational arrow is remarkably robust to gravitational perturbations. Clock uncertainty has essentially no effect. Fuzzy boundaries reduce the arrow but do not eliminate it. Even maximal back-reaction ($\varepsilon = 1$) preserves a residual arrow of 0.290.
 
@@ -481,7 +481,7 @@ Three tests probe whether the arrow depends on structural choices in the model: 
 \paragraph{Test S1: Poincar\'e recurrences.}
 For symmetric Hamiltonians (all couplings identical), large degeneracies in the energy spectrum cause exact recurrences at $t \approx 31$ for all $n_{\mathrm{env}}$. However, when the coupling strengths are drawn randomly and mixed Pauli axes ($\sigma_x$, $\sigma_y$, $\sigma_z$) are used, the energy gaps become incommensurate, and the minimum entropy after thermalization $S_{\min}^{\mathrm{post\text{-}therm}}$ rises sharply with $n_{\mathrm{env}}$.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Poincar\'e recurrence test. Symmetric couplings always recur at $t \approx 31$. Random couplings suppress recurrences: $S_{\min}^{\mathrm{post\text{-}therm}}$ rises from 0.0003 ($n_{\mathrm{env}}=1$) to 0.35 ($n_{\mathrm{env}}=5$), and no fidelity recurrence is detected for $n_{\mathrm{env}} \geq 3$.}
 \label{tab:poincare}
@@ -502,7 +502,7 @@ Random & 5 & 0.3506 & No \\
 \paragraph{Test S2: Initial state sensitivity.}
 We draw 100 Haar-random product states and 100 Haar-random entangled states on the system--environment Hilbert space, and measure the arrow strength for each.
 
-\begin{table}[H]
+\begin{table*}[htbp]
 \centering
 \caption{Initial state sensitivity. 81\% of random product states and 100\% of random entangled states exhibit an arrow strength $> 0.5$. The arrow is not an artefact of the special initial state $|0\rangle^{\otimes (1+n_{\mathrm{env}})}$.}
 \label{tab:initial_states}
@@ -514,12 +514,12 @@ Product (100) & 0.489 & 0.706 & 0.014 & 81\% \\
 Entangled (100) & 0.648 & 0.935 & 0.712 & 100\% \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
 \paragraph{Test S3: Partition independence.}
 We fix the total Hilbert space ($1+n_{\mathrm{env}}$ qubits) and sweep over all possible choices of which qubit is designated as the ``system'' qubit, with the remaining qubits forming the environment. For a 5-qubit register ($n_{\mathrm{env}} = 4$), this yields 10 distinct partitions (5 for each of two Hamiltonians: symmetric and random).
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Partition independence test. All 10 partitions (5 system-qubit choices $\times$ 2 Hamiltonians) show a clear arrow. Minimum arrow strength = 0.882.}
 \label{tab:partition}
@@ -537,30 +537,31 @@ Random & 4 & 0.654 & 0.943 \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{robustness_poincare.png}
+\includegraphics[width=\textwidth]{robustness_poincare.png}
 \caption{Poincar\'e recurrence analysis --- $S_{\mathrm{eff}}(t)$ for symmetric (top) and random (bottom) couplings across $n_{\mathrm{env}} = 1, \ldots, 5$. Symmetric couplings show exact recurrences; random couplings suppress them for $n_{\mathrm{env}} \geq 3$.}
 \label{fig:poincare}
-\end{figure}
+\end{figure*}
 
-\begin{figure}[H]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{robustness_initial_states.png}
+\includegraphics[width=\textwidth]{robustness_initial_states.png}
 \caption{Initial state sensitivity --- Distributions of final $S_{\mathrm{eff}}$ for 100 Haar-random product states (blue) and 100 entangled states (orange). Entangled states universally produce a strong arrow.}
 \label{fig:initial_states}
-\end{figure}
+\end{figure*}
 
-\begin{figure}[H]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{robustness_partition.png}
+\includegraphics[width=\textwidth]{robustness_partition.png}
 \caption{Partition independence --- $S_{\mathrm{eff}}(k)$ for all 10 system-qubit choices. The arrow emerges regardless of which qubit is designated as the system.}
 \label{fig:partition}
-\end{figure}
+\end{figure*}
 
 \noindent\textbf{Conclusion:} The informational arrow is structurally robust. It does not depend on symmetric couplings (random couplings suppress recurrences), is not an artefact of the initial state (81--100\% of random states show it), and is independent of which qubit is designated as the system (all partitions produce an arrow with strength $\geq 0.882$).
 
 \subsection{Condition Necessity Tests (Contrapositiva)}
+\label{sec:condition_violations}
 
 The robustness tests in Sections~9.1--9.2 show that the arrow \emph{survives} perturbations. A complementary question is whether each condition stated in P3 and P4 is \emph{genuinely necessary}: does the formula break when a condition is deliberately violated? We test the contrapositiva of five conditions by constructing scenarios in which exactly one condition is removed while all others are held fixed.
 
@@ -589,7 +590,7 @@ The clock has a period of 10 ticks: $k_{\mathrm{eff}} = k \bmod 10$. At each wra
 
 \noindent\textbf{Result:} $S_{\mathrm{eff}}$ resets to 0 at each wrap point ($k = 10, 20$), then re-grows. Monotonicity drops from 1.000 to 0.517. Temporal ordering is broken: the same clock reading maps to multiple distinct physical configurations.
 
-\begin{table}[H]
+\begin{table*}[htbp]
 \centering
 \caption{Condition necessity tests (contrapositiva). Each row deliberately violates one condition; the corresponding pillar degrades or fails. ``Arrow'' is $\Delta S / \ln 2$; ``Mono.''\ is the fraction of consecutive ticks with non-decreasing $S_{\mathrm{eff}}$.}
 \label{tab:condition_violations}
@@ -605,20 +606,20 @@ V4: $\sigma_C = 6$ & P3 cond.~i (orthogonality) & 0.690 & 0.995 & 1.000 \\
 V5: wrap $= 10$ & P3 cond.~ii (monotonicity) & 0.360 & --- & 0.517 \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
-\begin{figure}[H]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{condition_violations.png}
+\includegraphics[width=\textwidth]{condition_violations.png}
 \caption{Condition necessity tests --- $S_{\mathrm{eff}}(k)$ for each violation (coloured) against the baseline (dashed black). V1 (high initial entropy): flat at $\ln 2$, no arrow. V2 (unstable partition): erratic jumps, degraded monotonicity. V3 (zero interaction): identically zero. V4 (non-orthogonal clock): arrow survives, dynamics blur. V5 (wrapping clock): $S_{\mathrm{eff}}$ resets to 0 at each wrap point.}
 \label{fig:condition_violations}
-\end{figure}
+\end{figure*}
 
 \noindent\textbf{Conclusion:} Every condition in P3 and P4 is genuinely necessary. The degradation is \emph{graceful and specific}: violating a P4 condition breaks Pillar~2 (the arrow) while leaving Pillar~1 (dynamics) intact (V3); violating a P3 condition degrades Pillar~1 while Pillar~2 remains robust (V4). This hierarchy --- dynamics are fragile, irreversibility is robust --- is physically intuitive: perfect Schr\"odinger evolution requires an ideal Hamiltonian, but entropy growth depends only on Hilbert space dimensionality and partial tracing. The framework is therefore \emph{falsifiable}: any experiment showing that an arrow persists when all five P4 conditions fail would refute the framework.
 
 \subsection{Summary of All Robustness Tests}
 
-\begin{table}[H]
+\begin{table*}[htbp]
 \centering
 \caption{Summary of six robustness tests. All pass: the informational arrow survives gravitational perturbations, generic initial states, and arbitrary system--environment partitions.}
 \label{tab:robustness_summary}
@@ -634,7 +635,7 @@ Structure & Initial states (product) & 81\% show arrow & Yes \\
 Structure & Partition (all qubits) & min 0.882 & Yes \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
 % ─────────────────────────────────────────────────────────────────
 %  NEW SECTION — Clock Orientation Covariance (Gaps 1 & 2)
@@ -678,12 +679,12 @@ The most physically important special case is the \emph{reversal} permutation $\
 \end{enumerate}
 All three predictions are confirmed numerically with error $= 0$ to machine precision (Figure~\ref{fig:clock_reversal}).
 
-\begin{figure}[H]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{clock_reversal_combined.png}
+\includegraphics[width=\textwidth]{clock_reversal_combined.png}
 \caption{Clock reversal validation across the three pillars.  Left: reversed Bloch-vector dynamics reproduce the original dynamics exactly (Pillar~1).  Centre: the entropy arrow inverts exactly under reversal (Pillar~2).  Right: locality metrics remain identical (Pillar~3).}
 \label{fig:clock_reversal}
-\end{figure}
+\end{figure*}
 
 \subsection{Clock Reversal Is Not Time Reversal}
 \label{sec:reversal_vs_T}
@@ -701,12 +702,12 @@ Numerical comparison (Figure~\ref{fig:covariance_theorem}) confirms:
 
 This result strengthens the framework's central claim: the arrow of time is an informational structure arising from the conditioning map, not from the dynamical symmetries of $\hat{H}$.
 
-\begin{figure}[H]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{covariance_theorem_combined.png}
+\includegraphics[width=\textwidth]{covariance_theorem_combined.png}
 \caption{Left: six permutations tested --- all produce zero error, confirming the Covariance Theorem.  Right: smoking gun --- clock reversal vs.\ $T$-reversal for $T$-symmetric and $T$-breaking Hamiltonians.  Clock reversal inverts the entropy arrow exactly in both cases; $T$-reversal does not.}
 \label{fig:covariance_theorem}
-\end{figure}
+\end{figure*}
 
 \subsection{Angular Interpolation of Clock Orientation}
 \label{sec:angular_interpolation}
@@ -737,12 +738,12 @@ The asymmetry $\theta^* \neq \pi/2$ arises because the initial state $|{\uparrow
 
 \textbf{Distinction from the fuzzy boundary test.}  The gravity robustness test (Test~2 in Section~\ref{sec:robustness}) rotates the system--environment \emph{partition} via partial SWAP in $\mathcal{H}_S \otimes \mathcal{H}_E$.  Here, $\theta$ rotates the \emph{clock basis} in $\mathcal{H}_C$, continuously deforming the temporal description while keeping the $S$--$E$ factorization fixed.  The two $\theta$ parameters govern different physics.
 
-\begin{figure}[H]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{angular_interpolation_combined.png}
+\includegraphics[width=\textwidth]{angular_interpolation_combined.png}
 \caption{Angular interpolation of clock orientation.  Top left: $\langle\sigma_z\rangle(k,\theta)$ heatmap showing continuous transition from forward to reversed oscillation.  Top centre: $S_{\mathrm{eff}}(k,\theta)$ heatmap showing entropy gradient reversal.  Top right: arrow strength $A(\theta)$ --- continuous from $+1$ to $-1$, crossing zero at $\theta^* \approx 0.365\pi$.  Bottom panels: entropy slices, $\langle\sigma_z\rangle$ slices, and monotonicity measure at selected angles.}
 \label{fig:angular_interpolation}
-\end{figure}
+\end{figure*}
 
 % ─────────────────────────────────────────────────────────────────
 
@@ -754,7 +755,7 @@ As a further test, we executed both Pillar~1 (pure Schr\"odinger dynamics) and P
 
 Calibration data queried at runtime reveal the noise floor of the device (Table~\ref{tab:noise}).
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Noise properties of \texttt{ibm\_torino} at the time of execution.}
 \label{tab:noise}
@@ -800,7 +801,7 @@ With a single qubit and no environment, the hardware reproduces $\langle\sigma_z
 \paragraph{Pillar~2 (thermodynamic arrow).}
 Three independent hardware runs were executed on the same backend to quantify statistical uncertainty. The results are summarised in Table~\ref{tab:ibm}.
 
-\begin{table}[H]
+\begin{table*}[htbp]
 \centering
 \caption{IBM Quantum hardware validation (3 independent runs). The thermodynamic arrow is clearly observed: $S_{\mathrm{eff}}$ grows monotonically, with the 3-run mean reaching $0.583 \pm 0.005$ (102.2\% of exact). Slight over-estimation is expected: QPU noise adds decoherence on top of the model's entanglement-based entropy. Trotter error is exactly zero; all deviation is QPU noise (see Table~\ref{tab:noise} for device characterisation).}
 \label{tab:ibm}
@@ -813,14 +814,14 @@ Qiskit simulator & 0.000 & 0.570 & 0.000 \\
 \textbf{IBM ibm\_torino (mean $\pm$ 1$\sigma$)} & $\mathbf{0.000 \pm 0.002}$ & $\mathbf{0.583 \pm 0.005}$ & --- \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
-\begin{figure}[H]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{ibm_quantum_enhanced.png}
+\includegraphics[width=\textwidth]{ibm_quantum_enhanced.png}
 \caption{Enhanced IBM Quantum hardware validation with error bars ($n = 3$ independent runs on ibm\_torino, 133 qubits). Left: $\langle\sigma_z\rangle$ vs.\ step --- exact (dashed), hardware mean $\pm 1\sigma$ (shaded band). Right: $S_{\mathrm{eff}}$ vs.\ step with the same convention. The noise annotation box summarises the backend calibration at the time of execution. The thermodynamic arrow of time is clearly observed, with hardware results bracketing the exact curve within the noise floor. Single-qubit Pillar~1 dynamics (not shown) deviate by at most 0.033 from exact, establishing the per-gate noise baseline.}
 \label{fig:ibm}
-\end{figure}
+\end{figure*}
 
 The hardware results confirm: (i)~$S_{\mathrm{eff}}$ grows from $\approx 0$ to $0.583 \pm 0.005$ (3-run mean $\pm 1\sigma$), i.e., 102.2\% of the exact theoretical value --- the slight over-estimation is physically expected, as QPU noise contributes additional decoherence beyond the model's entanglement-based entropy; (ii)~the arrow strength $S_{\mathrm{eff}}^{\mathrm{final}} - S_{\mathrm{eff}}^{\mathrm{initial}} = 0.583$; (iii)~the dominant noise sources are measurement readout error (4.49\%) and two-qubit gate error (median 0.25\%), with coherence times ($T_1 \approx 148~\mu$s, $T_2 \approx 162~\mu$s) far exceeding circuit duration. This constitutes the first experimental confirmation on physical quantum hardware that the unified relational formula's informational arrow survives real-world noise, with quantified error bars and device-level noise characterisation.
 
@@ -879,7 +880,7 @@ Fix the physical period $T = 2\pi/\omega$ and sweep $N \in \{32, 64, 128, 256\}$
 For each~$N$ the per-tick conditional state $\rho_S(k)$ is computed from the full clock--system--environment Hamiltonian (same parameters as Section~6: $\omega=1$, $g=0.1$, $n_{\mathrm{env}}=4$).
 The densest run ($N=256$) serves as the reference continuous limit; for each smaller~$N$ we interpolate $\langle\sigma_z\rangle(t)$ and $S_{\mathrm{eff}}(t)$ onto the reference grid and report the maximum absolute deviation.
 
-\begin{table}[H]
+\begin{table*}[htbp]
 \centering
 \caption{Convergence diagnostics as $N$ increases.  Monotonicity~$=1$ and recurrence~$=0$ for all~$N$; the convergence metrics $\Delta_{\sigma_z}$ and $\Delta_{S_{\mathrm{eff}}}$ decrease rapidly, confirming uniform convergence to the continuum.}
 \label{tab:continuum}
@@ -893,7 +894,7 @@ $N$ & Monotonicity & Recurrence & $\max|\Delta\langle\sigma_z\rangle|$ & $\max|\
 256 & 1.0000 & 0.0000 & $0$ (reference)        & $0$ (reference) \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
 The arrow of time (monotonic $S_{\mathrm{eff}}$ growth) is already perfectly present at $N=32$ and persists unchanged as $N$ doubles three times.
 This shows that the informational arrow is a structural consequence of the PaW conditioning-plus-partial-trace pipeline, not an artefact of finite clock resolution.
@@ -926,12 +927,12 @@ Let three observers use clocks with spacings $dt_1 = 0.15$, $dt_2 = 0.20$, $dt_3
 These four properties --- closure (composition), identity, inverse, and the inclusion of inversion --- establish that the inter-clock transformations form the \textbf{affine group} $\mathrm{Aff}(\mathbb{R})$ of time reparametrisations $t \mapsto \alpha t + \beta$ (with $\beta = 0$ by the common initial condition).
 In the continuum limit this group is the additive group~$\mathbb{R}$ of time translations when $\alpha = 1$, and includes the full orientation-reversing subgroup when $\alpha < 0$.
 
-\begin{figure}[H]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{continuum_limit_combined.png}
+\includegraphics[width=\textwidth]{continuum_limit_combined.png}
 \caption{Continuous limit and group structure.  (a)~$S_{\mathrm{eff}}(t)$ for $N \in \{32, 64, 128, 256\}$: all curves collapse.  (b)~Interpolation convergence: $\max|\Delta\langle\sigma_z\rangle|$ decreases as $N$ doubles, confirming the continuum limit.  (c)~Clock-transformed $S_{\mathrm{eff}}$ for Alice ($dt = 0.2$) and Bob ($dt = 0.35$): near-perfect overlap.  (d)~$\langle\sigma_z\rangle$ clock comparison: the same agreement as $S_{\mathrm{eff}}$.  (e)~Group composition: $S_{\mathrm{eff}}$ for three clocks overlaps; $\alpha_{12} \cdot \alpha_{23} = \alpha_{13}$.  (f)~Arrow inversion: forward (blue) and reversed (orange) $S_{\mathrm{eff}}$ exactly mirror each other.}
 \label{fig:continuum}
-\end{figure}
+\end{figure*}
 
 \section{Main Claims}
 \label{sec:main_claims}
@@ -969,16 +970,15 @@ The informational arrow survives real quantum hardware noise.  Tested on IBM Qua
 \noindent\textbf{Claim~7 --- Continuum Limit and Clock Transformation Group.}
 In the limit $N \to \infty$ the PaW conditional description converges uniformly to standard quantum mechanics: $\max|\Delta\langle\sigma_z\rangle|$ drops from $8.1 \times 10^{-5}$ at $N = 32$ to machine zero at $N = 256$, while monotonicity and zero recurrence are maintained at every resolution.  Inter-clock transformations $t' = \alpha\,t$ (tested with $\alpha = 1.75$) reproduce the same physics to $O(10^{-5})$.  Composition, identity, inverse, and arrow inversion are verified numerically; the transformations form the affine group $\mathrm{Aff}(\mathbb{R})$.
 
-
 \medskip
 \noindent\textbf{Claim~8 --- Stability and uniqueness of the observer partition.}
 The tensor product structure that defines the observer's Hilbert-space factorization is stable under small perturbations and unique within its interaction-minimal equivalence class.  A quadratic bound on the purity deficit, $\Delta(\eta) \leq C\,\eta^2$, guarantees that slightly shifting the observer boundary preserves the informational arrow to leading order.  A variational selection principle further identifies the physical partition as the unique minimizer of the interaction energy among all equivalent factorizations.  These results are confirmed by IBM Quantum circuit simulations that recover the predicted $\eta^{2}$ scaling (fitted exponent $2.03 \pm 0.01$).
 
 \medskip
-\begin{table}[h]
+\begin{table*}[htbp]
 \centering
 \small
-\begin{tabular}{@{}clp{6.5cm}@{}}
+\begin{tabular}{@{}clp{9cm}@{}}
 \toprule
 \textbf{Claim} & \textbf{Type} & \textbf{Key evidence} \\
 \midrule
@@ -994,7 +994,7 @@ The tensor product structure that defines the observer's Hilbert-space factoriza
 \end{tabular}
 \caption{Summary of the eight main claims and their supporting evidence.}
 \label{tab:main_claims}
-\end{table}
+\end{table*}
 
 \section{Conclusion}
 
