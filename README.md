@@ -46,6 +46,12 @@ flowchart TD
     R --> RG["Gravity: backreaction,<br/>fuzzy boundaries, clock blur"]
     R --> RS["Structural: Poincaré,<br/>initial states, partitions"]
 
+    F --> STAB["<b>Stability & Uniqueness</b><br/>TPS is stable, unique,<br/>and variationally selected"]
+    STAB --> P1
+    STAB --> P2
+    STAB --> P3
+    STAB --> STABV["NumPy + IBM Quantum<br/>circuit validation"]
+
     F --> GO["<b>Boundary analysis</b><br/>Omniscient observer<br/>→ time disappears"]
 
     F --> GEO["<b>Geometric interpretation</b><br/>Bloch trajectory,<br/>relational bundle"]
@@ -55,6 +61,8 @@ flowchart TD
     style P2 fill:#d4edda,stroke:#28a745
     style P3 fill:#d4edda,stroke:#28a745
     style QPU fill:#f8d7da,stroke:#dc3545
+    style STAB fill:#e8daef,stroke:#8e44ad
+    style STABV fill:#f8d7da,stroke:#dc3545
     style GO fill:#fff3cd,stroke:#ffc107
     style GEO fill:#fff3cd,stroke:#ffc107
 ```
@@ -68,6 +76,7 @@ Everything here is **numerically verifiable**. The repository contains:
 - **IBM Quantum hardware validation** — the formula was tested on a real quantum processor (ibm\_torino), confirming the theoretical predictions with error bars
 - A **boundary analysis** (the "omniscient observer") exploring what happens when you give the observer complete access — time disappears, as predicted
 - **Geometric interpretations** showing how the arrow of time traces a path on the Bloch sphere
+- **Stability & uniqueness proofs** guaranteeing the tensor product structure is robust, unique, and variationally selected — with NumPy and IBM Quantum circuit validation
 - An **independent extension** studying observational asymmetry between systems with different access structures
 
 The mathematics draws on work by Page & Wootters (1983), Giovannetti, Lloyd & Maccone (2015), and Höhn, Smith & Lock (2021), among others. The synthesis — the three pillars from one formula, the observer as anomaly, and the numerical demonstrations — is original.
@@ -122,6 +131,7 @@ GitHub also provides a "Cite this repository" button (powered by [CITATION.cff](
 | **[Gravity Robustness](docs/THEORY.md#gravity-robustness)** | Three tests: backreaction, fuzzy boundaries, clock uncertainty |
 | **[Structural Robustness](docs/THEORY.md#structural-robustness)** | Poincaré recurrences, initial states, partition independence |
 | **[IBM Quantum Validation](docs/THEORY.md#experimental-validation-on-ibm-quantum-hardware)** | All 3 pillars confirmed on ibm_torino (real QPU), error bars, noise characterisation |
+| **[Stability & Uniqueness](stability/README.md)** | TPS stability theorems, uniqueness proof, variational principle — NumPy and quantum circuit validation |
 
 ### Extensions
 
@@ -163,6 +173,10 @@ python generate_structural_robustness.py # Structural robustness (3 tests)
 
 # Extension: Observational asymmetry (independent analysis)
 python extensions/access_asymmetry/generate_access_asymmetry.py
+
+# Stability & uniqueness verification
+python stability/verify_corrected.py                        # NumPy exact verification
+python IBMquantum/run_ibm_stability.py --mode simulator      # IBM Quantum circuit validation
 
 # IBM Quantum hardware validation (requires API key)
 pip install qiskit qiskit-ibm-runtime
@@ -212,13 +226,17 @@ Two observers choose different clocks (dt = 0.20 vs dt = 0.35) applied to the sa
 | `IBMquantum/run_ibm_validation.py` | IBM Quantum hardware validation (Pillar 2 on real QPU) |
 | `IBMquantum/run_ibm_enhanced.py` | Enhanced validation: error bars, noise characterisation, Pillar 1 on QPU |
 | `IBMquantum/run_ibm_pillar3.py` | Pillar 3 on QPU/simulator: two clocks, observer-dependent time |
+| `IBMquantum/run_ibm_stability.py` | Stability theorem validation on quantum circuits (Thm 3.1, 8.1) |
+| `stability/stability_uniqueness.tex` | Full mathematical stability & uniqueness proofs (10 pages) |
+| `stability/verify_corrected.py` | NumPy exact verification of stability bounds |
 | `extensions/access_asymmetry/` | Observational asymmetry analysis (separate from main paper) |
 | `test_god_observer.py` | Console validation of three omniscience levels |
 | `run_essay_validation.py` | All 3 pillars — clean ASCII output |
 | `paw_toymodel.ipynb` | Interactive Jupyter notebook |
 | `requirements.txt` | Python dependencies |
 | `output/` | 21 figures (PNG) + 11 data tables (CSV) |
-| `IBMquantum/output/` | 3 figures (PNG) + 3 data tables (CSV) + 1 noise JSON — hardware results |
+| `stability/` | Stability & uniqueness proofs, NumPy verification, and figures |
+| `IBMquantum/output/` | 5 figures (PNG) + 5 data tables (CSV) + 1 noise JSON — hardware & simulator results |
 
 ## Reference Parameters
 

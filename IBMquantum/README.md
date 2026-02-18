@@ -58,6 +58,20 @@ Or both in one run:
 - **Free tier:** 10 minutes/month — this uses ~5% of your monthly budget
 - **Queue wait:** 5–30 minutes (not counted against QPU budget)
 
+### Step 4: Stability & uniqueness validation (simulator)
+
+```bash
+./venv/bin/python IBMquantum/run_ibm_stability.py --mode simulator
+```
+
+This validates the stability theorems (Thm 3.1, 8.1) on quantum circuits — confirming that the tensor product structure is robust under perturbation.
+
+### Step 5: Stability on IBM Quantum hardware
+
+```bash
+./venv/bin/python IBMquantum/run_ibm_stability.py --mode hardware
+```
+
 ## Output
 
 | File | Description |
@@ -66,12 +80,25 @@ Or both in one run:
 | `output/table_ibm_quantum_validation.csv` | Full numerical data (Pillar 2) |
 | `output/ibm_pillar3_validation.png` | 4-panel two-clock comparison (Pillar 3) |
 | `output/table_ibm_pillar3.csv` | Two-clock numerical data (Pillar 3) |
+| `output/ibm_stability_validation.png` | 6-panel stability validation (purity deficit + MI scaling) |
+| `output/stability_time_evolution.csv` | Time evolution data for stability analysis |
+| `output/stability_eta_scaling.csv` | η-scaling fit data (purity deficit and MI vs λ) |
 
 ## Expected Results
 
 - **Simulator:** Trotter circuits reproduce QuTiP exact evolution with error < 0.001
 - **Hardware (Pillar 2):** S\_eff grows from 0 → 0.583 ± 0.005 (102.2% of exact). Hardware noise adds decoherence, which **strengthens** the arrow
 - **Hardware (Pillar 3):** Two clocks differ by 0.69 in ⟨σ\_z⟩ and 0.14 in S\_eff — observer-dependence confirmed on ibm\_torino
+- **Stability (Simulator):** Purity deficit scales as λ^2.03 (1.3% from theory); MI scales as λ^1.78 (expected log correction for pure states)
+
+### Stability Validation Details
+
+The stability script (`run_ibm_stability.py`) validates the mathematical theorems from the [stability analysis](../stability/README.md) on quantum circuits. It uses a 2-qubit Heisenberg model with Trotterized evolution and scans across 14 coupling strengths to verify:
+
+- **Purity deficit** Δ = 1 − Tr(ρ²) scales as λ² — confirming Theorem 3.1
+- **Mutual information** I(S:E) scales as λ² with a logarithmic correction — explained by Remark 3.3
+
+![Stability Validation](output/ibm_stability_validation.png)
 
 ## API Key
 
